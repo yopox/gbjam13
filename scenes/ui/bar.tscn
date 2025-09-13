@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://br1dq76tpklqs"]
+
+[ext_resource type="Script" uid="uid://cas8a42qb1jhq" path="res://scenes/ui/bar.gd" id="1_gr2fh"]
+
+[node name="bar" type="Control"]
+custom_minimum_size = Vector2(32, 1)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gr2fh")
+
+[node name="r1" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 1.0
+color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+
+[node name="r2" type="ColorRect" parent="."]
+z_index = 100
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 1.0

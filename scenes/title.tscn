@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwhuna3qm1jd"]
+
+[ext_resource type="Theme" uid="uid://dggwjntgpkqru" path="res://assets/themes/mask.tres" id="1_4ignj"]
+[ext_resource type="Script" uid="uid://cxq4ep3p68sbc" path="res://scenes/title.gd" id="1_p6dhs"]
+[ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="2_wosw1"]
+
+[node name="title" type="Node2D"]
+script = ExtResource("1_p6dhs")
+
+[node name="name" type="Label" parent="."]
+custom_minimum_size = Vector2(160, 0)
+offset_top = 28.0
+offset_right = 160.0
+offset_bottom = 63.0
+theme = ExtResource("1_4ignj")
+theme_override_font_sizes/font_size = 34
+text = "s777ars"
+horizontal_alignment = 1
+
+[node name="start" type="Label" parent="."]
+custom_minimum_size = Vector2(160, 0)
+offset_top = 88.0
+offset_right = 160.0
+offset_bottom = 111.0
+theme = ExtResource("2_wosw1")
+theme_override_colors/font_color = Color(0.6627451, 0.6627451, 0.6627451, 1)
+text = "PRESS A TO START"
+horizontal_alignment = 1
+vertical_alignment = 1

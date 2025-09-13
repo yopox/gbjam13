@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=3 uid="uid://bla85reuu38vt"]
+
+[ext_resource type="Texture2D" uid="uid://6kxepq3qmxlj" path="res://assets/gui/footer.png" id="1_0owx5"]
+[ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="2_msmip"]
+[ext_resource type="PackedScene" uid="uid://br1dq76tpklqs" path="res://scenes/ui/bar.tscn" id="3_b63eu"]
+[ext_resource type="Texture2D" uid="uid://d5tyqmu424uy" path="res://assets/gui/icons.png" id="4_6big4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2olr"]
+atlas = ExtResource("4_6big4")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gvwg"]
+atlas = ExtResource("4_6big4")
+region = Rect2(8, 0, 8, 8)
+
+[node name="gui" type="Control"]
+custom_minimum_size = Vector2(160, 12)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 12.0
+
+[node name="gui_bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_0owx5")
+centered = false
+
+[node name="unlucky" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 42.0
+
+[node name="label" type="Label" parent="unlucky"]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 28.0
+offset_bottom = 8.0
+theme = ExtResource("2_msmip")
+text = "UNLUCKY"
+
+[node name="bar" parent="unlucky" instance=ExtResource("3_b63eu")]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 32.0
+offset_bottom = 8.0
+width = 27
+
+[node name="hull" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 43.0
+offset_top = 2.0
+offset_right = 83.0
+offset_bottom = 42.0
+
+[node name="label" type="Label" parent="hull"]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 16.0
+offset_bottom = 8.0
+theme = ExtResource("2_msmip")
+text = "HULL"
+
+[node name="bar" parent="hull" instance=ExtResource("3_b63eu")]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 8.0
+width = 15
+
+[node name="shield" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 2.0
+offset_right = 110.0
+offset_bottom = 42.0
+
+[node name="left" type="Sprite2D" parent="shield"]
+position = Vector2(0, -1)
+texture = SubResource("AtlasTexture_x2olr")
+centered = false
+
+[node name="label" type="Label" parent="shield"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -5.0
+offset_right = 26.0
+offset_bottom = 8.0
+theme = ExtResource("2_msmip")
+text = "SHL"
+
+[node name="bar" parent="shield" instance=ExtResource("3_b63eu")]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 8.0
+width = 21
+
+[node name="missile" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 94.0
+offset_right = 134.0
+offset_bottom = 40.0
+
+[node name="right" type="Sprite2D" parent="missile"]
+position = Vector2(4, 5)
+texture = SubResource("AtlasTexture_1gvwg")
+
+[node name="label" type="Label" parent="missile"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -3.0
+offset_right = 26.0
+offset_bottom = 10.0
+theme = ExtResource("2_msmip")
+text = "MSL"
+
+[node name="bar" parent="missile" instance=ExtResource("3_b63eu")]
+layout_mode = 0
+offset_top = 9.0
+offset_right = 32.0
+offset_bottom = 10.0
+width = 23
+
+[node name="boss" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 132.0
+offset_top = 2.0
+offset_right = 172.0
+offset_bottom = 42.0
+
+[node name="label" type="Label" parent="boss"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -5.0
+offset_right = 22.0
+offset_bottom = 8.0
+theme = ExtResource("2_msmip")
+text = "-BOSS-"
+
+[node name="bar" parent="boss" instance=ExtResource("3_b63eu")]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 7.0
+offset_right = 30.0
+offset_bottom = 8.0
+width = 23
