@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc6wmh3trl2n4"]
+[gd_scene load_steps=6 format=3 uid="uid://dc6wmh3trl2n4"]
 
 [ext_resource type="Script" uid="uid://4bq47u0xyyi0" path="res://scenes/entities/actors/enemy.gd" id="1_n0alq"]
 [ext_resource type="Texture2D" uid="uid://bbi8owvr3t7xd" path="res://assets/entities/enemies.png" id="2_n0alq"]
+[ext_resource type="PackedScene" uid="uid://csaw7ajh5l3oc" path="res://scenes/entities/space/blinker.tscn" id="3_couwp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_couwp"]
 atlas = ExtResource("2_n0alq")
@@ -10,8 +11,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0alq"]
 size = Vector2(8, 6)
 
-[node name="enemy" type="Node2D" node_paths=PackedStringArray("shots_anchor")]
+[node name="enemy" type="Node2D" node_paths=PackedStringArray("hitbox", "blinker", "shots_anchor")]
 script = ExtResource("1_n0alq")
+hitbox = NodePath("area")
+blinker = NodePath("blinker")
 shots_anchor = NodePath("shots_anchor")
 metadata/_custom_type_script = "uid://4bq47u0xyyi0"
 
@@ -27,3 +30,6 @@ shape = SubResource("RectangleShape2D_n0alq")
 
 [node name="shots_anchor" type="Node2D" parent="."]
 position = Vector2(-5, 0)
+
+[node name="blinker" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_couwp")]
+sprite = NodePath("../sprite")

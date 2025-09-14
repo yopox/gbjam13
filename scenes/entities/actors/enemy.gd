@@ -4,7 +4,9 @@ class_name Enemy extends Spaceship
 enum Types {
 	E1, E2, E3
 }
-	
+
+@onready var area: Area2D = $area
+
 var movement: Movement
 
 

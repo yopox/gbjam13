@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://csaw7ajh5l3oc"]
+
+[ext_resource type="Script" uid="uid://oqecgmvaf4vi" path="res://scenes/entities/space/blinker.gd" id="1_16bs4"]
+
+[node name="blinker" type="Node2D"]
+script = ExtResource("1_16bs4")
+metadata/_custom_type_script = "uid://oqecgmvaf4vi"
+
+[node name="particles" type="CPUParticles2D" parent="."]
+emitting = false
