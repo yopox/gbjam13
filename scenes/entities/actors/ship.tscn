@@ -15,13 +15,13 @@ script = ExtResource("1_bfe7u")
 enemy = false
 shots_anchor = NodePath("shots")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_dtwn4")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 8
+[node name="area" type="Area2D" parent="."]
+collision_mask = 12
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="hitbox" type="CollisionShape2D" parent="area"]
 shape = SubResource("RectangleShape2D_jjvwm")
 
 [node name="shots" type="Node2D" parent="."]

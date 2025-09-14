@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://02yhbniiagkv"]
+[gd_scene load_steps=5 format=3 uid="uid://02yhbniiagkv"]
 
 [ext_resource type="Script" uid="uid://clkaldfw0ybyk" path="res://scenes/space.gd" id="1_dtwn4"]
 [ext_resource type="PackedScene" uid="uid://bla85reuu38vt" path="res://scenes/ui/footer.tscn" id="1_rysn1"]
 [ext_resource type="PackedScene" uid="uid://dkn32lpac8twr" path="res://scenes/entities/actors/ship.tscn" id="2_c6rj5"]
+[ext_resource type="Script" uid="uid://hcr5wm55eq0e" path="res://scripts/enemies/wave_manager.gd" id="4_x2olr"]
 
 [node name="space" type="Node2D"]
 script = ExtResource("1_dtwn4")
@@ -21,3 +22,6 @@ offset_top = 131.0
 offset_bottom = 143.0
 
 [node name="shots" type="Node2D" parent="."]
+
+[node name="wave_manager" type="Node" parent="."]
+script = ExtResource("4_x2olr")

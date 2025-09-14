@@ -15,3 +15,7 @@ const SHIP_SHOT_SPEED: float = 0.75
 ## Margin around the screen before the bullet is freed
 const BULLET_BUFFER: int = 12
 const SHOT_SPEED: float = 64.0
+const SPAWN_Y_MID: float = UI_Y / 2.0
+const ENEMY_SPEED: float = SPEED * 0.75
+const ENEMY_SHOT_SPEED: float = SHIP_SHOT_SPEED * 2.0
+const ENEMY_BUFFER: float = 32

@@ -1,0 +1,44 @@
+class_name WaveManager extends Node
+
+const ENEMY: Resource = preload("uid://dc6wmh3trl2n4")
+
+
+var current_wave: Array[WaveEvent]
+
+
+func _ready() -> void:
+	current_wave = gen_waves(0)
+	play()
+
+
+func play() -> void:
+	for event in current_wave:
+		await Util.wait(event.delay)
+		for spawn in event.spawns:
+			await Util.wait(spawn.delay)
+			spawn_enemy(spawn)
+			
+			
+func spawn_enemy(spawn: Spawn) -> void:
+	var enemy: Enemy = ENEMY.instantiate()
+	# TODO: set sprite/hitbox
+	enemy.movement = spawn.movement
+	enemy.global_position = enemy.movement.get_pos()
+	add_child(enemy)
+
+
+func gen_waves(difficulty: int) -> Array[WaveEvent]:
+	return [
+		WaveEvent.new(0.0, [
+			Spawn.new(
+				1.0,
+				Enemy.Types.E2,
+				MovSine.new(Vector2(172, Values.SPAWN_Y_MID - 16), Values.ENEMY_SPEED, Vector3(10, 4, PI))
+			),
+			Spawn.new(
+				0.0,
+				Enemy.Types.E2,
+				MovSine.new(Vector2(172, Values.SPAWN_Y_MID + 16), Values.ENEMY_SPEED, Vector3(10, 4, 0))
+			)
+		]),
+	]
