@@ -1,4 +1,4 @@
-extends Node2D
+extends Spaceship
 
 
 func _physics_process(delta: float) -> void:
@@ -9,9 +9,9 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("down"): mvmt.y = 1
 	
 	if floor(position.x) == 0: mvmt.x = max(0, mvmt.x)
-	if floor(position.x) == 80: mvmt.x = min(0, mvmt.x)
+	if floor(position.x) == Values.SHIP_XMAX: mvmt.x = min(0, mvmt.x)
 	if floor(position.y) == 0: mvmt.y = max(0, mvmt.y)
-	if floor(position.y) == 130: mvmt.y = min(0, mvmt.y)
+	if floor(position.y) == Values.UI_Y: mvmt.y = min(0, mvmt.y)
 	
 	mvmt = mvmt.normalized()
 	position += delta * Values.SPEED * mvmt
