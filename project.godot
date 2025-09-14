@@ -21,6 +21,7 @@ Signals="*res://autoload/signals.gd"
 Util="*res://autoload/util.gd"
 DiscordRPCLoader="res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Palettes="*res://autoload/palettes.gd"
+Values="*res://autoload/values.gd"
 
 [display]
 
@@ -29,6 +30,7 @@ window/size/viewport_height=144
 window/size/window_width_override=1280
 window/size/window_height_override=1152
 window/stretch/scale=8.0
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
@@ -90,9 +92,18 @@ right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="ship_body"
+2d_physics/layer_2="ship_shots"
+2d_physics/layer_3="enemy_body"
+2d_physics/layer_4="enemy_shots"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
