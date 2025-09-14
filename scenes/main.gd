@@ -16,7 +16,7 @@ func _ready() -> void:
 	Signals.palette_changed.connect(palette_changed)
 	Signals.change_scene.connect(change_scene)
 	change_scene(scene)
-	palette_changed(Palettes.GRAY)
+	palette_changed(Palettes.PASTEL)
 
 
 func get_scene(s: Util.Scenes) -> Resource:
