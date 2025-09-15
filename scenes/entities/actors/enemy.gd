@@ -7,12 +7,14 @@ enum Types {
 
 @onready var area: Area2D = $area
 
+var type: Types
 var movement: Movement
 var chrono: float = 0.0
 
 
 func _ready() -> void:
 	super()
+	# TODO: Stats depending on the type of enemy
 	shots_timer.wait_time = Values.ENEMY_SHOT_SPEED
 
 
@@ -23,3 +25,7 @@ func _physics_process(delta: float) -> void:
 		return
 	chrono += delta
 	global_position = movement.get_pos(chrono)
+
+
+func get_damage() -> int:
+	return Values.ENEMY_DAMAGE

@@ -1,6 +1,10 @@
 extends Spaceship
 
 
+func get_damage() -> int:
+	return Values.SHIP_DAMAGE
+
+
 func _physics_process(delta: float) -> void:
 	var mvmt = Vector2.ZERO
 	if Input.is_action_pressed("left"): mvmt.x = -1
@@ -14,5 +18,5 @@ func _physics_process(delta: float) -> void:
 	if floor(position.y) == Values.UI_Y: mvmt.y = min(0, mvmt.y)
 	
 	mvmt = mvmt.normalized()
-	position += delta * Values.SPEED * mvmt
+	position += delta * Values.SHIP_SPEED * mvmt
  

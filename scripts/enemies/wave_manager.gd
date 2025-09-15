@@ -12,22 +12,26 @@ func _ready() -> void:
 
 
 func play() -> void:
+	Log.info("Wave start")
 	for event in current_wave:
 		await Util.wait(event.delay)
 		for spawn in event.spawns:
 			await Util.wait(spawn.delay)
 			spawn_enemy(spawn)
-			
-			
+	Log.info("Wave end")
+	current_wave = []
+
+
 func spawn_enemy(spawn: Spawn) -> void:
 	var enemy: Enemy = ENEMY.instantiate()
-	# TODO: set sprite/hitbox
+	# TODO: set enemy sprite
 	enemy.movement = spawn.movement
 	enemy.global_position = enemy.movement.get_pos(0.0)
 	add_child(enemy)
 
 
 func gen_waves(difficulty: int) -> Array[WaveEvent]:
+	# TODO: Generate waves
 	return [
 		WaveEvent.new(0.0, [
 			Spawn.new(
@@ -52,6 +56,6 @@ func gen_waves(difficulty: int) -> Array[WaveEvent]:
 func follow(n: int, delay: float, spawn: Spawn) -> Array[Spawn]:
 	var s: Array[Spawn] = []
 	for i in range(n):
-		var s1: Spawn = Spawn.new(0 if i == 0 else delay, spawn.enemy, spawn.movement)
+		var s1: Spawn = Spawn.new(0.0 if i == 0 else delay, spawn.enemy, spawn.movement)
 		s.append(s1)
 	return s

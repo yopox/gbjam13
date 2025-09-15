@@ -27,6 +27,7 @@ func get_scene(s: Util.Scenes) -> Resource:
 
 func change_scene(new_scene: Util.Scenes) -> void:
 	var s = get_scene(new_scene)
+	Log.info("Changing scene to", new_scene)
 	var s_node = s.instantiate()
 	for node in scene_node.get_children():
 		node.queue_free()

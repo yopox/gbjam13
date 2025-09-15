@@ -5,9 +5,12 @@ class_name Bullet extends Node2D
 var dir: Vector2 = Vector2.ZERO
 var lifetime: float = 0.0
 var enemy: bool = false
+var damage: int = 0
 
 
 func _ready():
+	if damage == 0:
+		Log.err("Bullet damage still at 0.")
 	area.collision_layer = 8 if enemy else 2
 	area.collision_mask = 1 if enemy else 4
 
