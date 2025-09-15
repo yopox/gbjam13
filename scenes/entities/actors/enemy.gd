@@ -8,6 +8,7 @@ enum Types {
 @onready var area: Area2D = $area
 
 var movement: Movement
+var chrono: float = 0.0
 
 
 func _ready() -> void:
@@ -20,5 +21,5 @@ func _physics_process(delta: float) -> void:
 		print("Queue free enemy")
 		queue_free()
 		return
-	movement.chrono += delta
-	global_position = movement.get_pos()
+	chrono += delta
+	global_position = movement.get_pos(chrono)
