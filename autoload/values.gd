@@ -9,7 +9,7 @@ const UI_Y: int = 130
 ## Invisible wall for the ship
 const SHIP_XMAX: int = 80
 const SHIP_DAMAGE: int = 6
-const SHIP_SPEED: float = 32.0
+const SHIP_SPEED: float = 42.0
 const SHIP_SHOT_SPEED: float = 0.75
 
 # ———— ENEMIES ———
@@ -18,6 +18,6 @@ const BULLET_BUFFER: int = 12
 const SHOT_SPEED: float = 64.0
 const SPAWN_Y_MID: float = UI_Y / 2.0
 const ENEMY_DAMAGE: int = 2
-const ENEMY_SPEED: float = SHIP_SPEED * 0.75
+const ENEMY_SPEED: float = SHIP_SPEED * 0.65
 const ENEMY_SHOT_SPEED: float = SHIP_SHOT_SPEED * 2.0
 const ENEMY_BUFFER: float = 32

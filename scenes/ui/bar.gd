@@ -1,5 +1,5 @@
 @tool
-extends Control
+class_name Bar extends Control
 
 
 @onready var r1: ColorRect = $r1
@@ -14,4 +14,7 @@ extends Control
 
 
 func set_ratio(ratio: float) -> void:
-	r2.size.x = ceil(ratio * width)
+	if ratio * width < 1.0:
+		r2.size.x = 0
+	else:
+		r2.size.x = ceil(ratio * width)

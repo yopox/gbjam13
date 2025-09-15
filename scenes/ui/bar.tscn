@@ -17,7 +17,7 @@ color = Color(0.32941177, 0.32941177, 0.32941177, 1)
 
 [node name="r2" type="ColorRect" parent="."]
 z_index = 100
-custom_minimum_size = Vector2(1, 1)
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 1.0

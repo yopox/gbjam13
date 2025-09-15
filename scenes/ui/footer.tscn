@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bla85reuu38vt"]
+[gd_scene load_steps=8 format=3 uid="uid://bla85reuu38vt"]
 
 [ext_resource type="Texture2D" uid="uid://6kxepq3qmxlj" path="res://assets/gui/footer.png" id="1_0owx5"]
+[ext_resource type="Script" uid="uid://e6blguuygoyp" path="res://scenes/ui/footer.gd" id="1_msmip"]
 [ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="2_msmip"]
 [ext_resource type="PackedScene" uid="uid://br1dq76tpklqs" path="res://scenes/ui/bar.tscn" id="3_b63eu"]
 [ext_resource type="Texture2D" uid="uid://d5tyqmu424uy" path="res://assets/gui/icons.png" id="4_6big4"]
@@ -19,6 +20,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 12.0
+script = ExtResource("1_msmip")
 
 [node name="gui_bg" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

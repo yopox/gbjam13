@@ -25,3 +25,5 @@ offset_bottom = 143.0
 
 [node name="wave_manager" type="Node" parent="."]
 script = ExtResource("4_x2olr")
+
+[connection signal="hit" from="ship" to="gui" method="_on_ship_hit"]
