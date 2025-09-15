@@ -10,3 +10,6 @@ func _init(pos: Vector2) -> void:
 
 
 @abstract func get_pos(time: float) -> Vector2
+
+## Returns a new movement with the given starting position
+@abstract func with_starting_pos(pos: Vector2) -> Movement

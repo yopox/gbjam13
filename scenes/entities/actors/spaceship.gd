@@ -26,6 +26,7 @@ func _ready() -> void:
 
 
 func shoot() -> void:
+	if hp == 0: return
 	var bullet: Bullet = BULLET.instantiate()
 	bullet.enemy = enemy
 	bullet.damage = get_damage()

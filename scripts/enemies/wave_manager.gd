@@ -33,23 +33,12 @@ func spawn_enemy(spawn: Spawn) -> void:
 func gen_waves(difficulty: int) -> Array[WaveEvent]:
 	# TODO: Generate waves
 	return [
-		WaveEvent.new(0.0, [
-			Spawn.new(
-				1.0,
-				Enemy.Types.E2,
-				MovSine.new(Vector2(172, Values.SPAWN_Y_MID - 16), Values.ENEMY_SPEED, Vector3(10, 4, PI))
-			),
-			Spawn.new(
-				0.0,
-				Enemy.Types.E2,
-				MovSine.new(Vector2(172, Values.SPAWN_Y_MID + 16), Values.ENEMY_SPEED, Vector3(10, 4, 0))
-			)
-		]),
-		WaveEvent.new(5.0, follow(5, 1.25, Spawn.new(
-			0.0,
-			Enemy.Types.E3,
-			MovSine.new(Vector2(172, Values.SPAWN_Y_MID), Values.ENEMY_SPEED, Vector3(12, 2, 0))
-		)))
+		WaveEvent.new(0.0, squad(MovLinear.new(Util.right(16, 0.4), 0.2, 16.0),
+			[Enemy.Types.E1, Enemy.Types.E1, Enemy.Types.E1],
+			[0, 0, 0],
+			[Vector2(0, -16), Vector2.ZERO, Vector2(0, 16)]
+		)),
+		WaveEvent.new(6.0, circle([Enemy.Types.E1, Enemy.Types.E1, Enemy.Types.E1], Vector2(Values.SCREEN_W + 16, Values.SPAWN_Y_MID), 8.0, 12.0, 0.5)),
 	]
 
 	
@@ -59,3 +48,22 @@ func follow(n: int, delay: float, spawn: Spawn) -> Array[Spawn]:
 		var s1: Spawn = Spawn.new(0.0 if i == 0 else delay, spawn.enemy, spawn.movement)
 		s.append(s1)
 	return s
+
+
+func squad(base_movement: Movement, enemies: Array[Enemy.Types], dt: Array[float], dp: Array[Vector2]) -> Array[Spawn]:
+	var n: int = len(enemies)
+	var spawns: Array[Spawn] = []
+	var starting_pos: Vector2 = base_movement.starting_pos
+	for i in range(n):
+		var s: Spawn = Spawn.new(dt[i], enemies[i], base_movement.with_starting_pos(starting_pos + dp[i]))
+		spawns.append(s)
+	return spawns
+
+
+func circle(enemies: Array[Enemy.Types], starting_pos: Vector2, x_speed: float, r: float, a_speed: float, a_offset: float = 0.0) -> Array[Spawn]:
+	var n: int = len(enemies)
+	var spawns: Array[Spawn] = []
+	for i in range(n):
+		var s: Spawn = Spawn.new(0, enemies[i], MovCircle.new(starting_pos, x_speed, r, a_offset + i * 2 * PI / n, a_speed))
+		spawns.append(s)
+	return spawns

@@ -14,6 +14,10 @@ func wait(amount: float):
 
 func check_oob(position: Vector2, margin: float) -> bool:
 	return position.x > Values.SCREEN_W + margin \
-		or position.x < -1 * margin \
-		or position.y < margin \
+		or position.x < -margin \
+		or position.y < -margin \
 		or position.y > Values.UI_Y + margin
+
+	
+func right(x: float, y: float) -> Vector2:
+	return Vector2(Values.SCREEN_W + x, Values.UI_Y * y)
