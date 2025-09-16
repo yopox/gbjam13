@@ -22,6 +22,7 @@ Util="*res://autoload/util.gd"
 DiscordRPCLoader="res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Palettes="*res://autoload/palettes.gd"
 Values="*res://autoload/values.gd"
+Waves="*res://data/waves.gd"
 
 [display]
 

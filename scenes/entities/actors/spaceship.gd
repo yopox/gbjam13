@@ -68,6 +68,6 @@ func create_timer() -> void:
 	shots_timer = Timer.new()
 	shots_timer.autostart = true
 	shots_timer.one_shot = false
-	shots_timer.wait_time = Values.SHIP_SHOT_SPEED
+	shots_timer.wait_time = Values.SHIP_SHOT_DELAY
 	shots_timer.timeout.connect(shoot)
 	add_child(shots_timer)

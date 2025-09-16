@@ -15,7 +15,7 @@ var chrono: float = 0.0
 func _ready() -> void:
 	super()
 	# TODO: Stats depending on the type of enemy
-	shots_timer.wait_time = Values.ENEMY_SHOT_SPEED
+	shots_timer.wait_time = Values.ENEMY_SHOT_DELAY
 
 
 func _physics_process(delta: float) -> void:
