@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://csaw7ajh5l3oc" path="res://scenes/entities/space/blinker.tscn" id="3_couwp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_couwp"]
+resource_local_to_scene = true
 atlas = ExtResource("2_n0alq")
 region = Rect2(0, 0, 32, 32)
 

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cjwm2jlnfbakl" path="res://scenes/entities/bullets/bullet.gd" id="1_n3bla"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byxw7"]
+resource_local_to_scene = true
 atlas = ExtResource("1_kw8ob")
 region = Rect2(0, 0, 8, 8)
 

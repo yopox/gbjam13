@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://nbf4axea4lmp"]
+
+[ext_resource type="Script" uid="uid://bo4ybuq7fm3o3" path="res://scenes/ui/card.gd" id="1_mli0n"]
+[ext_resource type="Texture2D" uid="uid://vhd6uk4lqkfw" path="res://assets/card.png" id="1_ra13p"]
+[ext_resource type="Texture2D" uid="uid://cvw1npbs4e4gn" path="res://assets/mrmotiles.png" id="2_mli0n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mli0n"]
+resource_local_to_scene = true
+atlas = ExtResource("1_ra13p")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulu11"]
+resource_local_to_scene = true
+atlas = ExtResource("2_mli0n")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cgkcd"]
+load_path = "res://.godot/imported/mrmotiles.png-cdaa20ad969e17534334607ab807bfc6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hps8"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_cgkcd")
+region = Rect2(8, 8, 8, 8)
+
+[node name="card" type="Node2D"]
+script = ExtResource("1_mli0n")
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_mli0n")
+
+[node name="value" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-4, 0)
+texture = SubResource("AtlasTexture_ulu11")
+
+[node name="family" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(4, 0)
+texture = SubResource("AtlasTexture_2hps8")

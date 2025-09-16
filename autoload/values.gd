@@ -20,4 +20,4 @@ const SPAWN_Y_MID: float = UI_Y / 2.0
 const ENEMY_DAMAGE: int = 2
 const ENEMY_SPEED: float = SHIP_SPEED * 0.35
 const ENEMY_SHOT_DELAY: float = SHIP_SHOT_DELAY * 2.0
-const ENEMY_BUFFER: float = 32
+const ENEMY_BUFFER: float = 64

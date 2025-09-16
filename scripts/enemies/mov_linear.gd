@@ -6,7 +6,7 @@ var dir: Vector2
 var s: float
 
 
-func _init(pos: Vector2, alpha: float, speed: float) -> void:
+func _init(pos: Vector2, speed: float, alpha: float) -> void:
 	super(pos)
 	a = alpha
 	dir = Vector2.from_angle(PI + a)
