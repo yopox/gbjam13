@@ -3,6 +3,7 @@ class_name Main extends Node2D
 
 const TITLE: Resource = preload("uid://cwhuna3qm1jd")
 const SPACE: Resource = preload("uid://02yhbniiagkv")
+const CARDS: Resource = preload("uid://c3eemnq8ueupf")
 
 @onready var color_rect: ColorRect = $canvas/rect
 @onready var scene_node: Node = $scene
@@ -22,6 +23,7 @@ func _ready() -> void:
 func get_scene(s: Util.Scenes) -> Resource:
 	match s:
 		Util.Scenes.SPACE: return SPACE
+		Util.Scenes.CARDS: return CARDS
 		_: return TITLE
 
 

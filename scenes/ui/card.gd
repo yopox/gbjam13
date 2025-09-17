@@ -7,16 +7,21 @@ enum Family { Spade, Diamond, Club, Heart }
 @onready var value_spr: Sprite2D = $value
 @onready var family_spr: Sprite2D = $family
 
-@export var family: Family
+@export var power: Power.ID = Power.ID.SPADES_1
 @export var outline: bool = false
-@export_range(1, 9) var value: int
 
 
 func _ready():
+	update()
+
+
+func update() -> void:
 	if outline:
 		(bg_spr.texture as AtlasTexture).region.position.x = 16
 		value_spr.visible = false
 		family_spr.visible = false
 	else:
+		var value = Power.power_number(power)
+		var family = Power.power_family(power)
 		(value_spr.texture as AtlasTexture).region.position.x = 8 * value
 		(family_spr.texture as AtlasTexture).region.position.x = 8 * (family + 1)

@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3eemnq8ueupf"]
+[gd_scene load_steps=8 format=3 uid="uid://c3eemnq8ueupf"]
 
 [ext_resource type="Theme" uid="uid://dggwjntgpkqru" path="res://assets/themes/mask.tres" id="1_cqxa1"]
 [ext_resource type="Script" uid="uid://odbfifxptslx" path="res://scenes/cards.gd" id="1_pqter"]
 [ext_resource type="PackedScene" uid="uid://nbf4axea4lmp" path="res://scenes/ui/card.tscn" id="2_02cqd"]
 [ext_resource type="Texture2D" uid="uid://cvw1npbs4e4gn" path="res://assets/mrmotiles.png" id="3_mnqni"]
+[ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="5_8a8qm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqter"]
 atlas = ExtResource("3_mnqni")
 region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8a8qm"]
+line_spacing = -4.0
 
 [node name="cards" type="Node2D"]
 script = ExtResource("1_pqter")
@@ -23,23 +27,38 @@ horizontal_alignment = 1
 
 [node name="card" parent="." instance=ExtResource("2_02cqd")]
 position = Vector2(44, 68)
-value = 1
 
 [node name="card2" parent="." instance=ExtResource("2_02cqd")]
 position = Vector2(68, 68)
-family = 2
-value = 5
+power = 31
 
 [node name="card3" parent="." instance=ExtResource("2_02cqd")]
 position = Vector2(92, 68)
-family = 3
-value = 9
+power = 17
 
 [node name="card4" parent="." instance=ExtResource("2_02cqd")]
 position = Vector2(116, 68)
 outline = true
-value = 1
 
 [node name="hand" type="Sprite2D" parent="."]
 position = Vector2(44, 88)
 texture = SubResource("AtlasTexture_pqter")
+
+[node name="power_name" type="Label" parent="."]
+offset_top = 96.0
+offset_right = 160.0
+offset_bottom = 119.0
+theme = ExtResource("5_8a8qm")
+text = "Ace of Spades"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="description" type="Label" parent="."]
+offset_top = 108.0
+offset_right = 160.0
+offset_bottom = 131.0
+theme = ExtResource("5_8a8qm")
+text = "Damage up for each
+unlucky card"
+label_settings = SubResource("LabelSettings_8a8qm")
+horizontal_alignment = 1
