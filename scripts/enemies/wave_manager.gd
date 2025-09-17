@@ -26,12 +26,12 @@ func spawn_enemy(spawn: Spawn) -> void:
 	var enemy: Enemy = ENEMY.instantiate()
 	# TODO: set enemy sprite
 	enemy.movement = spawn.movement
-	enemy.global_position = enemy.movement.get_pos(0.0)
+	enemy.global_position = enemy.movement.get_pos(0.0, 0.0)
 	add_child(enemy)
 
 
 func gen_waves(difficulty: int) -> Array[WaveEvent]:
 	# TODO: Generate waves
 	return [
-		WaveEvent.new(0.0, Waves.gen_wave(Waves.Types.ORBITING)),
+		WaveEvent.new(0.0, Waves.gen_wave(Waves.Types.WALL)),
 	]

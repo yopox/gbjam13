@@ -3,19 +3,17 @@ class_name MovLinear extends Movement
 
 var a: float
 var dir: Vector2
-var s: float
 
 
-func _init(pos: Vector2, speed: float, alpha: float) -> void:
+func _init(pos: Vector2, alpha: float) -> void:
 	super(pos)
 	a = alpha
 	dir = Vector2.from_angle(PI + a)
-	s = speed
 
 
-func get_pos(time: float) -> Vector2:
-	return starting_pos + dir * time * s
+func get_pos(time: float, speed: float) -> Vector2:
+	return starting_pos + dir * time * speed
 
 
 func with_starting_pos(pos: Vector2) -> Movement:
-	return MovLinear.new(pos, a, s)
+	return MovLinear.new(pos, a)

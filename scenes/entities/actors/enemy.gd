@@ -10,6 +10,7 @@ enum Types {
 var type: Types
 var movement: Movement
 var chrono: float = 0.0
+var speed: float = Values.ENEMY_SPEED
 
 
 func _ready() -> void:
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	chrono += delta
-	global_position = movement.get_pos(chrono)
+	global_position = movement.get_pos(chrono, speed)
 
 
 func get_damage() -> int:

@@ -9,7 +9,7 @@ func _init(pos: Vector2) -> void:
 	starting_pos = pos
 
 
-@abstract func get_pos(time: float) -> Vector2
+@abstract func get_pos(time: float, x_speed: float) -> Vector2
 
 ## Returns a new movement with the given starting position
 @abstract func with_starting_pos(pos: Vector2) -> Movement

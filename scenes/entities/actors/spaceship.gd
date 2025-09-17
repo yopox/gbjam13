@@ -50,7 +50,7 @@ func do_hit(area: Area2D) -> void:
 
 func damage(value: int) -> void:
 	if hit_invul: return
-	hit_invul = true
+	if not enemy: hit_invul = true
 	hp = max(0, hp - value)
 	#Log.info("Spaceship hit, damage:", value, "HP:", hp)
 	# animations

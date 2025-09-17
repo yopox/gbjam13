@@ -61,7 +61,7 @@ func power_info(id: ID) -> Array[String]:
 	return ["", ""]
 
 
-func power_family(id: ID) -> Card.Family:
+static func power_family(id: ID) -> Card.Family:
 	match id:
 		ID.SPADES_1, ID.SPADES_2, ID.SPADES_3, ID.SPADES_4, ID.SPADES_5, ID.SPADES_6, ID.SPADES_7, ID.SPADES_8, ID.SPADES_9: return Card.Family.Spade
 		ID.CLUBS_1, ID.CLUBS_2, ID.CLUBS_3, ID.CLUBS_4, ID.CLUBS_5, ID.CLUBS_6, ID.CLUBS_7, ID.CLUBS_8, ID.CLUBS_9: return Card.Family.Club
@@ -69,5 +69,5 @@ func power_family(id: ID) -> Card.Family:
 		_: return Card.Family.Heart 
 
 
-func power_number(id: ID) -> int:
+static func power_number(id: ID) -> int:
 	return (id % 9) + 1
