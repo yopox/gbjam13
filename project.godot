@@ -24,6 +24,7 @@ Palettes="*res://autoload/palettes.gd"
 Values="*res://autoload/values.gd"
 Waves="*res://data/waves.gd"
 Power="*res://data/power.gd"
+Progress="*res://autoload/progress.gd"
 
 [display]
 

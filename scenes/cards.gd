@@ -23,6 +23,9 @@ func draft() -> void:
 	cards[2].power = Power.ID.values().pick_random()
 	cards[3].power = Power.UNLUCKY.pick_random()
 	
+	cards[0].outline = Progress.last_killed * 4 < Progress.last_total
+	cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
+	
 	for i in range(4):
 		cards[i].update()
 
@@ -33,6 +36,13 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("left"):
 		selected = posmod(selected - 1, 4)
 	update()
+	
+	if Input.is_action_just_pressed("a"):
+		var cards: Array[Card] = [card_1, card_2, card_3, card_4]
+		if cards[selected].outline: return
+		Progress.powerups.append(cards[selected].power)
+		Progress.stage += 1
+		Signals.change_scene.emit(Util.Scenes.SPACE)
 
 
 func update():
@@ -46,4 +56,9 @@ func update():
 		description.text = info[1]
 	else:
 		power_name.text = "LOCKED"
-		description.text = "Defeat more enemies\nto unlock"
+		@warning_ignore("integer_division")
+		var p: int = Progress.last_killed * 100 / Progress.last_total
+		if selected == 0:
+			description.text = "Defeat 25% of all enemies\nto unlock. (" + str(p) + "%)"
+		else:
+			description.text = "Defeat 66% of all enemies\nto unlock. (" + str(p) + "%)"

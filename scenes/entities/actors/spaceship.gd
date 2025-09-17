@@ -61,7 +61,9 @@ func damage(value: int) -> void:
 
 func blink_over() -> void:
 	hit_invul = false
-	if hp == 0: queue_free()
+	if hp == 0:
+		queue_free()
+		if enemy: Signals.enemy_dead.emit()
 
 
 func create_timer() -> void:
