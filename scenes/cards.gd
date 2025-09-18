@@ -18,14 +18,14 @@ func _ready() -> void:
 
 func draft() -> void:
 	var cards = [card_1, card_2, card_3, card_4]
-	cards[0].power = Power.STATS_UP.pick_random()
-	cards[1].power = Power.ID.values().pick_random()
-	cards[2].power = Power.ID.values().pick_random()
-	cards[3].power = Power.UNLUCKY.pick_random()
-	
+	cards[0].power = Power.pick_random_stat([])
+	cards[1].power = Power.pick_random([cards[0].power])
+	cards[2].power = Power.pick_random([cards[0].power, cards[1].power])
+	cards[3].power = Power.pick_random_unlucky([cards[0].power, cards[1].power, cards[2].power])
+
 	cards[0].outline = Progress.last_killed * 4 < Progress.last_total
 	cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
-	
+
 	for i in range(4):
 		cards[i].update()
 
@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("left"):
 		selected = posmod(selected - 1, 4)
 	update()
-	
+
 	if Input.is_action_just_pressed("a"):
 		var cards: Array[Card] = [card_1, card_2, card_3, card_4]
 		if cards[selected].outline: return

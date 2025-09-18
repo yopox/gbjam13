@@ -16,6 +16,27 @@ var UNLUCKY: Array[ID] = [
 ]
 
 
+func pick_random(exclude: Array[ID]) -> ID:
+	var power = ID.values().pick_random()
+	while power in exclude or power in Progress.powerups:
+		power = ID.values().pick_random()
+	return power
+
+
+func pick_random_stat(exclude: Array[ID]) -> ID:
+	var power = STATS_UP.pick_random()
+	while power in exclude: # ok to repeat stat up powerups
+		power = STATS_UP.pick_random()
+	return power
+
+
+func pick_random_unlucky(exclude: Array[ID]) -> ID:
+	var power = UNLUCKY.pick_random()
+	while power in exclude or power in Progress.powerups:
+		power = UNLUCKY.pick_random()
+	return power
+
+
 func power_info(id: ID) -> Array[String]:
 	match id:
 		ID.SPADES_1: return ["Ace of Spades", "Bad Luck = damage up"]
@@ -60,8 +81,8 @@ func power_info(id: ID) -> Array[String]:
 	Log.err("Unknown card ID")
 	return ["", ""]
 
-
-static func power_family(id: ID) -> Card.Family:
+ 
+func power_family(id: ID) -> Card.Family:
 	match id:
 		ID.SPADES_1, ID.SPADES_2, ID.SPADES_3, ID.SPADES_4, ID.SPADES_5, ID.SPADES_6, ID.SPADES_7, ID.SPADES_8, ID.SPADES_9: return Card.Family.Spade
 		ID.CLUBS_1, ID.CLUBS_2, ID.CLUBS_3, ID.CLUBS_4, ID.CLUBS_5, ID.CLUBS_6, ID.CLUBS_7, ID.CLUBS_8, ID.CLUBS_9: return Card.Family.Club
@@ -69,5 +90,5 @@ static func power_family(id: ID) -> Card.Family:
 		_: return Card.Family.Heart
 
 
-static func power_number(id: ID) -> int:
+func power_number(id: ID) -> int:
 	return (id % 9) + 1
