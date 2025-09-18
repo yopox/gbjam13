@@ -1,8 +1,12 @@
 extends Spaceship
 
+@onready var evade_blinker: Blinker = $evade_blinker
+@onready var evade_label: Label = $evade_label
+
 
 func _ready() -> void:
 	super()
+	Signals.evade_damage.connect(do_evade)
 	shots_timer.timeout.connect(shot_fired)
 
 
@@ -15,6 +19,10 @@ func shot_fired() -> void:
 		var n = Progress.last_killed / Values.D6_SHOT_DELAY_DOWN_EVERY_X_KILLS
 		delay *= Values.D6_SHOT_DELAY_DOWN_RATIO ** n
 	shots_timer.wait_time = delay
+	if Progress.has(Power.ID.CLUBS_1):
+		if randf() < Values.C1_DOUBLE_SHOT_CHANCE_PER_UNLUCK * Progress.get_bad_luck():
+			await Util.wait(Values.C1_DOUBLE_SHOT_DELAY)
+			shoot()
 
 
 func get_damage() -> int:
@@ -48,3 +56,14 @@ func _physics_process(delta: float) -> void:
 	if Progress.has(Power.ID.CLUBS_7) and Progress.unlucky:
 		boost += Values.C5_SPEED_UP
 	position += delta * (Values.SHIP_SPEED + boost) * mvmt
+
+
+func do_evade() -> void:
+	hit_invul = true
+	evade_label.visible = true
+	evade_blinker.hit()
+
+
+func _on_evade_blinker_blink_over() -> void:
+	evade_label.visible = false
+	hit_invul = false

@@ -39,7 +39,6 @@ func wave_ended() -> void:
 func check_over() -> void:
 	if not ended: return 
 	if not enemies == defeated + escaped: return
-	Log.warn("OVER, TRANSITIONING…")
 	Progress.last_total = enemies
 	Progress.last_killed = defeated
 	Signals.change_scene.emit(Util.Scenes.CARDS)

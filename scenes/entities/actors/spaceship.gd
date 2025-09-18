@@ -48,9 +48,18 @@ func do_hit(area: Area2D) -> void:
 		parent.damage(get_damage())
 
 
+func evade() -> bool:
+	return Progress.has(Power.ID.HEARTS_1) and \
+		randf() < Values.H1_DODGE_CHANCE_PER_UNLUCK * Progress.get_bad_luck()
+
+
 func damage(value: int) -> void:
 	if hit_invul: return
-	if not enemy: hit_invul = true
+	if not enemy:
+		if evade():
+			Signals.evade_damage.emit()
+			return
+		hit_invul = true
 	hp = max(0, hp - value)
 	#Log.info("Spaceship hit, damage:", value, "HP:", hp)
 	# animations

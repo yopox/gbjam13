@@ -11,7 +11,7 @@ const SHIP_XMAX: int = 80
 const SHIP_HULL: int = 20
 const SHIP_DAMAGE: int = 6
 const SHIP_SPEED: float = 45.0
-const SHIP_SHOT_DELAY: float = 0.5
+const SHIP_SHOT_DELAY: float = 0.8
 const SHOT_SPEED: float = 64.0
 
 # ———— ENEMIES ———
@@ -40,6 +40,7 @@ const S8_CHARGED_DAMAGE_UP: float = 1.5
 const S9_AUTO_AIM_RANGE: float = 32
 
 const C1_DOUBLE_SHOT_CHANCE_PER_UNLUCK: float = 0.1
+const C1_DOUBLE_SHOT_DELAY: float = 0.2
 const C2_ELITE_RATE_UP: float = 0.15
 const C3_ENEMY_SHOT_SPEED_UP: float = SHOT_SPEED / 2.0
 const C4_SHORTER_INTERVALS_RATIO: float = 0.66

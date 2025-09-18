@@ -26,6 +26,9 @@ func draft() -> void:
 	if not Progress.has(Power.ID.CLUBS_9):
 		cards[0].outline = Progress.last_killed * 4 < Progress.last_total
 		cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
+	else:
+		cards[0].outline = false
+		cards[3].outline = false
 
 	for i in range(4):
 		cards[i].update()

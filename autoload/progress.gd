@@ -19,6 +19,11 @@ var total_killed: int = 0
 
 var unlucky: bool = false
 
+
+func _ready() -> void:
+	pass
+
+
 func reset() -> void:
 	powerups = []
 	stage = 0
