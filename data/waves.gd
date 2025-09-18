@@ -1,6 +1,7 @@
 extends Node
 
 enum Types {
+    SINGLE, FOLLOW_2, FOLLOW_3, CROSSERS_2, CROSSERS_3,
 	ARROW, SLASH_5, FIVE, TRIO_LOOP, HATERS, DNA, ORBITING,
 	SLASH_9, WALL
 }
@@ -32,7 +33,7 @@ func gen_enemy(difficulty: int) -> Enemy.Types:
 	if r <= w[0]: return Enemy.T1.pick_random()
 	if r <= w[1]: return Enemy.T2.pick_random()
 	return Enemy.T3.pick_random()
-	
+
 #endregion
 
 #region Movement Generation
@@ -67,9 +68,9 @@ func circle(enemies: Array[Enemy.Types], starting_pos: Vector2, r: float, a_spee
 
 func gen_wave_type_for_diff(difficulty: int) -> Types:
 	match difficulty:
-		0: return [Types.ARROW, Types.DNA].pick_random()
-		1: return [Types.ARROW, Types.DNA, Types.ORBITING].pick_random()
-		2: return [Types.ARROW, Types.HATERS, Types.ORBITING, Types.SLASH_5, Types.TRIO_LOOP].pick_random()
+		0: return [Types.ARROW, Types.DNA, Types.SINGLE, Types.FOLLOW_2, Types.CROSSERS_2].pick_random()
+		1: return [Types.ARROW, Types.DNA, Types.ORBITING, Types.SINGLE, Types.FOLLOW_2, Types.FOLLOW_3, Types.CROSSERS_2, Types.CROSSERS_3].pick_random()
+		2: return [Types.ARROW, Types.HATERS, Types.ORBITING, Types.SLASH_5, Types.TRIO_LOOP, Types.FOLLOW_2, Types.FOLLOW_3, Types.CROSSERS_3].pick_random()
 		_: return Types.values().pick_random()
 
 
@@ -79,6 +80,32 @@ func gen_wave_for_diff(difficulty: int) -> Array[Spawn]:
 
 func gen_wave(type: Types, difficulty: int) -> Array[Spawn]:
 	match type:
+		Types.SINGLE:
+			return [
+				Spawn.new(0, gen_enemy(difficulty), MovSine.new(Util.right(16, randf_range(0.2, 0.8)), Vector3(12.0, 1.0, 0.0)))
+			]
+		Types.FOLLOW_2:
+			var e = gen_enemy(difficulty)
+			var mov = MovSine.new(Util.right(16, randf_range(0.2, 0.8)), Vector3(12.0, 1.0, 0.0))
+			var spawn = Spawn.new(0, e, mov)
+			return follow(2, 1.5, spawn)
+		Types.FOLLOW_3:
+			var e = gen_enemy(difficulty)
+			var mov = MovCircle.new(Util.right(16, randf_range(0.3, 0.7)), 12.0, 0.0, 1.0)
+			var spawn = Spawn.new(0, e, mov)
+			return follow(3, 1.5, spawn)
+		Types.CROSSERS_2:
+			var e = gen_enemy(difficulty)
+			var starting = Util.right(16, randf_range(0.35, 0.65))
+			var a = PI / 8 * randf_range(-1, 1)
+			var spawn = Spawn.new(0, e, MovLinear.new(starting, a))
+			return follow(2, 1.5, spawn)
+		Types.CROSSERS_3:
+			var e = gen_enemy(difficulty)
+			var starting = Util.right(16, randf_range(0.35, 0.65))
+			var a = PI / 8 * randf_range(-1, 1)
+			var spawn = Spawn.new(0, e, MovLinear.new(starting, a))
+			return follow(3, 1.5, spawn)
 		Types.DNA:
 			var e = gen_enemy(difficulty)
 			var mov = Util.right(16, randf_range(0.3, 0.7))
