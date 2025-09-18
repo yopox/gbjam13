@@ -13,6 +13,8 @@ func _ready():
 		Log.err("Bullet damage still at 0.")
 	area.collision_layer = 8 if enemy else 2
 	area.collision_mask = 1 if enemy else 4
+	if not enemy and Progress.has(Power.ID.DIAMS_2) and Progress.unlucky:
+		dir = Vector2(2, randf_range(-1, 1)).normalized()
 
 
 func _physics_process(delta: float) -> void:
@@ -29,6 +31,8 @@ func move(delta: float) -> void:
 		speed += Progress.shot_speed_boost
 		if Progress.has(Power.ID.CLUBS_7) and Progress.unlucky:
 			speed += Values.D4_SHOT_SPEED_UP
+		if Progress.has(Power.ID.DIAMS_3) and Progress.unlucky:
+			speed *= Values.D3_SLOWER_SHOT_RATIO
 	elif Progress.has(Power.ID.DIAMS_7) and Progress.unlucky:
 		speed *= Values.D7_ENEMY_SHOT_SPEED_RATIO
 	position += delta * speed * dir * (2 - min(lifetime, 1))

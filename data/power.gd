@@ -71,7 +71,7 @@ func power_info(id: ID) -> Array[String]:
 
 		ID.DIAMS_1: return ["Ace of Diamonds", "Bad Luck = faster reloads"]
 		ID.DIAMS_2: return ["Two of Diamonds", "Bad Luck +2\n[UNLUCKY]: Imprecise shots"]
-		ID.DIAMS_3: return ["Three of Diamonds", "Bad Luck +1\n[UNLUCKY]: Wiggle shots"]
+		ID.DIAMS_3: return ["Three of Diamonds", "Bad Luck +1\n[UNLUCKY]: Slower shots"]
 		ID.DIAMS_4: return ["Four of Diamonds", "Shot speed up"]
 		ID.DIAMS_5: return ["Five of Diamonds", "Shot frequency up"]
 		ID.DIAMS_6: return ["Six of Diamonds", "Shot frequency increases every\n6 kills per wave"]

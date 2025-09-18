@@ -57,8 +57,7 @@ const H8_REVIVE_REPAIR_RATIO: float = 0.5
 
 const D1_RELOAD_FASTER_PER_UNLUCK_RATIO: float = 0.95
 const D2_SHOT_SPREAD_ABS: float = PI / 3
-const D3_WIGGLE_SINE_AMP: float = 4.0
-const D3_WIGGLE_FREQ: float = 3.0
+const D3_SLOWER_SHOT_RATIO: float = 0.45
 const D4_SHOT_SPEED_UP: float = SHIP_SPEED / 2.0
 const D5_SHOT_DELAY_DOWN_RATIO: float = 0.75
 const D6_SHOT_DELAY_DOWN_EVERY_X_KILLS: int = 6
