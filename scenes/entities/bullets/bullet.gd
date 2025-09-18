@@ -16,7 +16,7 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	if Util.check_oob(position, Values.BULLET_BUFFER): 
+	if Util.check_oob(position, Values.BULLET_BUFFER):
 		queue_free()
 		return
 	lifetime += delta
@@ -24,4 +24,11 @@ func _physics_process(delta: float) -> void:
 
 
 func move(delta: float) -> void:
-	position += delta * Values.SHOT_SPEED * dir * (2 - min(lifetime, 1))
+	var speed: float = Values.SHOT_SPEED
+	if not enemy:
+		speed += Progress.shot_speed_boost
+		if Progress.has(Power.ID.CLUBS_7) and Progress.unlucky:
+			speed += Values.D4_SHOT_SPEED_UP
+	elif Progress.has(Power.ID.DIAMS_7) and Progress.unlucky:
+		speed *= Values.D7_ENEMY_SHOT_SPEED_RATIO
+	position += delta * speed * dir * (2 - min(lifetime, 1))

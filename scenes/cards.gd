@@ -23,8 +23,9 @@ func draft() -> void:
 	cards[2].power = Power.pick_random([cards[0].power, cards[1].power])
 	cards[3].power = Power.pick_random_unlucky([cards[0].power, cards[1].power, cards[2].power])
 
-	cards[0].outline = Progress.last_killed * 4 < Progress.last_total
-	cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
+	if not Progress.has(Power.ID.CLUBS_9):
+		cards[0].outline = Progress.last_killed * 4 < Progress.last_total
+		cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
 
 	for i in range(4):
 		cards[i].update()
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("a"):
 		var cards: Array[Card] = [card_1, card_2, card_3, card_4]
 		if cards[selected].outline: return
-		Progress.powerups.append(cards[selected].power)
+		Progress.add_powerup(cards[selected].power)
 		Progress.stage += 1
 		Signals.change_scene.emit(Util.Scenes.SPACE)
 

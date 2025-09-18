@@ -81,7 +81,7 @@ func power_info(id: ID) -> Array[String]:
 	Log.err("Unknown card ID")
 	return ["", ""]
 
- 
+
 func power_family(id: ID) -> Card.Family:
 	match id:
 		ID.SPADES_1, ID.SPADES_2, ID.SPADES_3, ID.SPADES_4, ID.SPADES_5, ID.SPADES_6, ID.SPADES_7, ID.SPADES_8, ID.SPADES_9: return Card.Family.Spade

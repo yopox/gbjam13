@@ -43,6 +43,7 @@ func get_speed() -> float:
 
 
 func get_damage() -> int:
+	# TODO: SP3 boost damage if unlucky
 	if type in T2: return Values.ENEMY_DAMAGE_2
 	if type in T3: return Values.ENEMY_DAMAGE_3
 	return Values.ENEMY_DAMAGE_1

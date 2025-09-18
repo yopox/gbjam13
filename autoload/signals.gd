@@ -13,4 +13,7 @@ signal enemy_spawned()
 signal enemy_dead()
 signal enemy_escaped()
 
+# ———— CARDS —————
+signal stat_changed(stat: Progress.Stat, n: int)
+
 @warning_ignore_restore("unused_signal")
