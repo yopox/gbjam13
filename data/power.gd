@@ -18,45 +18,45 @@ var UNLUCKY: Array[ID] = [
 
 func power_info(id: ID) -> Array[String]:
 	match id:
-		ID.SPADES_1: return ["Ace of Spades", "Damage up for each\nunlucky card"]
-		ID.SPADES_2: return ["Two of Spades", "[UNLUCKY]: Elite rate up"]
-		ID.SPADES_3: return ["Three of Spades", "[UNLUCKY]: Elite damage up"]
-		ID.SPADES_4: return ["Four of Spades", ""]
+		ID.SPADES_1: return ["Ace of Spades", "Bad Luck = damage up"]
+		ID.SPADES_2: return ["Two of Spades", "Bad Luck +2\n[UNLUCKY]: Can't shoot for 5s"]
+		ID.SPADES_3: return ["Three of Spades", "Bad Luck +1\n[UNLUCKY]: Enemy damage up"]
+		ID.SPADES_4: return ["Four of Spades", "Increase missile area"]
 		ID.SPADES_5: return ["Five of Spades", "Damage up"]
-		ID.SPADES_6: return ["Six of Spades", ""]
+		ID.SPADES_6: return ["Six of Spades", "Damage up for each\ntwo missing hull points"]
 		ID.SPADES_7: return ["Seven of Spades", "[UNLUCKY]: Triple shot"]
-		ID.SPADES_8: return ["Eight of Spades", ""]
-		ID.SPADES_9: return ["Nine of Spades", ""]
-	
-		ID.CLUBS_1: return ["Ace of Clubs", "Faster reloads for each\nunlucky card"]
-		ID.CLUBS_2: return ["Two of Clubs", "[UNLUCKY]: Increases the game speed"]
-		ID.CLUBS_3: return ["Three of Clubs", "[UNLUCKY]: Faster enemy shots"]
-		ID.CLUBS_4: return ["Four of Clubs", "Shot speed up"]
+		ID.SPADES_8: return ["Eight of Spades", "Damage up if shield and missile\nare charged"]
+		ID.SPADES_9: return ["Nine of Spades", "Missiles have auto aim"]
+
+		ID.CLUBS_1: return ["Ace of Clubs", "Bad Luck = double shot chance"]
+		ID.CLUBS_2: return ["Two of Clubs", "Bad Luck +2\n[UNLUCKY]: Elite rate up"]
+		ID.CLUBS_3: return ["Three of Clubs", "Bad Luck +1\n[UNLUCKY]: Enemy shot speed up"]
+		ID.CLUBS_4: return ["Four of Clubs", "Shorter unlucky intervals"]
 		ID.CLUBS_5: return ["Five of Clubs", "Speed up"]
-		ID.CLUBS_6: return ["Six of Clubs", ""]
-		ID.CLUBS_7: return ["Seven of Clubs", "[UNLUCKY]: Slow enemy bullets"]
-		ID.CLUBS_8: return ["Eight of Clubs", ""]
-		ID.CLUBS_9: return ["Nine of Clubs", ""]
-	
-		ID.HEARTS_1: return ["Ace of Hearts", "Chance to dodge damage\nfor each unlucky card"]
-		ID.HEARTS_2: return ["Two of Hearts", "[UNLUCKY]: Can't shield"]
-		ID.HEARTS_3: return ["Three of Hearts", "[UNLUCKY]: Heal enemies"]
-		ID.HEARTS_4: return ["Four of Hearts", "Longer shield"]
+		ID.CLUBS_6: return ["Six of Clubs", "Bad Luck +2"]
+		ID.CLUBS_7: return ["Seven of Clubs", "[UNLUCKY]: All stats up"]
+		ID.CLUBS_8: return ["Eight of Clubs", "Three random stats up,\none random stat down"]
+		ID.CLUBS_9: return ["Nine of Clubs", "Always unlock all card options"]
+
+		ID.HEARTS_1: return ["Ace of Hearts", "Bad Luck = chance to dodge damage"]
+		ID.HEARTS_2: return ["Two of Hearts", "Bad Luck +2\n[UNLUCKY]: Can't shield"]
+		ID.HEARTS_3: return ["Three of Hearts", "Bad Luck +1\n[UNLUCKY]: Heal enemies"]
+		ID.HEARTS_4: return ["Four of Hearts", "Longer shields"]
 		ID.HEARTS_5: return ["Five of Hearts", "Hull up"]
-		ID.HEARTS_6: return ["Six of Hearts", "Regen 1 HULL every 12 kills"]
-		ID.HEARTS_7: return ["Seven of Hearts", "[UNLUCKY]: Leech enemy life"]
-		ID.HEARTS_8: return ["Eight of Hearts", "Always unlock all card options"]
-		ID.HEARTS_9: return ["Nine of Hearts", "Shield deflects enemy shots"]
-	
-		ID.DIAMS_1: return ["Ace of Diamonds", "for each\nunlucky card"]
-		ID.DIAMS_2: return ["Two of Diamonds", "[UNLUCKY]: Can't shoot"]
-		ID.DIAMS_3: return ["Three of Diamonds", "[UNLUCKY]: Wiggle shots"]
-		ID.DIAMS_4: return ["Four of Diamonds", ""]
+		ID.HEARTS_6: return ["Six of Hearts", "Regen 1 hull HP every 12 kills"]
+		ID.HEARTS_7: return ["Seven of Hearts", "[UNLUCKY]: Recharge shields"]
+		ID.HEARTS_8: return ["Eight of Hearts", "Repair 50% hull on death"]
+		ID.HEARTS_9: return ["Nine of Hearts", "Shields deflect enemy shots"]
+
+		ID.DIAMS_1: return ["Ace of Diamonds", "Bad Luck = faster reloads"]
+		ID.DIAMS_2: return ["Two of Diamonds", "Bad Luck +2\n[UNLUCKY]: Imprecise shots"]
+		ID.DIAMS_3: return ["Three of Diamonds", "Bad Luck +1\n[UNLUCKY]: Wiggle shots"]
+		ID.DIAMS_4: return ["Four of Diamonds", "Shot speed up"]
 		ID.DIAMS_5: return ["Five of Diamonds", "Shot frequency up"]
-		ID.DIAMS_6: return ["Six of Diamonds", ""]
-		ID.DIAMS_7: return ["Seven of Diamonds", "[UNLUCKY]:"]
-		ID.DIAMS_8: return ["Eight of Diamonds", ""]
-		ID.DIAMS_9: return ["Nine of Diamonds", ""]
+		ID.DIAMS_6: return ["Six of Diamonds", "Shot frequency increases every\n6 kills per wave"]
+		ID.DIAMS_7: return ["Seven of Diamonds", "[UNLUCKY]: Slow enemy bullets"]
+		ID.DIAMS_8: return ["Eight of Diamonds", "2 additional diagonal shots"]
+		ID.DIAMS_9: return ["Nine of Diamonds", "Shots wrap around screen edges"]
 	Log.err("Unknown card ID")
 	return ["", ""]
 
@@ -66,7 +66,7 @@ static func power_family(id: ID) -> Card.Family:
 		ID.SPADES_1, ID.SPADES_2, ID.SPADES_3, ID.SPADES_4, ID.SPADES_5, ID.SPADES_6, ID.SPADES_7, ID.SPADES_8, ID.SPADES_9: return Card.Family.Spade
 		ID.CLUBS_1, ID.CLUBS_2, ID.CLUBS_3, ID.CLUBS_4, ID.CLUBS_5, ID.CLUBS_6, ID.CLUBS_7, ID.CLUBS_8, ID.CLUBS_9: return Card.Family.Club
 		ID.DIAMS_1, ID.DIAMS_2, ID.DIAMS_3, ID.DIAMS_4, ID.DIAMS_5, ID.DIAMS_6, ID.DIAMS_7, ID.DIAMS_8, ID.DIAMS_9: return Card.Family.Diamond
-		_: return Card.Family.Heart 
+		_: return Card.Family.Heart
 
 
 static func power_number(id: ID) -> int:
