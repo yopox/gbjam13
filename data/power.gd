@@ -23,7 +23,7 @@ func power_info(id: ID) -> Array[String]:
 		ID.SPADES_3: return ["Three of Spades", "Bad Luck +1\n[UNLUCKY]: Enemy damage up"]
 		ID.SPADES_4: return ["Four of Spades", "Increase missile area"]
 		ID.SPADES_5: return ["Five of Spades", "Damage up"]
-		ID.SPADES_6: return ["Six of Spades", "Damage up for each\ntwo missing hull points"]
+		ID.SPADES_6: return ["Six of Spades", "Damage up for each\nmissing hull point"]
 		ID.SPADES_7: return ["Seven of Spades", "[UNLUCKY]: Triple shot"]
 		ID.SPADES_8: return ["Eight of Spades", "Damage up if shield and missile\nare charged"]
 		ID.SPADES_9: return ["Nine of Spades", "Missiles have auto aim"]
