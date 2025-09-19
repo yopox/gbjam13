@@ -14,7 +14,7 @@ region = Rect2(0, 0, 8, 8)
 atlas = ExtResource("4_6big4")
 region = Rect2(8, 0, 8, 8)
 
-[node name="gui" type="Control"]
+[node name="footer" type="Control"]
 custom_minimum_size = Vector2(160, 12)
 layout_mode = 3
 anchors_preset = 0
@@ -35,6 +35,7 @@ offset_right = 44.0
 offset_bottom = 43.0
 
 [node name="label" type="Label" parent="unlucky"]
+modulate = Color(0.32941177, 0.32941177, 0.32941177, 1)
 layout_mode = 0
 offset_top = -5.0
 offset_right = 28.0
@@ -42,11 +43,14 @@ offset_bottom = 8.0
 theme = ExtResource("2_msmip")
 text = "UNLUCKY"
 
-[node name="bar" parent="unlucky" instance=ExtResource("3_b63eu")]
+[node name="bar" parent="unlucky" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_top = 7.0
 offset_right = 32.0
 offset_bottom = 8.0
+loading = false
+label = NodePath("../label")
+ratio = 0.0
 width = 27
 
 [node name="hull" type="Control" parent="."]
@@ -64,11 +68,14 @@ offset_bottom = 8.0
 theme = ExtResource("2_msmip")
 text = "HULL"
 
-[node name="bar" parent="hull" instance=ExtResource("3_b63eu")]
+[node name="bar" parent="hull" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_top = 7.0
 offset_right = 40.0
 offset_bottom = 8.0
+loading = false
+label = NodePath("../label")
+ratio = 1.0
 width = 15
 
 [node name="shield" type="Control" parent="."]
@@ -84,6 +91,7 @@ texture = SubResource("AtlasTexture_x2olr")
 centered = false
 
 [node name="label" type="Label" parent="shield"]
+modulate = Color(0.32941177, 0.32941177, 0.32941177, 1)
 layout_mode = 0
 offset_left = 10.0
 offset_top = -5.0
@@ -92,11 +100,14 @@ offset_bottom = 8.0
 theme = ExtResource("2_msmip")
 text = "SHL"
 
-[node name="bar" parent="shield" instance=ExtResource("3_b63eu")]
+[node name="bar" parent="shield" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_top = 7.0
 offset_right = 40.0
 offset_bottom = 8.0
+loading = true
+label = NodePath("../label")
+ratio = 0.0
 width = 21
 
 [node name="missile" type="Control" parent="."]
@@ -111,6 +122,7 @@ position = Vector2(4, 5)
 texture = SubResource("AtlasTexture_1gvwg")
 
 [node name="label" type="Label" parent="missile"]
+modulate = Color(0.32941177, 0.32941177, 0.32941177, 1)
 layout_mode = 0
 offset_left = 10.0
 offset_top = -3.0
@@ -119,11 +131,14 @@ offset_bottom = 10.0
 theme = ExtResource("2_msmip")
 text = "MSL"
 
-[node name="bar" parent="missile" instance=ExtResource("3_b63eu")]
+[node name="bar" parent="missile" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_top = 9.0
 offset_right = 32.0
 offset_bottom = 10.0
+loading = true
+label = NodePath("../label")
+ratio = 0.0
 width = 23
 
 [node name="boss" type="Control" parent="."]
@@ -134,6 +149,7 @@ offset_right = 172.0
 offset_bottom = 43.0
 
 [node name="label" type="Label" parent="boss"]
+modulate = Color(0.32941177, 0.32941177, 0.32941177, 1)
 layout_mode = 0
 offset_left = -2.0
 offset_top = -5.0
@@ -142,12 +158,15 @@ offset_bottom = 8.0
 theme = ExtResource("2_msmip")
 text = "-BOSS-"
 
-[node name="bar" parent="boss" instance=ExtResource("3_b63eu")]
+[node name="bar" parent="boss" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_left = -2.0
 offset_top = 7.0
 offset_right = 30.0
 offset_bottom = 8.0
+loading = false
+label = NodePath("../label")
+ratio = 0.0
 width = 23
 
 [node name="ColorRect" type="ColorRect" parent="."]

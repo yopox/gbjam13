@@ -17,11 +17,14 @@ var last_total: int = 0
 var last_killed: int = 0
 var total_killed: int = 0
 
+var unlucky_wave: int = -1
 var unlucky: bool = false
+var unlucky_timestamp: float = 0
 
 
 func _ready() -> void:
-	pass
+	Signals.unlucky_wave.connect(func(): unlucky_timestamp = Time.get_ticks_msec())
+	add_powerup(Power.ID.CLUBS_3)
 
 
 func reset() -> void:

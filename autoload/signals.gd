@@ -8,7 +8,8 @@ signal change_scene(new_scene: Util.Scenes)
 signal palette_changed(c: Array[Color])
 
 # ———— SPACE —————
-signal wave_ended()
+signal unlucky_wave()
+signal waves_ended()
 signal enemy_spawned()
 signal enemy_dead()
 signal enemy_escaped()

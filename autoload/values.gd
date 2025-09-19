@@ -24,14 +24,19 @@ const ENEMY_DAMAGE_3: int = 4
 const ENEMY_SPEED_1: float = SHIP_SPEED * 0.45
 const ENEMY_SPEED_2: float = SHIP_SPEED * 0.5
 const ENEMY_SPEED_3: float = SHIP_SPEED * 0.55
-const ENEMY_SHOT_DELAY_1: float = SHIP_SHOT_DELAY * 2.25
-const ENEMY_SHOT_DELAY_2: float = SHIP_SHOT_DELAY * 2.0
-const ENEMY_SHOT_DELAY_3: float = SHIP_SHOT_DELAY * 1.5
+const ENEMY_SHOT_DELAY_1: float = SHIP_SHOT_DELAY * 3.0
+const ENEMY_SHOT_DELAY_2: float = SHIP_SHOT_DELAY * 2.5
+const ENEMY_SHOT_DELAY_3: float = SHIP_SHOT_DELAY * 2.0
 const ENEMY_BUFFER: float = 64
+
+# ———— SPACE —————
+const WAVE_DELAY: float = 4.0
+const POST_UNLUCKY_WAVE_DELAY: float = 4.0
+const UNLUCKY_WAVE_DURATION: float = 15.0
 
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25
-const S3_ENEMY_DAMAGE: int = 1
+const S3_ENEMY_DAMAGE_BOOST: int = 2
 const S4_MISSILE_RADIUS: float = 48
 const S5_DAMAGE_UP: int = 1
 const S6_DAMAGE_PER_HULL: float = 0.2
@@ -42,7 +47,7 @@ const S9_AUTO_AIM_RANGE: float = 32
 const C1_DOUBLE_SHOT_CHANCE_PER_UNLUCK: float = 0.1
 const C1_DOUBLE_SHOT_DELAY: float = 0.2
 const C2_ELITE_RATE_UP: float = 0.15
-const C3_ENEMY_SHOT_SPEED_UP: float = SHOT_SPEED / 2.0
+const C3_ENEMY_SHOT_SPEED_RATIO: float = 1.5
 const C4_SHORTER_INTERVALS_RATIO: float = 0.66
 const C5_SPEED_UP: float = SHIP_SPEED / 2.0
 const C6_UNLUCK_UP: int = 2

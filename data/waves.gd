@@ -3,7 +3,8 @@ extends Node
 enum Types {
 	SINGLE, FOLLOW_2, FOLLOW_3, CROSSERS_2, CROSSERS_3,
 	ARROW, SLASH_5, FIVE, TRIO_LOOP, HATERS, DNA, ORBITING,
-	SLASH_9, WALL
+	SLASH_9, WALL,
+	UNLUCKY_1,
 }
 
 const WEIGHTS = [
@@ -72,6 +73,15 @@ func gen_wave_type_for_diff(difficulty: int) -> Types:
 		1: return [Types.ARROW, Types.DNA, Types.ORBITING, Types.SINGLE, Types.FOLLOW_2, Types.FOLLOW_3, Types.CROSSERS_2, Types.CROSSERS_3].pick_random()
 		2: return [Types.ARROW, Types.HATERS, Types.ORBITING, Types.SLASH_5, Types.TRIO_LOOP, Types.FOLLOW_2, Types.FOLLOW_3, Types.CROSSERS_3].pick_random()
 		_: return Types.values().pick_random()
+
+
+func unlucky_wave_for_diff(difficulty: int) -> Types:
+	match difficulty:
+		_: return [Types.UNLUCKY_1].pick_random()
+
+
+func gen_unlucky_wave(difficulty: int) -> Array[Spawn]:
+	return gen_wave(unlucky_wave_for_diff(difficulty), difficulty)
 
 
 func gen_wave_for_diff(difficulty: int) -> Array[Spawn]:
@@ -172,6 +182,13 @@ func gen_wave(type: Types, difficulty: int) -> Array[Spawn]:
 				if i in hole: continue
 				spawns.append(Spawn.new(0, e, MovLinear.new(Util.right(16, 0.06 + i * 0.125), 0)))
 			return spawns
+		Types.UNLUCKY_1:
+			var e = gen_n_enemy(difficulty, 3)
+			var s: Array[Spawn] = []
+			s.append(Spawn.new(0, e[0], MovSine.new(Util.right(16, 0.5), Vector3(12, 2, 0))))
+			s.append_array(squad(MovSine.new(Util.right(16, 0.5), Vector3(8, 3, 0)), [e[1], e[1]], [2.5, 0.0], [Vector2(0, 24), Vector2(0, -24)]))
+			s.append_array(squad(MovSine.new(Util.right(16, 0.5), Vector3(4, 3, 0)), [e[2], e[2], e[2]], [2.5, 0, 0], [Vector2(0, 32), Vector2.ZERO, Vector2(0, -32)]))
+			return s
 	Log.err("gen_wave didn't work")
 	return []
 

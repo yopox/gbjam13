@@ -27,6 +27,9 @@ func _ready() -> void:
 
 func shoot() -> void:
 	if hp == 0: return
+	if not enemy and Progress.has(Power.ID.SPADES_2):
+		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < 5000:
+			return
 	shoot_bullet(0.0 if not enemy else PI)
 	if enemy: return
 	# Multi shots

@@ -43,10 +43,12 @@ func get_speed() -> float:
 
 
 func get_damage() -> int:
-	# TODO: SP3 boost damage if unlucky
-	if type in T2: return Values.ENEMY_DAMAGE_2
-	if type in T3: return Values.ENEMY_DAMAGE_3
-	return Values.ENEMY_DAMAGE_1
+	var boost: int = 0
+	if Progress.has(Power.ID.SPADES_3) and Progress.unlucky:
+		boost += Values.S3_ENEMY_DAMAGE_BOOST
+	if type in T2: return Values.ENEMY_DAMAGE_2 + boost
+	if type in T3: return Values.ENEMY_DAMAGE_3 + boost
+	return Values.ENEMY_DAMAGE_1 + boost
 
 
 func get_shot_delay() -> float:

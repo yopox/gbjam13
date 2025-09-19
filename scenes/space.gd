@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var shots: Node2D = $shots
+@onready var unlucky_timer: Timer = $unlucky_timer
 @onready var wave_manager: WaveManager = $wave_manager
+@onready var footer: Footer = $footer
 
 var enemies: int = 0
 var defeated: int = 0
@@ -12,12 +14,33 @@ func _ready() -> void:
 	Progress.last_killed = 0
 	Progress.last_total = 0
 	Util.shots_node = shots
+	Signals.unlucky_wave.connect(unlucky_wave)
 	Signals.enemy_spawned.connect(enemy_spawned)
 	Signals.enemy_dead.connect(enemy_dead)
 	Signals.enemy_escaped.connect(enemy_escaped)
-	Signals.wave_ended.connect(wave_ended)
+	Signals.waves_ended.connect(waves_ended)
 	wave_manager.gen_wave()
 	wave_manager.play()
+
+
+func unlucky_wave() -> void:
+	Progress.unlucky = true
+	Log.info("UNLUCKY")
+	# TODO: heal enemies on screen (HEARTS_3)
+	# TODO: visual effect for the unlucky wave
+	var unlucky_duration = Values.UNLUCKY_WAVE_DURATION
+	if Progress.has(Power.ID.CLUBS_4): unlucky_duration *= Values.C4_SHORTER_INTERVALS_RATIO
+	unlucky_timer.wait_time = unlucky_duration
+	unlucky_timer.start()
+	await unlucky_timer.timeout
+	footer.set_unlucky_ratio(0)
+	Progress.unlucky = false
+	Log.info("UNLUCKY finished")
+
+
+func _process(_delta: float) -> void:
+	if Progress.unlucky:
+		footer.set_unlucky_ratio(unlucky_timer.time_left / unlucky_timer.wait_time)
 
 
 func enemy_spawned() -> void:
@@ -34,7 +57,7 @@ func enemy_escaped() -> void:
 	check_over()
 
 
-func wave_ended() -> void:
+func waves_ended() -> void:
 	ended = true
 
 

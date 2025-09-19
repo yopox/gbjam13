@@ -34,6 +34,9 @@ func move(delta: float) -> void:
 			speed += Values.D4_SHOT_SPEED_UP
 		if Progress.has(Power.ID.DIAMS_3) and Progress.unlucky:
 			speed *= Values.D3_SLOWER_SHOT_RATIO
-	elif Progress.has(Power.ID.DIAMS_7) and Progress.unlucky:
-		speed *= Values.D7_ENEMY_SHOT_SPEED_RATIO
+	else:
+		if Progress.has(Power.ID.DIAMS_7) and Progress.unlucky:
+			speed *= Values.D7_ENEMY_SHOT_SPEED_RATIO
+		if Progress.has(Power.ID.CLUBS_3) and Progress.unlucky:
+			speed *= Values.C3_ENEMY_SHOT_SPEED_RATIO
 	position += delta * speed * dir * (2 - min(lifetime, 1))
