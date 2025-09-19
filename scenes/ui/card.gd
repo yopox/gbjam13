@@ -21,6 +21,7 @@ func update() -> void:
 		value_spr.visible = false
 		family_spr.visible = false
 	else:
+		(bg_spr.texture as AtlasTexture).region.position.x = 0
 		var value = Power.power_number(power)
 		var family = Power.power_family(power)
 		(value_spr.texture as AtlasTexture).region.position.x = 8 * value

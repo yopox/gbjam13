@@ -11,6 +11,7 @@ func gen_wave() -> void:
 
 
 func play() -> void:
+	var stage = Progress.stage
 	for event in current_wave:
 		await Util.wait(event.delay)
 		if event.unlucky:
@@ -22,6 +23,8 @@ func play() -> void:
 		if event.unlucky:
 			await Util.wait(Values.POST_UNLUCKY_WAVE_DELAY)
 	Signals.waves_ended.emit()
+	await Util.wait(20)
+	Signals.force_cards.emit(stage)
 
 
 func spawn_enemy(spawn: Spawn) -> void:

@@ -9,7 +9,8 @@ signal palette_changed(c: Array[Color])
 
 # ———— SPACE —————
 signal unlucky_wave()
-signal waves_ended()
+signal waves_ended(stage: int)
+signal force_cards()
 signal enemy_spawned()
 signal enemy_dead()
 signal enemy_escaped()

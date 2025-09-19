@@ -46,7 +46,7 @@ const S9_AUTO_AIM_RANGE: float = 32
 
 const C1_DOUBLE_SHOT_CHANCE_PER_UNLUCK: float = 0.1
 const C1_DOUBLE_SHOT_DELAY: float = 0.2
-const C2_ELITE_RATE_UP: float = 0.15
+const C2_SPEED_DOWN_RATIO: float = 0.6
 const C3_ENEMY_SHOT_SPEED_RATIO: float = 1.5
 const C4_SHORTER_INTERVALS_RATIO: float = 0.66
 const C5_SPEED_UP: float = SHIP_SPEED / 2.0

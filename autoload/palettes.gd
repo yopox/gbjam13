@@ -21,3 +21,10 @@ const PASTEL: Array[Color] = [
 	Color("#ec8a8c"),
 	Color("#fcfaac"),
 ]
+
+const PURPLE: Array[Color] = [
+	Color("#0F1425"),
+	Color("6a5ba8ff"),
+	Color("bf4c69ff"),
+	Color("dab1f0ff"),
+]

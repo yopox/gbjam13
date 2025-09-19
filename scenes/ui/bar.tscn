@@ -7,8 +7,6 @@ custom_minimum_size = Vector2(32, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_gr2fh")
-loading = null
-ratio = null
 
 [node name="r1" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1, 1)
@@ -21,5 +19,4 @@ color = Color(0.32941177, 0.32941177, 0.32941177, 1)
 z_index = 100
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 0
-offset_right = 16.0
 offset_bottom = 1.0

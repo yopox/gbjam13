@@ -21,10 +21,12 @@ var unlucky_wave: int = -1
 var unlucky: bool = false
 var unlucky_timestamp: float = 0
 
+var shield_ready: bool = true
+var missile_ready: bool = true
+
 
 func _ready() -> void:
 	Signals.unlucky_wave.connect(func(): unlucky_timestamp = Time.get_ticks_msec())
-	add_powerup(Power.ID.CLUBS_3)
 
 
 func reset() -> void:

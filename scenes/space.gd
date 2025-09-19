@@ -19,6 +19,7 @@ func _ready() -> void:
 	Signals.enemy_dead.connect(enemy_dead)
 	Signals.enemy_escaped.connect(enemy_escaped)
 	Signals.waves_ended.connect(waves_ended)
+	Signals.force_cards.connect(force_cards)
 	wave_manager.gen_wave()
 	wave_manager.play()
 
@@ -67,3 +68,8 @@ func check_over() -> void:
 	Progress.last_total = enemies
 	Progress.last_killed = defeated
 	Signals.change_scene.emit(Util.Scenes.CARDS)
+
+
+func force_cards(stage: int) -> void:
+	if stage == Progress.stage:
+		Signals.change_scene.emit(Util.Scenes.CARDS)
