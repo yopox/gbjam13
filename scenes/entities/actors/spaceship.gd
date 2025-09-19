@@ -27,17 +27,29 @@ func _ready() -> void:
 
 func shoot() -> void:
 	if hp == 0: return
+	shoot_bullet(0.0 if not enemy else PI)
+	if enemy: return
+	# Multi shots
+	if Progress.has(Power.ID.DIAMS_8):
+		shoot_bullet(Values.D8_DIAGONAL_SHOT_ANGLE)
+		shoot_bullet(-Values.D8_DIAGONAL_SHOT_ANGLE)
+	if Progress.has(Power.ID.SPADES_7) and Progress.unlucky:
+		shoot_bullet(Values.S7_TRIPLE_SHOT_ANGLE)
+		shoot_bullet(-Values.S7_TRIPLE_SHOT_ANGLE)
+
+
+func shoot_bullet(angle: float) -> void:
 	var bullet: Bullet = BULLET.instantiate()
 	bullet.enemy = enemy
 	bullet.damage = get_damage()
 	bullet.global_position = shots_anchor.global_position
-	bullet.dir = Vector2(-1 if enemy else 1, 0)
+	bullet.dir = Vector2.from_angle(angle)
 	Util.shots_node.add_child(bullet)
 
 
 func do_hit(area: Area2D) -> void:
 	if hit_invul: return
-	
+
 	# damage
 	var parent = area.get_parent()
 	if parent is Bullet:

@@ -2,6 +2,7 @@ class_name Bullet extends Node2D
 
 @onready var area: Area2D = $area
 
+
 var dir: Vector2 = Vector2.ZERO
 var lifetime: float = 0.0
 var enemy: bool = false

@@ -9,6 +9,8 @@ var escaped: int = 0
 var ended: bool = false
 
 func _ready() -> void:
+	Progress.last_killed = 0
+	Progress.last_total = 0
 	Util.shots_node = shots
 	Signals.enemy_spawned.connect(enemy_spawned)
 	Signals.enemy_dead.connect(enemy_dead)

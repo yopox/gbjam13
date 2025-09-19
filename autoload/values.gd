@@ -35,7 +35,7 @@ const S3_ENEMY_DAMAGE: int = 1
 const S4_MISSILE_RADIUS: float = 48
 const S5_DAMAGE_UP: int = 1
 const S6_DAMAGE_PER_HULL: float = 0.2
-const S7_TRIPLE_SHOT_ANGLE: float = PI / 7
+const S7_TRIPLE_SHOT_ANGLE: float = PI / 10
 const S8_CHARGED_DAMAGE_UP: float = 1.5
 const S9_AUTO_AIM_RANGE: float = 32
 
@@ -63,4 +63,4 @@ const D5_SHOT_DELAY_DOWN_RATIO: float = 0.75
 const D6_SHOT_DELAY_DOWN_EVERY_X_KILLS: int = 6
 const D6_SHOT_DELAY_DOWN_RATIO: float = 0.85
 const D7_ENEMY_SHOT_SPEED_RATIO: float = 0.4
-const D8_DIAGONAL_SHOT_ANGLE: float = PI / 4
+const D8_DIAGONAL_SHOT_ANGLE: float = PI / 5
