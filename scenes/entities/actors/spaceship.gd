@@ -1,6 +1,6 @@
 @abstract class_name Spaceship extends Node2D
 
-signal hit(spaceship: Spaceship)
+signal hp_changed(spaceship: Spaceship)
 
 const BULLET: Resource = preload("uid://whpdohlupewc")
 
@@ -89,6 +89,7 @@ func damage(value: int) -> void:
 			return
 		hit_invul = true
 	hp = max(0, hp - value)
+	if not enemy: Progress.hull = hp
 	
 	if enemy and hp == 0:
 		hitbox.set_deferred("monitoring", false)
@@ -100,14 +101,16 @@ func damage(value: int) -> void:
 		blinker.intervals = 2
 	blinker.hit()
 	# TODO: death animation
-	hit.emit(self)
+	hp_changed.emit(self)
 
 
 func blink_over() -> void:
 	hit_invul = false
 	if hp == 0:
-		if enemy: queue_free()
-		if enemy: Signals.enemy_dead.emit()
+		if enemy:
+			Progress.last_killed += 1
+			Signals.enemy_dead.emit()
+			queue_free()
 
 
 func create_timer() -> void:

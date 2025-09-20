@@ -62,4 +62,4 @@ script = ExtResource("4_x2olr")
 
 [node name="unlucky_timer" type="Timer" parent="."]
 
-[connection signal="hit" from="ship" to="footer" method="_on_ship_hit"]
+[connection signal="hp_changed" from="ship" to="footer" method="_on_ship_hp_changed"]

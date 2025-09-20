@@ -20,6 +20,7 @@ const SHIELD_RELOAD: float = 16.0
 const MISSILE_RELOAD: float = 8.0
 const MISSILE_DAMAGE_RATIO: float = 4.0
 const MISSILE_DAMAGE_AREA: float = 32.0
+const HEAL_AFTER_STAGE_RATIO: float = 0.25
 
 # ———— ENEMIES ———
 ## Margin around the screen before the bullet is freed
@@ -65,7 +66,7 @@ const H1_DODGE_CHANCE_PER_UNLUCK: float = 0.1
 const H3_ENEMY_HEAL: int = 10
 const H4_LONGER_SHIELDS_RATIO: float = 2.0
 const H5_HULL_UP: int = 5
-const H6_REGEN_EVERY_X_KILLS: int = 12
+const H6_REGEN_EVERY_X_KILLS: int = 10
 const H6_REGEN: int = 1
 const H8_REVIVE_REPAIR_RATIO: float = 0.5
 

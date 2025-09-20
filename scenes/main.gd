@@ -38,6 +38,7 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		scene_node.add_child(s_node)
 		initial = false
 	else:
+		Util.block_input = true
 		var p = palette
 		palette_changed([p[0], p[1], p[2], p[2]], false)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
@@ -53,6 +54,7 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		palette_changed([p[0], p[1], p[2], p[2]], false)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY)
 		palette_changed([p[0], p[1], p[2], p[3]], false)
+		Util.block_input = false
 
 
 func palette_changed(c: Array[Color], save: bool) -> void:

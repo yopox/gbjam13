@@ -8,7 +8,7 @@ class_name Footer extends Control
 @onready var missile_bar: Bar = $missile/bar
 
 
-func _on_ship_hit(spaceship: Spaceship) -> void:
+func _on_ship_hp_changed(spaceship: Spaceship) -> void:
 	hull_bar.set_ratio(1.0 * spaceship.hp / spaceship.max_hp)
 
 

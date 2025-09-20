@@ -9,10 +9,13 @@ extends Spaceship
 func _ready() -> void:
 	super()
 	Signals.evade_damage.connect(do_evade)
+	Signals.enemy_dead.connect(enemy_dead)
 	shots_timer.timeout.connect(shot_fired)
 	Progress.shield_timer = shield.timer
 	Progress.shield_reload = shield.reload
 	Progress.missile_reload = missile_timer
+	max_hp = Progress.max_hull
+	hp = Progress.hull
 
 
 func _process(_delta: float) -> void:
@@ -105,3 +108,11 @@ func do_shoot_missile() -> void:
 	m.global_position = shots_anchor.global_position
 	m.dir = Vector2.from_angle(0)
 	Util.shots_node.add_child(m)
+
+
+func enemy_dead() -> void:
+	if Progress.has(Power.ID.HEARTS_6):
+		if Progress.last_killed % Values.H6_REGEN_EVERY_X_KILLS == 0:
+			Progress.hull = min(Progress.hull + Values.H6_REGEN, Progress.max_hull)
+			hp = Progress.hull
+			hp_changed.emit(self)

@@ -42,6 +42,10 @@ func draft() -> void:
 
 
 func _process(_delta: float) -> void:
+	if Util.block_input:
+		update()
+		return
+	
 	if Input.is_action_just_pressed("right"):
 		selected = posmod(selected + 1, 4)
 	elif Input.is_action_just_pressed("left"):
@@ -53,6 +57,10 @@ func _process(_delta: float) -> void:
 		if cards[selected].outline: return
 		Progress.add_powerup(cards[selected].power)
 		Progress.stage += 1
+		
+		# Heal player
+		Progress.hull = min(Progress.hull + Progress.max_hull * Values.HEAL_AFTER_STAGE_RATIO, Progress.max_hull)
+		
 		Signals.change_scene.emit(Util.Scenes.SPACE)
 
 

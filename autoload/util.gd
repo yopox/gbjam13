@@ -8,6 +8,8 @@ enum Scenes {
 var shots_node: Node2D
 var enemy_node: Node
 
+var block_input: bool = false
+
 
 func wait(amount: float):
 	await get_tree().create_timer(amount).timeout

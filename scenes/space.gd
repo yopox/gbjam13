@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var ship: Node2D = $ship
 @onready var shots: Node2D = $shots
 @onready var unlucky_timer: Timer = $unlucky_timer
 @onready var wave_manager: WaveManager = $wave_manager
@@ -24,11 +25,11 @@ func _ready() -> void:
 	Signals.force_cards.connect(force_cards)
 	wave_manager.gen_wave()
 	wave_manager.play()
+	footer._on_ship_hp_changed(ship)
 
 
 func unlucky_wave() -> void:
 	Progress.unlucky = true
-	Log.info("UNLUCKY")
 	
 	if Progress.has(Power.ID.HEARTS_3):
 		for e in Util.enemy_node.get_children():
@@ -47,7 +48,6 @@ func unlucky_wave() -> void:
 	await unlucky_timer.timeout
 	footer.set_unlucky_ratio(0)
 	Progress.unlucky = false
-	Log.info("UNLUCKY finished")
 
 
 func _process(_delta: float) -> void:
@@ -79,7 +79,6 @@ func check_over() -> void:
 	if not ended: return 
 	if not enemies == defeated + escaped: return
 	Progress.last_total = enemies
-	Progress.last_killed = defeated
 	Signals.change_scene.emit(Util.Scenes.CARDS)
 
 

@@ -8,6 +8,8 @@ var stage: int = 0
 
 var bad_luck: int = 0
 var max_hull: int = Values.SHIP_HULL
+var hull: int = max_hull
+
 var damage_boost: float = 0
 var shot_delay_ratio: float = 1
 var shot_speed_boost: float = 0
@@ -35,13 +37,22 @@ func _ready() -> void:
 
 func reset() -> void:
 	powerups = []
+	powerups_h = {}
 	stage = 0
+	
 	bad_luck = 0
 	max_hull = Values.SHIP_HULL
+	hull = max_hull
+	
 	damage_boost = 0
+	shot_delay_ratio = 1
 	shot_speed_boost = 0
 	speed_boost = 0
+	
+	unlucky_wave = -1
 	unlucky = false
+	shield_ready = true
+	missile_ready = true
 
 
 func add_powerup(power: Power.ID) -> void:
@@ -89,6 +100,7 @@ func increase_stat(stat: Stat, n: int) -> void:
 	match stat:
 		Stat.HULL:
 			max_hull += Values.H5_HULL_UP * n
+			hull += Values.H5_HULL_UP * n
 		Stat.DAMAGE:
 			damage_boost += Values.S5_DAMAGE_UP * n
 		Stat.SHOT_DELAY:

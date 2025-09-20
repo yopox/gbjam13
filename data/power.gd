@@ -77,7 +77,7 @@ func power_info(id: ID) -> Array[String]:
 		ID.HEARTS_3: return ["Three of Hearts", "Bad Luck +1\n[UNLUCKY]: Heal enemies"]
 		ID.HEARTS_4: return ["Four of Hearts", "Longer shields"]
 		ID.HEARTS_5: return ["Five of Hearts", "Hull up"]
-		ID.HEARTS_6: return ["Six of Hearts", "Regen 1 hull HP every 12 kills"]
+		ID.HEARTS_6: return ["Six of Hearts", "Regen 1 hull HP every 10 kills"]
 		ID.HEARTS_7: return ["Seven of Hearts", "[UNLUCKY]: Recharge shields"]
 		ID.HEARTS_8: return ["Eight of Hearts", "Repair 50% hull on death"]
 		ID.HEARTS_9: return ["Nine of Hearts", "Shields deflect enemy shots"]
