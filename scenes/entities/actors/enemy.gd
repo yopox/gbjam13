@@ -36,6 +36,11 @@ func _physics_process(delta: float) -> void:
 	shots_timer.wait_time = get_shot_delay()
 
 
+func heal(amount: int) -> void:
+	if hp == 0: return
+	hp = min(max_hp, hp + amount)
+
+
 func get_speed() -> float:
 	if type in T2: return Values.ENEMY_SPEED_2
 	if type in T3: return Values.ENEMY_SPEED_3
