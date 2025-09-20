@@ -8,11 +8,11 @@ const GRAY: Array[Color] = [
 	Color("#fff"),
 ]
 
-const DMG_HC: Array[Color] = [
-	Color("#0f380f"),
-	Color("#306230"),
-	Color("#8bac0f"),
-	Color("#9bbc0f"),
+const DMG: Array[Color] = [
+	Color("071821"),
+	Color("306850"),
+	Color("86c06c"),
+	Color("e0f8cf"),
 ]
 
 const PASTEL: Array[Color] = [

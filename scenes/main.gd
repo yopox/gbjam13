@@ -1,6 +1,6 @@
 class_name Main extends Node2D
 
-
+const SPLASH: Resource = preload("uid://hytftmprg71q")
 const TITLE: Resource = preload("uid://cwhuna3qm1jd")
 const SPACE: Resource = preload("uid://02yhbniiagkv")
 const CARDS: Resource = preload("uid://c3eemnq8ueupf")
@@ -8,7 +8,7 @@ const CARDS: Resource = preload("uid://c3eemnq8ueupf")
 @onready var color_rect: ColorRect = $canvas/rect
 @onready var scene_node: Node = $scene
 
-var scene: Util.Scenes = Util.Scenes.TITLE
+var scene: Util.Scenes = Util.Scenes.SPLASH
 var shader: ShaderMaterial
 
 
@@ -16,12 +16,13 @@ func _ready() -> void:
 	shader = color_rect.material as ShaderMaterial
 	Signals.palette_changed.connect(palette_changed)
 	Signals.change_scene.connect(change_scene)
+	palette_changed(Palettes.DMG)
 	change_scene(scene)
-	palette_changed(Palettes.PASTEL)
 
 
 func get_scene(s: Util.Scenes) -> Resource:
 	match s:
+		Util.Scenes.SPLASH: return SPLASH
 		Util.Scenes.SPACE: return SPACE
 		Util.Scenes.CARDS: return CARDS
 		_: return TITLE

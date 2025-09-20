@@ -4,6 +4,7 @@ extends Node
 const SCREEN_W: int = 160
 const SCREEN_H: int = 144
 const UI_Y: int = 130
+const SPLASH_DURATION: float = 2.0
 
 # ————— SHIP —————
 ## Invisible wall for the ship
