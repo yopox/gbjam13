@@ -28,6 +28,7 @@ func disable() -> void:
 	await blinker.blink_over
 	sprite.visible = false
 	area.monitoring = false
+	if Progress.shield_ready: return # HEARTS_7
 	reload.wait_time = Values.SHIELD_RELOAD
 	if Progress.has(Power.ID.DIAMS_1):
 		reload.wait_time *= Values.D1_RELOAD_FASTER_PER_UNLUCK_RATIO ** Progress.get_bad_luck()

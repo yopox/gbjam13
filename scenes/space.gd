@@ -29,6 +29,11 @@ func unlucky_wave() -> void:
 	Progress.unlucky = true
 	Log.info("UNLUCKY")
 	# TODO: heal enemies on screen (HEARTS_3)
+	
+	if Progress.has(Power.ID.HEARTS_7):
+		Progress.shield_ready = true
+		Progress.shield_reload.stop()
+	
 	# TODO: visual effect for the unlucky wave
 	var unlucky_duration = Values.UNLUCKY_WAVE_DURATION
 	if Progress.has(Power.ID.CLUBS_4): unlucky_duration *= Values.C4_SHORTER_INTERVALS_RATIO
