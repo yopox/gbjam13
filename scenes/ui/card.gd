@@ -16,12 +16,11 @@ func _ready():
 
 
 func update() -> void:
-	if outline:
-		(bg_spr.texture as AtlasTexture).region.position.x = 16
-		value_spr.visible = false
-		family_spr.visible = false
-	else:
-		(bg_spr.texture as AtlasTexture).region.position.x = 0
+	(bg_spr.texture as AtlasTexture).region.position.x = 16 if outline else 0
+	value_spr.visible = not outline
+	family_spr.visible = not outline
+	
+	if not outline:
 		var value = Power.power_number(power)
 		var family = Power.power_family(power)
 		(value_spr.texture as AtlasTexture).region.position.x = 8 * value

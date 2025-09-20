@@ -18,12 +18,19 @@ func _ready() -> void:
 
 func draft() -> void:
 	var cards = [card_1, card_2, card_3, card_4]
-	cards[0].power = Power.pick_random_stat([])
-	cards[1].power = Power.pick_random([cards[0].power])
-	cards[2].power = Power.pick_random([cards[0].power, cards[1].power])
-	cards[3].power = Power.pick_random_unlucky([cards[0].power, cards[1].power, cards[2].power])
+	
+	if Progress.stage == 0:
+		cards[0].power = Power.pick_random_unlucky_only([])
+		cards[1].power = Power.pick_random_unlucky_only([cards[0].power])
+		cards[2].power = Power.pick_random_unlucky_only([cards[0].power, cards[1].power])
+		cards[3].power = Power.pick_random_unlucky_only([cards[0].power, cards[1].power, cards[2].power])
+	else:
+		cards[0].power = Power.pick_random_stat([])
+		cards[1].power = Power.pick_random([cards[0].power])
+		cards[2].power = Power.pick_random([cards[0].power, cards[1].power])
+		cards[3].power = Power.pick_random_unlucky([cards[0].power, cards[1].power, cards[2].power])
 
-	if not Progress.has(Power.ID.CLUBS_9):
+	if Progress.stage > 0 and Progress.has(Power.ID.CLUBS_9):
 		cards[0].outline = Progress.last_killed * 4 < Progress.last_total
 		cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
 	else:

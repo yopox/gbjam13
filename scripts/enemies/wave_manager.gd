@@ -11,7 +11,7 @@ func gen_wave() -> void:
 
 
 func play() -> void:
-	var stage = Progress.stage
+	var stage = Progress.stage - 1
 	for event in current_wave:
 		await Util.wait(event.delay)
 		if event.unlucky:
@@ -36,7 +36,7 @@ func spawn_enemy(spawn: Spawn) -> void:
 
 
 func gen_waves() -> Array[WaveEvent]:
-	var d: int = Progress.stage
+	var d: int = Progress.stage - 1
 	var w: Array[WaveEvent] = []
 	for i in range(Waves.WAVES_PER_DIFF[d]):
 		w.append(WaveEvent.new(0.0 if i == 0 else Values.WAVE_DELAY, Waves.gen_wave_for_diff(d)))

@@ -16,6 +16,11 @@ var UNLUCKY: Array[ID] = [
 	ID.CLUBS_1, ID.CLUBS_7, ID.CLUBS_2, ID.CLUBS_3,
 ]
 
+var UNLUCKY_ONLY: Array[ID] = [
+	ID.SPADES_2, ID.SPADES_3, ID.HEARTS_2, ID.HEARTS_3,
+	ID.DIAMS_2, ID.DIAMS_3, ID.CLUBS_2, ID.CLUBS_3,
+]
+
 
 func pick_random(exclude: Array[ID]) -> ID:
 	var power = ID.values().pick_random()
@@ -35,6 +40,13 @@ func pick_random_unlucky(exclude: Array[ID]) -> ID:
 	var power = UNLUCKY.pick_random()
 	while power in exclude or power in Progress.powerups:
 		power = UNLUCKY.pick_random()
+	return power
+
+
+func pick_random_unlucky_only(exclude: Array[ID]) -> ID:
+	var power = UNLUCKY_ONLY.pick_random()
+	while power in exclude or power in Progress.powerups:
+		power = UNLUCKY_ONLY.pick_random()
 	return power
 
 
