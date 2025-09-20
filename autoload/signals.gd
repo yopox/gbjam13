@@ -16,6 +16,8 @@ signal enemy_dead()
 signal enemy_escaped()
 signal evade_damage()
 signal consume_ankh()
+signal boss_spawned(boss: Boss)
+signal boss_defeated()
 
 # ———— CARDS —————
 signal stat_changed(stat: Progress.Stat, n: int)

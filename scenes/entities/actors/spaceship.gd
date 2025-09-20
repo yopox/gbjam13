@@ -108,12 +108,14 @@ func blink_over() -> void:
 		if enemy:
 			Progress.last_killed += 1
 			Signals.enemy_dead.emit()
+			if self is Boss:
+				Signals.boss_defeated.emit()
 			queue_free()
 			# TODO: enemy death animation
 		else:
 			if Progress.ankh:
 				Progress.ankh = false
-				Progress.hull = Progress.max_hull * Values.H8_REVIVE_REPAIR_RATIO
+				Progress.hull = ceil(Progress.max_hull * Values.H8_REVIVE_REPAIR_RATIO)
 				hp = Progress.hull
 				Signals.consume_ankh.emit()
 				hp_changed.emit(self)

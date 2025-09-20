@@ -23,6 +23,7 @@ func _ready() -> void:
 	Signals.enemy_escaped.connect(enemy_escaped)
 	Signals.waves_ended.connect(waves_ended)
 	Signals.force_cards.connect(force_cards)
+	Signals.boss_defeated.connect(boss_defeated)
 	wave_manager.gen_wave()
 	wave_manager.play()
 	footer._on_ship_hp_changed(ship)
@@ -79,7 +80,13 @@ func check_over() -> void:
 	if not ended: return 
 	if not enemies == defeated + escaped: return
 	Progress.last_total = enemies
-	Signals.change_scene.emit(Util.Scenes.CARDS)
+	if Progress.stage != 7:
+		Signals.change_scene.emit(Util.Scenes.CARDS)
+
+
+func boss_defeated() -> void:
+	# TODO: go to win state
+	Signals.change_scene.emit(Util.Scenes.TITLE)
 
 
 func force_cards(stage: int) -> void:

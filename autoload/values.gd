@@ -10,7 +10,7 @@ const TRANSITION_COLOR_DELAY: float = 0.08
 # ————— SHIP —————
 ## Invisible wall for the ship
 const SHIP_XMAX: int = 80
-const SHIP_HULL: int = 20
+const SHIP_HULL: int = 6
 const SHIP_DAMAGE: int = 6
 const SHIP_SPEED: float = 45.0
 const SHIP_SHOT_DELAY: float = 0.8
@@ -36,11 +36,14 @@ const ENEMY_SHOT_DELAY_1: float = SHIP_SHOT_DELAY * 3.0
 const ENEMY_SHOT_DELAY_2: float = SHIP_SHOT_DELAY * 2.5
 const ENEMY_SHOT_DELAY_3: float = SHIP_SHOT_DELAY * 2.0
 const ENEMY_BUFFER: float = 64
+const BOSS_DAMAGE: int = ENEMY_DAMAGE_2
+const BOSS_HP: int = 800
 
 # ———— SPACE —————
 const WAVE_DELAY: float = 4.0
 const POST_UNLUCKY_WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DURATION: float = 15.0
+const PRE_BOSS_DELAY: float = 15.0
 
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25
