@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://hytftmprg71q"]
+
+[ext_resource type="Script" uid="uid://cny8kh33xceg4" path="res://scenes/splash.gd" id="1_10vqf"]
+[ext_resource type="Texture2D" uid="uid://3wt6e6rgqos7" path="res://assets/splash.png" id="1_86pdq"]
+
+[node name="splash" type="Node2D"]
+script = ExtResource("1_10vqf")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_86pdq")
+centered = false
