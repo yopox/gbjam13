@@ -55,10 +55,9 @@ func do_hit(area: Area2D) -> void:
 	if Util.check_oob(area.global_position, 0): return
 	if hit_invul: return
 
-	# damage
+	# Damage
 	var parent = area.get_parent()
 	if parent is Bullet:
-		Log.info("damage", self)
 		damage(parent.damage)
 		if parent.missile and not parent.boom:
 			parent.boom = true
