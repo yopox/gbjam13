@@ -89,9 +89,13 @@ func damage(value: int) -> void:
 			return
 		hit_invul = true
 	hp = max(0, hp - value)
+	
+	if enemy and hp == 0:
+		hitbox.set_deferred("monitoring", false)
+	
 	#Log.info("Spaceship hit, damage:", value, "HP:", hp)
 	# animations
-	if enemy and blinker.intervals < 2:
+	if enemy and hp == 0 and blinker.intervals < 2:
 		blinker.intervals = 2
 	blinker.hit()
 	# TODO: death animation

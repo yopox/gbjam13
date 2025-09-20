@@ -15,5 +15,4 @@ func hit() -> void:
 		sprite.visible = !sprite.visible
 		await Util.wait(blink_step)
 	sprite.visible = true
-	# TODO: emit particles
 	blink_over.emit()
