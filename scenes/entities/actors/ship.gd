@@ -101,7 +101,7 @@ func do_shoot_missile() -> void:
 	var m: Bullet = BULLET.instantiate()
 	m.enemy = false
 	m.set_missile()
-	m.damage = get_damage() * Values.MISSILE_DAMAGE_RATIO
+	m.damage = ceil(get_damage() * Values.MISSILE_DAMAGE_RATIO)
 	m.global_position = shots_anchor.global_position
 	m.dir = Vector2.from_angle(0)
 	Util.shots_node.add_child(m)
