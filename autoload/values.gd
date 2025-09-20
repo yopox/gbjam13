@@ -13,6 +13,8 @@ const SHIP_DAMAGE: int = 6
 const SHIP_SPEED: float = 45.0
 const SHIP_SHOT_DELAY: float = 0.8
 const SHOT_SPEED: float = 64.0
+const SHIELD_LENGTH: float = 4.0
+const SHIELD_RELOAD: float = 16.0
 
 # ———— ENEMIES ———
 ## Margin around the screen before the bullet is freed

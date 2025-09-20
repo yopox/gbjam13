@@ -42,7 +42,7 @@ func unlucky_wave() -> void:
 func _process(_delta: float) -> void:
 	if Progress.unlucky:
 		footer.set_unlucky_ratio(unlucky_timer.time_left / unlucky_timer.wait_time)
-
+	footer.update_shield_ratio()
 
 func enemy_spawned() -> void:
 	enemies += 1

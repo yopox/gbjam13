@@ -1,0 +1,42 @@
+class_name Shield extends Node2D
+
+@onready var sprite: Sprite2D = $sprite
+@onready var area: Area2D = $area
+
+@onready var blinker: Blinker = $blinker
+@onready var timer: Timer = $timer
+@onready var reload: Timer = $reload
+
+@export var enemy: bool = false
+
+
+func enable() -> void:
+	Progress.shield_ready = false
+	timer.wait_time = Values.SHIELD_LENGTH
+	if not enemy and Progress.has(Power.ID.HEARTS_4):
+		timer.wait_time *= Values.H4_LONGER_SHIELDS_RATIO
+	timer.start()
+	sprite.visible = true
+	area.monitoring = true
+	await timer.timeout
+	disable()
+
+
+func disable() -> void:
+	blinker.hit()
+	await blinker.blink_over
+	sprite.visible = false
+	area.monitoring = false
+	reload.wait_time = Values.SHIELD_RELOAD
+	if Progress.has(Power.ID.DIAMS_1):
+		reload.wait_time *= Values.D1_RELOAD_FASTER_PER_UNLUCK_RATIO ** Progress.get_bad_luck()
+	reload.start()
+	await reload.timeout
+	Progress.shield_ready = true
+	
+
+
+func _on_area_area_entered(area: Area2D) -> void:
+	var parent = area.get_parent()
+	if parent is Bullet and parent.enemy != enemy:
+		parent.queue_free()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy44guotp1pt2"]
+
+[ext_resource type="Texture2D" uid="uid://cif4ftg8eearw" path="res://assets/entities/shield.png" id="1_lgn5e"]
+[ext_resource type="Script" uid="uid://clvt4cw6x7wct" path="res://scenes/entities/actors/shield.gd" id="1_xj565"]
+[ext_resource type="PackedScene" uid="uid://csaw7ajh5l3oc" path="res://scenes/entities/space/blinker.tscn" id="2_xj565"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rp1c4"]
+size = Vector2(4, 16)
+
+[node name="shield" type="Node2D"]
+script = ExtResource("1_xj565")
+
+[node name="sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 0)
+texture = ExtResource("1_lgn5e")
+
+[node name="area" type="Area2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 16
+collision_mask = 8
+monitoring = false
+
+[node name="hitbox" type="CollisionShape2D" parent="area"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_rp1c4")
+
+[node name="blinker" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_xj565")]
+sprite = NodePath("../sprite")
+intervals = 3
+blink_step = 0.25
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="reload" type="Timer" parent="."]
+
+[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

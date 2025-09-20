@@ -2,12 +2,22 @@ extends Spaceship
 
 @onready var evade_blinker: Blinker = $evade_blinker
 @onready var evade_label: Label = $evade_label
+@onready var shield: Shield = $shield
 
 
 func _ready() -> void:
 	super()
 	Signals.evade_damage.connect(do_evade)
 	shots_timer.timeout.connect(shot_fired)
+	Progress.shield_timer = shield.timer
+	Progress.shield_reload = shield.reload
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("b"):
+		if Progress.shield_ready:
+			if not (Progress.has(Power.ID.HEARTS_2) and Progress.unlucky):
+				shield.enable()
 
 
 func shot_fired() -> void:
@@ -55,7 +65,10 @@ func _physics_process(delta: float) -> void:
 	var boost = Progress.speed_boost
 	if Progress.has(Power.ID.CLUBS_7) and Progress.unlucky:
 		boost += Values.C5_SPEED_UP
-	position += delta * (Values.SHIP_SPEED + boost) * mvmt
+	var speed = Values.SHIP_SPEED + boost
+	if Progress.has(Power.ID.CLUBS_2) and Progress.unlucky:
+		speed *= Values.C2_SPEED_DOWN_RATIO
+	position += delta * speed * mvmt
 
 
 func do_evade() -> void:
