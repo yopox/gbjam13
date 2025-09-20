@@ -1,5 +1,6 @@
 class_name Bullet extends Node2D
 
+@onready var sprite: Sprite2D = $sprite
 @onready var area: Area2D = $area
 
 
@@ -7,6 +8,7 @@ var dir: Vector2 = Vector2.ZERO
 var lifetime: float = 0.0
 var enemy: bool = false
 var damage: int = 0
+var warped: bool = false
 
 
 func _ready():
@@ -16,10 +18,19 @@ func _ready():
 	area.collision_mask = 1 if enemy else 4
 	if not enemy and Progress.has(Power.ID.DIAMS_2) and Progress.unlucky:
 		dir = Vector2(2, randf_range(-1, 1)).normalized()
+	if enemy:
+		sprite.modulate = Palettes.GRAY[2]
 
 
 func _physics_process(delta: float) -> void:
-	if Util.check_oob(position, Values.BULLET_BUFFER):
+	if not enemy and Progress.has(Power.ID.DIAMS_9):
+		if Util.check_oob(position, 0):
+			if warped:
+				queue_free()
+			else:
+				position = Vector2(fposmod(position.x, Values.SCREEN_W), fposmod(position.y, Values.UI_Y))
+				warped = true
+	elif Util.check_oob(position, Values.BULLET_BUFFER):
 		queue_free()
 		return
 	lifetime += delta
