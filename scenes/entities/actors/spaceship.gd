@@ -118,8 +118,10 @@ func blink_over() -> void:
 				Signals.consume_ankh.emit()
 				hp_changed.emit(self)
 			else:
-				queue_free()
+				visible = false
 				# TODO: player death animation
+				await Util.wait(2.0)
+				Signals.change_scene.emit(Util.Scenes.TITLE)
 
 
 func create_timer() -> void:

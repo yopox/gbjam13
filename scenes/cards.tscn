@@ -1,10 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3eemnq8ueupf"]
+[gd_scene load_steps=10 format=3 uid="uid://c3eemnq8ueupf"]
 
 [ext_resource type="Theme" uid="uid://dggwjntgpkqru" path="res://assets/themes/mask.tres" id="1_cqxa1"]
 [ext_resource type="Script" uid="uid://odbfifxptslx" path="res://scenes/cards.gd" id="1_pqter"]
 [ext_resource type="PackedScene" uid="uid://nbf4axea4lmp" path="res://scenes/ui/card.tscn" id="2_02cqd"]
 [ext_resource type="Texture2D" uid="uid://cvw1npbs4e4gn" path="res://assets/mrmotiles.png" id="3_mnqni"]
 [ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="5_8a8qm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucp30"]
+atlas = ExtResource("3_mnqni")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a8qm"]
+atlas = ExtResource("3_mnqni")
+region = Rect2(56, 8, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqter"]
 atlas = ExtResource("3_mnqni")
@@ -16,10 +24,78 @@ line_spacing = -4.0
 [node name="cards" type="Node2D"]
 script = ExtResource("1_pqter")
 
-[node name="lucky" type="Label" parent="."]
-offset_top = 14.0
+[node name="progress" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(160, 8)
+offset_top = 8.0
 offset_right = 160.0
-offset_bottom = 49.0
+offset_bottom = 16.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="b1" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d1" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b2" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d2" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b3" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d3" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b4" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d4" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b5" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d5" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b6" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d6" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b7" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="d7" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8a8qm")
+
+[node name="b8" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ucp30")
+
+[node name="lucky" type="Label" parent="."]
+offset_top = 18.0
+offset_right = 160.0
+offset_bottom = 53.0
 theme = ExtResource("1_cqxa1")
 theme_override_font_sizes/font_size = 34
 text = "Lucky!"
@@ -45,18 +121,18 @@ position = Vector2(44, 88)
 texture = SubResource("AtlasTexture_pqter")
 
 [node name="power_name" type="Label" parent="."]
-offset_top = 96.0
+offset_top = 97.0
 offset_right = 160.0
-offset_bottom = 119.0
+offset_bottom = 120.0
 theme = ExtResource("5_8a8qm")
 text = "Ace of Spades"
 horizontal_alignment = 1
 uppercase = true
 
 [node name="description" type="Label" parent="."]
-offset_top = 108.0
+offset_top = 109.0
 offset_right = 160.0
-offset_bottom = 131.0
+offset_bottom = 132.0
 theme = ExtResource("5_8a8qm")
 text = "Damage up for each
 unlucky card"

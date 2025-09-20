@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var progress: HBoxContainer = $progress
 @onready var card_1: Card = $card
 @onready var card_2: Card = $card2
 @onready var card_3: Card = $card3
@@ -14,6 +15,11 @@ var selected: int = 0
 func _ready() -> void:
 	draft()
 	update()
+	for i in range(progress.get_children().size()):
+		if i <= 2 * Progress.stage:
+			progress.get_child(i).modulate = Palettes.GRAY[3]
+		else:
+			progress.get_child(i).modulate = Palettes.GRAY[1]
 
 
 func draft() -> void:
