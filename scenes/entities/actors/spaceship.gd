@@ -92,6 +92,7 @@ func damage(value: int) -> void:
 	
 	if enemy and hp == 0:
 		hitbox.set_deferred("monitoring", false)
+		hitbox.set_deferred("monitorable", false)
 	
 	#Log.info("Spaceship hit, damage:", value, "HP:", hp)
 	# animations
@@ -105,7 +106,7 @@ func damage(value: int) -> void:
 func blink_over() -> void:
 	hit_invul = false
 	if hp == 0:
-		queue_free()
+		if enemy: queue_free()
 		if enemy: Signals.enemy_dead.emit()
 
 
