@@ -13,6 +13,7 @@ var ended: bool = false
 func _ready() -> void:
 	Progress.last_killed = 0
 	Progress.last_total = 0
+	Progress.shield_ready = true
 	Util.shots_node = shots
 	Signals.unlucky_wave.connect(unlucky_wave)
 	Signals.enemy_spawned.connect(enemy_spawned)

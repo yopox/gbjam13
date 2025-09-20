@@ -18,6 +18,7 @@ func enable() -> void:
 	timer.start()
 	sprite.visible = true
 	area.monitoring = true
+	Log.info("Shield enabled")
 	await timer.timeout
 	disable()
 
@@ -36,7 +37,11 @@ func disable() -> void:
 	
 
 
-func _on_area_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
+func _on_area_area_entered(a: Area2D) -> void:
+	var parent = a.get_parent()
 	if parent is Bullet and parent.enemy != enemy:
-		parent.queue_free()
+		if not enemy and Progress.has(Power.ID.HEARTS_9):
+			(parent as Bullet).enemy = !parent.enemy
+			(parent as Bullet).dir = Vector2.from_angle(PI - (parent as Bullet).dir.angle())
+		else:
+			parent.queue_free()
