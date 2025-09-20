@@ -24,7 +24,9 @@ var unlucky_timestamp: float = 0
 var shield_ready: bool = true
 var shield_timer: Timer
 var shield_reload: Timer
+
 var missile_ready: bool = true
+var missile_reload: Timer
 
 
 func _ready() -> void:

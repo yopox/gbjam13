@@ -15,6 +15,9 @@ const SHIP_SHOT_DELAY: float = 0.8
 const SHOT_SPEED: float = 64.0
 const SHIELD_LENGTH: float = 4.0
 const SHIELD_RELOAD: float = 16.0
+const MISSILE_RELOAD: float = 8.0
+const MISSILE_DAMAGE_RATIO: float = 4.0
+const MISSILE_DAMAGE_AREA: float = 32.0
 
 # ———— ENEMIES ———
 ## Margin around the screen before the bullet is freed
@@ -38,13 +41,15 @@ const UNLUCKY_WAVE_DURATION: float = 15.0
 
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25
+const S2_CANT_SHOOT_MS: float = 5000
 const S3_ENEMY_DAMAGE_BOOST: int = 2
-const S4_MISSILE_RADIUS: float = 48
+const S4_MISSILE_RADIUS_RATIO: float = 2.0
 const S5_DAMAGE_UP: int = 1
 const S6_DAMAGE_PER_HULL: float = 0.2
 const S7_TRIPLE_SHOT_ANGLE: float = PI / 10
 const S8_CHARGED_DAMAGE_UP: float = 1.5
-const S9_AUTO_AIM_RANGE: float = 32
+const S9_AUTO_AIM_RADIUS: float = 48.0
+const S9_AUTO_AIM_ANGLE_RATIO: float = 0.4
 
 const C1_DOUBLE_SHOT_CHANCE_PER_UNLUCK: float = 0.1
 const C1_DOUBLE_SHOT_DELAY: float = 0.2

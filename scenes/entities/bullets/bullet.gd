@@ -2,12 +2,16 @@ class_name Bullet extends Node2D
 
 @onready var sprite: Sprite2D = $sprite
 @onready var area: Area2D = $area
+@onready var shape: CollisionShape2D = $area/shape
 
 
 var dir: Vector2 = Vector2.ZERO
-var lifetime: float = 0.0
-var enemy: bool = false
 var damage: int = 0
+var enemy: bool = false
+var missile: bool = false
+var boom: bool = false
+
+var lifetime: float = 0.0
 var warped: bool = false
 
 
@@ -50,4 +54,24 @@ func move(delta: float) -> void:
 			speed *= Values.D7_ENEMY_SHOT_SPEED_RATIO
 		if Progress.has(Power.ID.CLUBS_3) and Progress.unlucky:
 			speed *= Values.C3_ENEMY_SHOT_SPEED_RATIO
-	position += delta * speed * dir * (2 - min(lifetime, 1))
+	
+	var d = dir
+	if missile and not enemy and Progress.has(Power.ID.SPADES_9):
+		var e = Util.enemy_node.get_children()
+		e = e.filter(func(n: Node): return n is Node2D and n.global_position.x > global_position.x)
+		if e.size() > 0:
+			var ed = e.map(func(n: Node2D): return [n.position.distance_to(position), n])
+			ed.sort_custom(func(i, j): return i[0] < j[0])
+			var seg: Vector2 = ed[0][1].global_position - global_position
+			if seg.length() <= Values.S9_AUTO_AIM_RADIUS:
+				var r = Values.S9_AUTO_AIM_ANGLE_RATIO
+				d = Vector2.from_angle(dir.angle() * (1 - r) + seg.angle() * r)
+	
+	position += delta * speed * d * (2 - min(lifetime, 1))
+
+
+func set_missile() -> void:
+	missile = true
+	await ready
+	(sprite.texture as AtlasTexture).region.position.x = 24
+	(shape.shape as RectangleShape2D).size = Vector2(4, 4)

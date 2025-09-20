@@ -27,8 +27,9 @@ func _ready() -> void:
 
 func shoot() -> void:
 	if hp == 0: return
+	if Util.check_oob(global_position, 0): return
 	if not enemy and Progress.has(Power.ID.SPADES_2):
-		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < 5000:
+		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < Values.S2_CANT_SHOOT_MS:
 			return
 	shoot_bullet(0.0 if not enemy else PI)
 	if enemy: return
@@ -51,12 +52,24 @@ func shoot_bullet(angle: float) -> void:
 
 
 func do_hit(area: Area2D) -> void:
+	if Util.check_oob(area.global_position, 0): return
 	if hit_invul: return
 
 	# damage
 	var parent = area.get_parent()
 	if parent is Bullet:
+		Log.info("damage", self)
 		damage(parent.damage)
+		if parent.missile and not parent.boom:
+			parent.boom = true
+			var e = Util.enemy_node.get_children()
+			var a = Values.MISSILE_DAMAGE_AREA
+			if Progress.has(Power.ID.SPADES_4):
+				a *= Values.S4_MISSILE_RADIUS_RATIO
+			var hit_e = e.filter(func(n: Node): return n is Spaceship and n != self and global_position.distance_to(n.global_position) <= a)
+			for hit_enemy: Spaceship in hit_e:
+				hit_enemy.do_hit(area)
+			
 		parent.queue_free()
 	elif parent is Spaceship:
 		damage(parent.get_damage())
@@ -78,6 +91,8 @@ func damage(value: int) -> void:
 	hp = max(0, hp - value)
 	#Log.info("Spaceship hit, damage:", value, "HP:", hp)
 	# animations
+	if enemy and blinker.intervals < 2:
+		blinker.intervals = 2
 	blinker.hit()
 	# TODO: death animation
 	hit.emit(self)

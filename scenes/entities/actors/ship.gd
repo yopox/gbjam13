@@ -3,6 +3,7 @@ extends Spaceship
 @onready var evade_blinker: Blinker = $evade_blinker
 @onready var evade_label: Label = $evade_label
 @onready var shield: Shield = $shield
+@onready var missile_timer: Timer = $missile_timer
 
 
 func _ready() -> void:
@@ -11,9 +12,13 @@ func _ready() -> void:
 	shots_timer.timeout.connect(shot_fired)
 	Progress.shield_timer = shield.timer
 	Progress.shield_reload = shield.reload
+	Progress.missile_reload = missile_timer
 
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("a"):
+		if Progress.missile_ready:
+			shoot_missile()
 	if Input.is_action_just_pressed("b"):
 		if Progress.shield_ready:
 			if not (Progress.has(Power.ID.HEARTS_2) and Progress.unlucky):
@@ -36,17 +41,16 @@ func shot_fired() -> void:
 
 
 func get_damage() -> int:
-	var boost = Progress.damage_boost
+	var boost: float = Progress.damage_boost
 	if Progress.has(Power.ID.SPADES_1):
 		boost += Progress.get_bad_luck() * Values.S1_DAMAGE_PER_UNLUCK
 	if Progress.has(Power.ID.SPADES_6):
 		boost += (Progress.max_hull - hp) * Values.S6_DAMAGE_PER_HULL
-	if Progress.has(Power.ID.SPADES_8):
-		# TODO: SP8 damage up if fully charged
-		pass
+	if Progress.has(Power.ID.SPADES_8) and Progress.missile_ready and Progress.shield_ready:
+		boost += Values.S8_CHARGED_DAMAGE_UP
 	if Progress.has(Power.ID.CLUBS_7) and Progress.unlucky:
 		boost += Values.S5_DAMAGE_UP
-	return Values.SHIP_DAMAGE + floor(boost)
+	return Values.SHIP_DAMAGE + ceil(boost)
 
 
 func _physics_process(delta: float) -> void:
@@ -80,3 +84,24 @@ func do_evade() -> void:
 func _on_evade_blinker_blink_over() -> void:
 	evade_label.visible = false
 	hit_invul = false
+
+
+func shoot_missile() -> void:
+	Progress.missile_ready = false
+	do_shoot_missile()
+	missile_timer.wait_time = Values.MISSILE_RELOAD
+	if Progress.has(Power.ID.DIAMS_1):
+		missile_timer.wait_time *= Values.D1_RELOAD_FASTER_PER_UNLUCK_RATIO * Progress.get_bad_luck()
+	missile_timer.start()
+	await missile_timer.timeout
+	Progress.missile_ready = true
+
+
+func do_shoot_missile() -> void:
+	var m: Bullet = BULLET.instantiate()
+	m.enemy = false
+	m.set_missile()
+	m.damage = get_damage() * Values.MISSILE_DAMAGE_RATIO
+	m.global_position = shots_anchor.global_position
+	m.dir = Vector2.from_angle(0)
+	Util.shots_node.add_child(m)

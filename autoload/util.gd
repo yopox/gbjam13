@@ -6,6 +6,7 @@ enum Scenes {
 }
 
 var shots_node: Node2D
+var enemy_node: Node
 
 
 func wait(amount: float):

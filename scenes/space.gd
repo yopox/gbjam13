@@ -15,6 +15,7 @@ func _ready() -> void:
 	Progress.last_total = 0
 	Progress.shield_ready = true
 	Util.shots_node = shots
+	Util.enemy_node = wave_manager
 	Signals.unlucky_wave.connect(unlucky_wave)
 	Signals.enemy_spawned.connect(enemy_spawned)
 	Signals.enemy_dead.connect(enemy_dead)
@@ -49,6 +50,8 @@ func _process(_delta: float) -> void:
 	if Progress.unlucky:
 		footer.set_unlucky_ratio(unlucky_timer.time_left / unlucky_timer.wait_time)
 	footer.update_shield_ratio()
+	footer.update_missile_ratio()
+
 
 func enemy_spawned() -> void:
 	enemies += 1
@@ -78,4 +81,5 @@ func check_over() -> void:
 
 func force_cards(stage: int) -> void:
 	if stage == Progress.stage:
+		Log.err("Transition to the cards state had to be triggered manually")
 		Signals.change_scene.emit(Util.Scenes.CARDS)

@@ -53,4 +53,7 @@ text = "EVADE!"
 [node name="shield" parent="." instance=ExtResource("5_3o3jn")]
 position = Vector2(11, 0)
 
+[node name="missile_timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="blink_over" from="evade_blinker" to="." method="_on_evade_blinker_blink_over"]

@@ -9,6 +9,7 @@ atlas = ExtResource("1_kw8ob")
 region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma0cl"]
+resource_local_to_scene = true
 size = Vector2(2, 2)
 
 [node name="bullet" type="Node2D"]
