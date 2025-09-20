@@ -99,7 +99,6 @@ func damage(value: int) -> void:
 	if enemy and hp == 0 and blinker.intervals < 2:
 		blinker.intervals = 2
 	blinker.hit()
-	# TODO: death animation
 	hp_changed.emit(self)
 
 
@@ -110,6 +109,17 @@ func blink_over() -> void:
 			Progress.last_killed += 1
 			Signals.enemy_dead.emit()
 			queue_free()
+			# TODO: enemy death animation
+		else:
+			if Progress.ankh:
+				Progress.ankh = false
+				Progress.hull = Progress.max_hull * Values.H8_REVIVE_REPAIR_RATIO
+				hp = Progress.hull
+				Signals.consume_ankh.emit()
+				hp_changed.emit(self)
+			else:
+				queue_free()
+				# TODO: player death animation
 
 
 func create_timer() -> void:

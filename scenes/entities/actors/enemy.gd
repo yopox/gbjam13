@@ -27,7 +27,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Util.check_oob(global_position, Values.ENEMY_BUFFER):
-		print("Queue free enemy")
 		queue_free()
 		Signals.enemy_escaped.emit()
 		return

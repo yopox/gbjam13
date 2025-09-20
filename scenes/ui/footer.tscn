@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bla85reuu38vt"]
+[gd_scene load_steps=10 format=3 uid="uid://bla85reuu38vt"]
 
 [ext_resource type="Texture2D" uid="uid://6kxepq3qmxlj" path="res://assets/gui/footer.png" id="1_0owx5"]
 [ext_resource type="Script" uid="uid://e6blguuygoyp" path="res://scenes/ui/footer.gd" id="1_msmip"]
 [ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="2_msmip"]
 [ext_resource type="PackedScene" uid="uid://br1dq76tpklqs" path="res://scenes/ui/bar.tscn" id="3_b63eu"]
 [ext_resource type="Texture2D" uid="uid://d5tyqmu424uy" path="res://assets/gui/icons.png" id="4_6big4"]
+[ext_resource type="Texture2D" uid="uid://cvw1npbs4e4gn" path="res://assets/mrmotiles.png" id="6_b63eu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2olr"]
 atlas = ExtResource("4_6big4")
@@ -13,6 +14,10 @@ region = Rect2(0, 0, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gvwg"]
 atlas = ExtResource("4_6big4")
 region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6big4"]
+atlas = ExtResource("6_b63eu")
+region = Rect2(40, 8, 8, 8)
 
 [node name="footer" type="Control"]
 custom_minimum_size = Vector2(160, 12)
@@ -167,3 +172,18 @@ layout_mode = 0
 offset_right = 160.0
 offset_bottom = 1.0
 color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+
+[node name="ankh" type="Node2D" parent="."]
+visible = false
+position = Vector2(60, 2)
+
+[node name="bg" type="ColorRect" parent="ankh"]
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 11.0
+color = Color(0, 0, 0, 1)
+
+[node name="sprite" type="Sprite2D" parent="ankh"]
+position = Vector2(0, 1)
+texture = SubResource("AtlasTexture_6big4")
+centered = false

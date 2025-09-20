@@ -9,6 +9,7 @@ var stage: int = 0
 var bad_luck: int = 0
 var max_hull: int = Values.SHIP_HULL
 var hull: int = max_hull
+var ankh: bool = false
 
 var damage_boost: float = 0
 var shot_delay_ratio: float = 1
@@ -43,6 +44,7 @@ func reset() -> void:
 	bad_luck = 0
 	max_hull = Values.SHIP_HULL
 	hull = max_hull
+	ankh = false
 	
 	damage_boost = 0
 	shot_delay_ratio = 1
@@ -90,6 +92,7 @@ func increase_stats(power: Power.ID) -> void:
 			increase_stat(stats[1], 1)
 			increase_stat(stats[2], 1)
 			increase_stat(stats[3], -1)
+		Power.ID.HEARTS_8: ankh = true
 		Power.ID.DIAMS_4: increase_stat(Stat.SHOT_SPEED, 1)
 		Power.ID.DIAMS_5: increase_stat(Stat.SHOT_DELAY, 1)
 

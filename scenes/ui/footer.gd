@@ -6,10 +6,20 @@ class_name Footer extends Control
 @onready var shield_bar: Bar = $shield/bar
 @onready var missile_label: Label = $missile/label
 @onready var missile_bar: Bar = $missile/bar
+@onready var ankh: Node2D = $ankh
+
+
+func _ready() -> void:
+	ankh.visible = Progress.ankh
+	Signals.consume_ankh.connect(consume_ankh)
 
 
 func _on_ship_hp_changed(spaceship: Spaceship) -> void:
 	hull_bar.set_ratio(1.0 * spaceship.hp / spaceship.max_hp)
+
+
+func consume_ankh() -> void:
+	ankh.visible = false
 
 
 func set_unlucky_ratio(ratio: float) -> void:
