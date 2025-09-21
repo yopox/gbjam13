@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func prepare_next_bgm(scene: Util.Scenes) -> void:
 	match scene:
-		Util.Scenes.CARDS:
+		Util.Scenes.CARDS, Util.Scenes.GAME_OVER:
 			next_bgm = BGM.CARDS
 		Util.Scenes.SPACE:
 			if Progress.stage < 3:
@@ -52,8 +52,8 @@ func transition(appear: bool, step: int) -> void:
 	
 	if next_bgm == BGM.TITLE:
 		p1_vol = FADE_OUT_IN
-		p2_vol = [0,0,0,0,0,0]
-	elif current_bgm == BGM.TITLE and next_bgm == BGM.CARDS:
+		p2_vol = FADE_OUT_3
+	elif current_bgm == BGM.TITLE and (next_bgm == BGM.CARDS):
 		p1_vol = FADE_OUT_3
 		p2_vol = IN_3
 	elif next_bgm == BGM.CARDS:
@@ -74,12 +74,15 @@ func transition(appear: bool, step: int) -> void:
 				BGM.STAGE_1: player_1.stream = STAGE_1
 				BGM.STAGE_2: player_1.stream = STAGE_2
 				BGM.STAGE_3: player_1.stream = STAGE_3
-				BGM.BOSS, _: player_1.stream = BOSS_THEME
-			player_1.play(player_2.get_playback_position())
+				BGM.BOSS: player_1.stream = BOSS_THEME
+				BGM.TITLE, _: player_1.stream = TITLE
+			if not next_bgm == BGM.TITLE:
+				player_1.play(player_2.get_playback_position())
 		
 	if i == 3:
 		if next_bgm == BGM.TITLE:
 			player_1.stop()
+			player_2.stop()
 			player_1.stream = TITLE
 			player_1.play()
 		if current_bgm == BGM.TITLE and next_bgm == BGM.CARDS:

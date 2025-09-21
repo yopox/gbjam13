@@ -49,7 +49,6 @@ func unlucky_wave() -> void:
 		Progress.shield_ready = true
 		Progress.shield_reload.stop()
 	
-	# TODO: visual effect for the unlucky wave
 	var unlucky_duration = Values.UNLUCKY_WAVE_DURATION
 	if Progress.has(Power.ID.CLUBS_4): unlucky_duration *= Values.C4_SHORTER_INTERVALS_RATIO
 	unlucky_timer.wait_time = unlucky_duration
@@ -96,8 +95,8 @@ func check_over() -> void:
 
 
 func boss_defeated() -> void:
-	# TODO: go to win state
-	Signals.change_scene.emit(Util.Scenes.TITLE)
+	Progress.boss_defeated = true
+	Signals.change_scene.emit(Util.Scenes.GAME_OVER)
 
 
 func force_cards(stage: int) -> void:

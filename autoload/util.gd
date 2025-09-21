@@ -2,7 +2,7 @@ extends Node
 
 
 enum Scenes {
-	SPLASH, TITLE, HANGAR, SPACE, CARDS
+	SPLASH, TITLE, HANGAR, SPACE, CARDS, GAME_OVER
 }
 
 var shots_node: Node2D

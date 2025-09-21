@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxvmo4dcm8i0r"]
+
+[ext_resource type="Script" uid="uid://c6yh4luokvqlc" path="res://scenes/game_over.gd" id="1_7m3ot"]
+[ext_resource type="Texture2D" uid="uid://cvw1npbs4e4gn" path="res://assets/mrmotiles.png" id="1_wqhvx"]
+[ext_resource type="Theme" uid="uid://dggwjntgpkqru" path="res://assets/themes/mask.tres" id="2_tbwuq"]
+[ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="3_racf3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_racf3"]
+atlas = ExtResource("1_wqhvx")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m3ot"]
+atlas = ExtResource("1_wqhvx")
+region = Rect2(56, 8, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3hpu"]
+line_spacing = -15.0
+font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_7m3ot"]
+line_spacing = -3.0
+
+[node name="game over" type="Node2D"]
+script = ExtResource("1_7m3ot")
+
+[node name="progress" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(160, 8)
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 16.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="b1" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d1" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b2" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d2" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b3" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d3" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b4" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d4" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b5" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d5" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b6" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d6" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b7" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="d7" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7m3ot")
+
+[node name="b8" type="TextureRect" parent="progress"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_racf3")
+
+[node name="title" type="Label" parent="."]
+offset_top = 18.0
+offset_right = 160.0
+offset_bottom = 53.0
+theme = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 34
+text = "Game
+Over"
+label_settings = SubResource("LabelSettings_v3hpu")
+horizontal_alignment = 1
+
+[node name="status" type="Label" parent="."]
+offset_top = 69.0
+offset_right = 160.0
+offset_bottom = 92.0
+theme = ExtResource("3_racf3")
+text = "Boss defeated!"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="stats" type="Label" parent="."]
+modulate = Color(0.6627451, 0.6627451, 0.6627451, 1)
+offset_top = 81.0
+offset_right = 160.0
+offset_bottom = 114.0
+theme = ExtResource("3_racf3")
+text = "Enemies killed: 91
+Shield usages: 25
+Missile usages: 33"
+label_settings = SubResource("LabelSettings_7m3ot")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="cards" type="Node2D" parent="."]
+position = Vector2(26, 137)

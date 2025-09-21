@@ -109,6 +109,7 @@ func do_shoot_missile() -> void:
 	m.global_position = shots_anchor.global_position
 	m.dir = Vector2.from_angle(0)
 	Util.shots_node.add_child(m)
+	Progress.missile_usages += 1
 
 
 func enemy_dead(_enemy: Enemy) -> void:

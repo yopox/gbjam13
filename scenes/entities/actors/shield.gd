@@ -19,6 +19,7 @@ func enable() -> void:
 	sprite.visible = true
 	area.monitoring = true
 	Log.info("Shield enabled")
+	Progress.shield_usages += 1
 	await timer.timeout
 	disable()
 

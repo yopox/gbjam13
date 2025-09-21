@@ -7,6 +7,7 @@ const UI_Y: int = 130
 const SPLASH_DURATION: float = 2.0
 const TRANSITION_COLOR_DELAY: float = 0.15
 const NOTIFICATION_DURATION: float = 1.75
+const GAME_OVER_CARD_DELAY: float = 0.07
 
 # ————— SHIP —————
 ## Invisible wall for the ship

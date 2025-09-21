@@ -4,6 +4,7 @@ const SPLASH: Resource = preload("uid://hytftmprg71q")
 const TITLE: Resource = preload("uid://cwhuna3qm1jd")
 const SPACE: Resource = preload("uid://02yhbniiagkv")
 const CARDS: Resource = preload("uid://c3eemnq8ueupf")
+const GAME_OVER: Resource = preload("uid://dxvmo4dcm8i0r")
 
 @onready var color_rect: ColorRect = $canvas/rect
 @onready var scene_node: Node = $scene
@@ -27,6 +28,7 @@ func get_scene(s: Util.Scenes) -> Resource:
 		Util.Scenes.SPLASH: return SPLASH
 		Util.Scenes.SPACE: return SPACE
 		Util.Scenes.CARDS: return CARDS
+		Util.Scenes.GAME_OVER: return GAME_OVER
 		_: return TITLE
 
 

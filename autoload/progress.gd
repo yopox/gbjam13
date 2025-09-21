@@ -5,6 +5,9 @@ enum Stat { HULL, DAMAGE, SPEED, SHOT_SPEED, SHOT_DELAY, UNLUCK }
 var powerups: Array[Power.ID] = []
 var powerups_h: Dictionary = {}
 var stage: int = 0
+var boss_defeated: bool = false
+var shield_usages: int = 0
+var missile_usages: int = 0
 
 var bad_luck: int = 0
 var max_hull: int = Values.SHIP_HULL
@@ -40,6 +43,9 @@ func reset() -> void:
 	powerups = []
 	powerups_h = {}
 	stage = 0
+	boss_defeated = false
+	shield_usages = 0
+	missile_usages = 0
 
 	bad_luck = 0
 	max_hull = Values.SHIP_HULL

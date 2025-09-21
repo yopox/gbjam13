@@ -122,7 +122,7 @@ func blink_over() -> void:
 				visible = false
 				# TODO: player death animation
 				await Util.wait(2.0)
-				Signals.change_scene.emit(Util.Scenes.TITLE)
+				Signals.change_scene.emit(Util.Scenes.GAME_OVER)
 
 
 func create_timer() -> void:
