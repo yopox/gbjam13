@@ -35,3 +35,4 @@ position = Vector2(-5, 0)
 [node name="blinker" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_couwp")]
 sprite = NodePath("../sprite")
 intervals = 1
+blink_step = 0.25
