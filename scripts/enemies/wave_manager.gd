@@ -27,7 +27,6 @@ func play() -> void:
 		if event.unlucky:
 			await Util.wait(Values.UNLUCKY_WAVE_DELAY)
 	if stage != 6:
-		await Util.wait(1)
 		Signals.waves_ended.emit()
 		await Util.wait(20)
 		Log.warn("Forcing wave end")

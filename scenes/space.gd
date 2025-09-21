@@ -56,7 +56,8 @@ func unlucky_wave() -> void:
 	unlucky_timer.wait_time = unlucky_duration
 	unlucky_timer.start()
 	await unlucky_timer.timeout
-	Signals.starfield_speed.emit(Values.STARFIELD_STAGE_RATIO ** Progress.stage)
+	if not ended:
+		Signals.starfield_speed.emit(Values.STARFIELD_STAGE_RATIO ** Progress.stage)
 	footer.set_unlucky_ratio(0)
 	Progress.unlucky = false
 	Signals.unlucky_over.emit()
@@ -76,6 +77,7 @@ func enemy_spawned(enemy: Enemy) -> void:
 func enemy_dead(enemy: Enemy) -> void:
 	Progress.last_killed[enemy.id] = true
 	Progress.total_killed += 1
+	await Util.wait(Values.CHECK_OVER_DELAY)
 	check_over()
 
 
@@ -89,16 +91,19 @@ func waves_ended() -> void:
 
 
 func check_over() -> void:
-	if not ended: return
+	if Util.block_input or not ended: return
 	if Progress.last_total.size() > Progress.last_killed.size() + escaped:
 		return
 	if Progress.stage != 7:
 		Log.info("Killed", Progress.last_killed.size(), "out of", Progress.last_total.size(), "+", escaped, "escaped.")
+		await stage_end_transition()
 		Signals.change_scene.emit(Util.Scenes.CARDS)
 
 
 func boss_defeated() -> void:
 	Progress.boss_defeated = true
+	await Util.wait(3.0)
+	await stage_end_transition()
 	Signals.change_scene.emit(Util.Scenes.GAME_OVER)
 
 
@@ -106,3 +111,21 @@ func force_cards(stage: int) -> void:
 	if stage == Progress.stage:
 		Log.err("Transition to the cards state had to be triggered manually")
 		Signals.change_scene.emit(Util.Scenes.CARDS)
+		
+
+func stage_end_transition() -> void:
+	Util.block_input = true
+	Signals.starfield_speed.emit(Values.STARFIELD_END_OF_STAGE_RATIO * Values.STARFIELD_STAGE_RATIO ** Progress.stage)
+	var ts: Tween = get_tree().create_tween()
+	ts.tween_property(ship, "global_position", ship.global_position + Vector2(Values.END_OF_STAGE_TWEEN_DX, 0), Values.END_OF_STAGE_TWEEN_DURATION)
+	ts.set_ease(Tween.EASE_OUT)
+	ts.play()
+	
+	for shot: Bullet in Util.shots_node.get_children():
+		if not shot.enemy:
+			var tb: Tween = get_tree().create_tween()
+			tb.tween_property(shot, "global_position", shot.global_position + Vector2(Values.END_OF_STAGE_TWEEN_DX, 0), Values.END_OF_STAGE_TWEEN_DURATION)
+			tb.set_ease(Tween.EASE_OUT)
+			tb.play()
+
+	await ts.finished

@@ -60,12 +60,16 @@ const BOSS_REINFORCEMENT_LINES: int = 8
 const STAR_COUNT: int = 75
 const STARFIELD_SPEED: float = 8.0
 const STARFIELD_STAGE_RATIO: float = 1.2
+const STARFIELD_END_OF_STAGE_RATIO: float = 3.0
 const STARFIELD_UNLUCKY_RATIO: float = 2.0
 const STARFIELD_GAMEOVER_RATIO: float = 0.5
 const WAVE_DELAY: float = 4.0
+const CHECK_OVER_DELAY: float = 1.0
 const UNLUCKY_WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DURATION: float = 15.0
 const PRE_BOSS_DELAY: float = 8.0
+const END_OF_STAGE_TWEEN_DURATION: float = 1.0
+const END_OF_STAGE_TWEEN_DX: float = SCREEN_W * 1.5
 
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25

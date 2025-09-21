@@ -26,6 +26,7 @@ func _ready() -> void:
 
 
 func shoot() -> void:
+	if Util.block_input: return
 	if hp == 0: return
 	if Util.check_oob(global_position, 0): return
 	if not enemy and Progress.has(Power.ID.SPADES_2):
