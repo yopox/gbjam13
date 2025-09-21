@@ -15,6 +15,7 @@ func _ready() -> void:
 	Progress.last_killed = 0
 	Progress.last_total = 0
 	Progress.shield_ready = true
+	Progress.missile_ready = true
 	Util.shots_node = shots
 	Util.enemy_node = wave_manager
 	Signals.unlucky_wave.connect(unlucky_wave)

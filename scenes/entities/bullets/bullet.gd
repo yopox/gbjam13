@@ -21,7 +21,7 @@ func _ready():
 	area.collision_layer = 8 if enemy else 2
 	area.collision_mask = 1 if enemy else 4
 	if not enemy and Progress.has(Power.ID.DIAMS_2) and Progress.unlucky:
-		dir = Vector2(2, randf_range(-1, 1)).normalized()
+		dir = Vector2(4, randf_range(-1, 1)).normalized()
 	if enemy:
 		sprite.modulate = Palettes.GRAY[2]
 

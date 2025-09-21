@@ -10,7 +10,7 @@ const TRANSITION_COLOR_DELAY: float = 0.08
 # ————— SHIP —————
 ## Invisible wall for the ship
 const SHIP_XMAX: int = 80
-const SHIP_HULL: int = 6
+const SHIP_HULL: int = 20
 const SHIP_DAMAGE: int = 6
 const SHIP_SPEED: float = 45.0
 const SHIP_SHOT_DELAY: float = 0.8
