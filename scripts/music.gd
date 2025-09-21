@@ -3,11 +3,11 @@ class_name Bgm extends Node
 enum BGM { TITLE, CARDS, STAGE_1, STAGE_2, STAGE_3, BOSS }
 
 const TITLE = preload("uid://cq1qnmtqnj08h")
-const BOSS_THEME = preload("uid://bgv8pk5hluxt3")
-const LUCKY = preload("uid://ihsx0r6cuoh7")
-const STAGE_1 = preload("uid://dwai7fyicn1xi")
-const STAGE_2 = preload("uid://ct5vby7hiqb71")
-const STAGE_3 = preload("uid://e4akx84hv6mx")
+const BOSS_THEME = preload("uid://bl04hen1vsfkm")
+const LUCKY = preload("uid://bcgp1ckqdy4h5")
+const STAGE_1 = preload("uid://cptco2fqf62ue")
+const STAGE_2 = preload("uid://dclpc46p71041")
+const STAGE_3 = preload("uid://cypc11wwtbd00")
 
 const FADE_IN_3: Array[float] = [0, 0, 0, 0.35, 0.65, 1.0]
 const IN_3: Array[float] = [0, 0, 0, 1.0, 1.0, 1.0]

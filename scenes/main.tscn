@@ -24,9 +24,9 @@ custom_minimum_size = Vector2(160, 144)
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="scene" type="Node" parent="."]
-
 [node name="starfield" parent="." instance=ExtResource("3_jyhfs")]
+
+[node name="scene" type="Node" parent="."]
 
 [node name="music" type="Node" parent="."]
 script = ExtResource("3_sugp2")
