@@ -9,6 +9,7 @@ const BULLET: Resource = preload("uid://whpdohlupewc")
 @export var blinker: Blinker
 @export var shots_anchor: Node2D
 @export var max_hp: int = 10
+@export var emitter: CPUParticles2D
 
 var hp: int
 var shots_timer: Timer
@@ -91,14 +92,14 @@ func damage(value: int) -> void:
 	hp = max(0, hp - value)
 	if not enemy: Progress.hull = hp
 	
-	if enemy and hp == 0:
-		(self as Enemy).particles.emitting = true
+	if hp == 0 and (enemy or not Progress.ankh):
+		emitter.emitting = true
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitorable", false)
-	
-	if enemy and hp == 0:
-		# HACK: particles have time to die before queue_free
+		blinker.intervals = 1
 		blinker.blink_step *= 4
+		if not enemy:
+			Engine.time_scale = Values.PLAYER_DEATH_TIME_SCALE
 		
 	blinker.hit()
 	hp_changed.emit(self)
@@ -112,7 +113,6 @@ func blink_over() -> void:
 			if self is Boss:
 				Signals.boss_defeated.emit()
 			queue_free()
-			# TODO: enemy death animation
 		else:
 			if Progress.ankh:
 				Progress.ankh = false
@@ -122,8 +122,6 @@ func blink_over() -> void:
 				hp_changed.emit(self)
 			else:
 				visible = false
-				# TODO: player death animation
-				await Util.wait(2.0)
 				Signals.change_scene.emit(Util.Scenes.GAME_OVER)
 
 

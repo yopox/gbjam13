@@ -52,6 +52,7 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		Signals.transition.emit(false, 2)
 		for node in scene_node.get_children():
 			node.queue_free()
+		Engine.time_scale = 1
 		scene_node.add_child(s_node)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
 		Signals.transition.emit(true, 0)

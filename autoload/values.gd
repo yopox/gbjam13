@@ -23,6 +23,7 @@ const MISSILE_RELOAD: float = 8.0
 const MISSILE_DAMAGE_RATIO: float = 4.0
 const MISSILE_DAMAGE_AREA: float = 32.0
 const HEAL_AFTER_STAGE_RATIO: float = 0.25
+const PLAYER_DEATH_TIME_SCALE: float = 0.4
 
 # ———— ENEMIES ———
 ## Margin around the screen before the bullet is freed

@@ -15,11 +15,12 @@ size = Vector2(14, 14)
 [sub_resource type="Gradient" id="Gradient_couwp"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[node name="enemy" type="Node2D" node_paths=PackedStringArray("hitbox", "blinker", "shots_anchor")]
+[node name="enemy" type="Node2D" node_paths=PackedStringArray("hitbox", "blinker", "shots_anchor", "emitter")]
 script = ExtResource("1_n0alq")
 hitbox = NodePath("area")
 blinker = NodePath("blinker")
 shots_anchor = NodePath("shots_anchor")
+emitter = NodePath("particles")
 metadata/_custom_type_script = "uid://4bq47u0xyyi0"
 
 [node name="sprite" type="Sprite2D" parent="."]
