@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://bgv8pk5hluxt3"
+uid="uid://bl04hen1vsfkm"
 path="res://.godot/imported/boss_theme.ogg-ceecb0f6b95b135f5b358f24a47210d5.oggvorbisstr"
 
 [deps]
@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/boss_theme.ogg-ceecb0f6b95b135f5b358f24a47210
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=72.0
+bpm=0.0
 beat_count=0
 bar_beats=4
