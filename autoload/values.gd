@@ -11,7 +11,7 @@ const NOTIFICATION_DURATION: float = 1.75
 # ————— SHIP —————
 ## Invisible wall for the ship
 const SHIP_XMAX: int = 80
-const SHIP_HULL: int = 20
+const SHIP_HULL: int = 16
 const SHIP_DAMAGE: int = 6
 const SHIP_SPEED: float = 45.0
 const SHIP_SHOT_DELAY: float = 0.8
@@ -76,7 +76,7 @@ const S9_AUTO_AIM_ANGLE_RATIO: float = 0.4
 const C1_DOUBLE_SHOT_CHANCE_PER_UNLUCK: float = 0.1
 const C1_DOUBLE_SHOT_DELAY: float = 0.2
 const C2_SPEED_DOWN_RATIO: float = 0.6
-const C3_ENEMY_SHOT_SPEED_RATIO: float = 1.5
+const C3_ENEMY_SHOT_SPEED_RATIO: float = 1.25
 const C4_SHORTER_INTERVALS_RATIO: float = 0.66
 const C5_SPEED_UP: float = SHIP_SPEED / 2.0
 const C6_UNLUCK_UP: int = 2
@@ -84,7 +84,7 @@ const C6_UNLUCK_UP: int = 2
 const H1_DODGE_CHANCE_PER_UNLUCK: float = 0.1
 const H3_ENEMY_HEAL: int = 10
 const H4_LONGER_SHIELDS_RATIO: float = 2.0
-const H5_HULL_UP: int = 5
+const H5_HULL_UP: int = 6
 const H6_REGEN_EVERY_X_KILLS: int = 10
 const H6_REGEN: int = 1
 const H8_REVIVE_REPAIR_RATIO: float = 0.5

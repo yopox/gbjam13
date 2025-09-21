@@ -69,7 +69,7 @@ func power_info(id: ID) -> Array[String]:
 		ID.CLUBS_5: return ["Five of Clubs", "Speed up"]
 		ID.CLUBS_6: return ["Six of Clubs", "Bad Luck +2"]
 		ID.CLUBS_7: return ["Seven of Clubs", "[UNLUCKY]: All stats up"]
-		ID.CLUBS_8: return ["Eight of Clubs", "Three random stats up,\none random stat down"]
+		ID.CLUBS_8: return ["Eight of Clubs", "Two random stats up"]
 		ID.CLUBS_9: return ["Nine of Clubs", "Always unlock all card options"]
 
 		ID.HEARTS_1: return ["Ace of Hearts", "Bad Luck = chance to dodge damage"]
@@ -89,7 +89,7 @@ func power_info(id: ID) -> Array[String]:
 		ID.DIAMS_5: return ["Five of Diamonds", "Shot frequency up"]
 		ID.DIAMS_6: return ["Six of Diamonds", "Shot frequency increases every\n6 kills per wave"]
 		ID.DIAMS_7: return ["Seven of Diamonds", "[UNLUCKY]: Slow enemy bullets"]
-		ID.DIAMS_8: return ["Eight of Diamonds", "2 additional diagonal shots"]
+		ID.DIAMS_8: return ["Eight of Diamonds", "2 additional diagonal shots\nDamage down"]
 		ID.DIAMS_9: return ["Nine of Diamonds", "Shots wrap around screen edges"]
 	Log.err("Unknown card ID")
 	return ["", ""]

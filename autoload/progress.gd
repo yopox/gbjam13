@@ -90,11 +90,10 @@ func increase_stats(power: Power.ID) -> void:
 			stats.shuffle()
 			increase_stat(stats[0], 1)
 			increase_stat(stats[1], 1)
-			increase_stat(stats[2], 1)
-			increase_stat(stats[3], -1)
 		Power.ID.HEARTS_8: ankh = true
 		Power.ID.DIAMS_4: increase_stat(Stat.SHOT_SPEED, 1)
 		Power.ID.DIAMS_5: increase_stat(Stat.SHOT_DELAY, 1)
+		Power.ID.DIAMS_8: increase_stat(Stat.DAMAGE, -1)
 
 
 func increase_stat(stat: Stat, n: int) -> void:
