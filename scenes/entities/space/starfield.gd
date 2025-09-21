@@ -19,6 +19,7 @@ func set_starfield_speed(r: float) -> void:
 
 
 func _process(delta: float) -> void:
+	if Util.hit_stop: return
 	for star: Sprite2D in get_children():
 		star.position.x -= delta * s * star.get_meta(SPEED_RATIO)
 		if star.position.x < 0:

@@ -27,6 +27,7 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
+	if Util.hit_stop: return
 	if not enemy and Progress.has(Power.ID.DIAMS_9):
 		if Util.check_oob(position, 0):
 			if warped:

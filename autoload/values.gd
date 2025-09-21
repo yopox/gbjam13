@@ -8,6 +8,8 @@ const SPLASH_DURATION: float = 2.0
 const TRANSITION_COLOR_DELAY: float = 0.15
 const NOTIFICATION_DURATION: float = 1.75
 const GAME_OVER_CARD_DELAY: float = 0.07
+const FLASH_DURATION: float = 0.075
+const HIT_STOP_STEP: float = 0.5
 
 # ————— SHIP —————
 ## Invisible wall for the ship

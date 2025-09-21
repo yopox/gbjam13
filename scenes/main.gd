@@ -9,7 +9,6 @@ const GAME_OVER: Resource = preload("uid://dxvmo4dcm8i0r")
 @onready var color_rect: ColorRect = $canvas/rect
 @onready var scene_node: Node = $scene
 
-var palette: Array[Color]
 var scene: Util.Scenes = Util.Scenes.SPLASH
 var shader: ShaderMaterial
 var initial: bool = true
@@ -41,7 +40,7 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		initial = false
 	else:
 		Util.block_input = true
-		var p = palette
+		var p = Util.current_palette
 		palette_changed([p[0], p[1], p[2], p[2]], false)
 		Signals.transition.emit(false, 0)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
@@ -67,7 +66,7 @@ func change_scene(new_scene: Util.Scenes) -> void:
 
 
 func palette_changed(c: Array[Color], save: bool) -> void:
-	if save: palette = c
+	if save: Util.current_palette = c
 	shader.set_shader_parameter("c1", c[0])
 	shader.set_shader_parameter("c2", c[1])
 	shader.set_shader_parameter("c3", c[2])

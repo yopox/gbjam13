@@ -5,10 +5,13 @@ enum Scenes {
 	SPLASH, TITLE, HANGAR, SPACE, CARDS, GAME_OVER
 }
 
+var current_palette: Array[Color]
+
 var shots_node: Node2D
 var enemy_node: Node
 
 var block_input: bool = false
+var hit_stop: bool = false
 var enemy_id_count: int = 0
 
 var ship_pos: Vector2 = Vector2.ZERO

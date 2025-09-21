@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func shoot() -> void:
-	if Util.block_input: return
+	if Util.hit_stop or Util.block_input or Progress.boss_defeated: return
 	if hp == 0: return
 	if Util.check_oob(global_position, 0): return
 	if not enemy and Progress.has(Power.ID.SPADES_2):
@@ -93,26 +93,46 @@ func damage(value: int) -> void:
 	if not enemy: Progress.hull = hp
 	
 	if hp == 0 and (enemy or not Progress.ankh):
-		emitter.emitting = true
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitorable", false)
 		blinker.intervals = 1
-		blinker.blink_step *= 4
-		if not enemy:
+		blinker.blink_step *= 6
+		
+		if self is Boss or not enemy:
+			Util.hit_stop = true
+			if self is Boss: blinker.hit()
+			
+			var p: Array[Color] = Util.current_palette
+			var fake_p: Array[Color] = [p[1], p[1], p[1], p[1]]
+			for y in range(3 if self is Boss else 2):
+				await Util.wait(Values.HIT_STOP_STEP)
+				Signals.palette_changed.emit(fake_p, false)
+				await Util.wait(Values.FLASH_DURATION)
+				Signals.palette_changed.emit(p, false)
+			
+			Util.hit_stop = false
 			Engine.time_scale = Values.PLAYER_DEATH_TIME_SCALE
 		
-	blinker.hit()
+		emitter.emitting = true
+	
 	hp_changed.emit(self)
+	if self is Boss and hp == 0:
+		Util.block_input = true
+		blinker.sprite.visible = false
+		await Util.wait(2.0)
+		Engine.time_scale = 1.0
+		Signals.boss_defeated.emit()
+		queue_free()
+	else:
+		blinker.hit()
 
 
 func blink_over() -> void:
 	hit_invul = false
 	if hp == 0:
+		if self is Boss: return
 		if enemy:
 			Signals.enemy_dead.emit(self)
-			if self is Boss:
-				Signals.boss_defeated.emit()
-			queue_free()
 		else:
 			if Progress.ankh:
 				Progress.ankh = false

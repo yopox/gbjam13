@@ -64,6 +64,7 @@ func unlucky_wave() -> void:
 
 
 func _process(_delta: float) -> void:
+	if Util.hit_stop: return
 	if Progress.unlucky:
 		footer.set_unlucky_ratio(unlucky_timer.time_left / unlucky_timer.wait_time)
 	footer.update_shield_ratio()
@@ -102,7 +103,6 @@ func check_over() -> void:
 
 func boss_defeated() -> void:
 	Progress.boss_defeated = true
-	await Util.wait(3.0)
 	await stage_end_transition()
 	Signals.change_scene.emit(Util.Scenes.GAME_OVER)
 
