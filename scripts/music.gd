@@ -10,6 +10,7 @@ const STAGE_2 = preload("uid://ct5vby7hiqb71")
 const STAGE_3 = preload("uid://e4akx84hv6mx")
 
 const FADE_IN_3: Array[float] = [0, 0, 0, 0.35, 0.65, 1.0]
+const IN_3: Array[float] = [0, 0, 0, 1.0, 1.0, 1.0]
 const FADE_OUT_3: Array[float] = [0.65, 0.35, 0.0, 0, 0, 0]
 const FADE_IN_6: Array[float] = [0.1, 0.35, 0.5, 0.65, 0.9, 1.0]
 const FADE_OUT_6: Array[float] = [0.9, 0.65, 0.5, 0.35, 0.1, 0]
@@ -34,9 +35,9 @@ func prepare_next_bgm(scene: Util.Scenes) -> void:
 		Util.Scenes.SPACE:
 			if Progress.stage < 3:
 				next_bgm = BGM.STAGE_1
-			if Progress.stage < 5:
+			elif Progress.stage < 5:
 				next_bgm = BGM.STAGE_2
-			if Progress.stage < 7:
+			elif Progress.stage < 7:
 				next_bgm = BGM.STAGE_3
 			else:
 				next_bgm = BGM.BOSS
@@ -54,7 +55,7 @@ func transition(appear: bool, step: int) -> void:
 		p2_vol = [0,0,0,0,0,0]
 	elif current_bgm == BGM.TITLE and next_bgm == BGM.CARDS:
 		p1_vol = FADE_OUT_3
-		p2_vol = FADE_IN_3
+		p2_vol = IN_3
 	elif next_bgm == BGM.CARDS:
 		p1_vol = FADE_OUT_6
 		p2_vol = FADE_IN_6
