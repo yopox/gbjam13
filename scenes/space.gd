@@ -115,6 +115,7 @@ func force_cards(stage: int) -> void:
 		
 
 func stage_end_transition() -> void:
+	Signals.play_sfx.emit(Sfx.SFX.SWOOSH)
 	Util.block_input = true
 	Signals.starfield_speed.emit(Values.STARFIELD_END_OF_STAGE_RATIO * Values.STARFIELD_STAGE_RATIO ** Progress.stage)
 	var ts: Tween = get_tree().create_tween()

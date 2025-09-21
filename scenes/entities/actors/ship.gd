@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("b"):
 		if Progress.shield_ready:
 			if not (Progress.has(Power.ID.HEARTS_2) and Progress.unlucky):
+				Signals.play_sfx.emit(Sfx.SFX.SHIELD)
 				shield.enable()
 
 

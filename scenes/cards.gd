@@ -54,13 +54,16 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("right"):
 		selected = posmod(selected + 1, 4)
+		Signals.play_sfx.emit(Sfx.SFX.MOVE)
 	elif Input.is_action_just_pressed("left"):
 		selected = posmod(selected - 1, 4)
+		Signals.play_sfx.emit(Sfx.SFX.MOVE)
 	update()
 
 	if Input.is_action_just_pressed("a"):
 		var cards: Array[Card] = [card_1, card_2, card_3, card_4]
 		if cards[selected].outline: return
+		Signals.play_sfx.emit(Sfx.SFX.SELECT)
 		Progress.add_powerup(cards[selected].power)
 		Progress.stage += 1
 

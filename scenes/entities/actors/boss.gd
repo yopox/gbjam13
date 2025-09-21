@@ -55,6 +55,7 @@ func move_to(pos: Vector2) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Util.hit_stop or hp == 0: return
 	chrono += delta
 	match state:
 		State.UNLUCKY:

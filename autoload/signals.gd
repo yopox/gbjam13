@@ -9,6 +9,9 @@ signal transition(appear: bool, step: int)
 signal palette_changed(c: Array[Color])
 signal send_notification(text: String)
 
+# ———— AUDIO —————
+signal play_sfx(sfx: Sfx.SFX)
+
 # ———— SPACE —————
 signal starfield_speed(ratio: float)
 signal unlucky_wave()

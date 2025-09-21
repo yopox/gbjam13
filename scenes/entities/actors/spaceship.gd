@@ -32,8 +32,12 @@ func shoot() -> void:
 	if not enemy and Progress.has(Power.ID.SPADES_2):
 		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < Values.S2_CANT_SHOOT_MS:
 			return
+	
 	shoot_bullet(0.0 if not enemy else PI)
 	if enemy: return
+	
+	Signals.play_sfx.emit(Sfx.SFX.SHOOT) 
+	
 	# Multi shots
 	if Progress.has(Power.ID.DIAMS_8):
 		shoot_bullet(Values.D8_DIAGONAL_SHOT_ANGLE)
@@ -62,6 +66,7 @@ func do_hit(area: Area2D) -> void:
 		damage(parent.damage)
 		if parent.missile and not parent.boom:
 			parent.boom = true
+			Signals.play_sfx.emit(Sfx.SFX.MISSILE)
 			var e = Util.enemy_node.get_children()
 			var a = Values.MISSILE_DAMAGE_AREA
 			if Progress.has(Power.ID.SPADES_4):
@@ -113,6 +118,7 @@ func damage(value: int) -> void:
 			var fake_p: Array[Color] = [p[1], p[1], p[1], p[1]]
 			for y in range(3 if self is Boss else 2):
 				await Util.wait(Values.HIT_STOP_STEP)
+				Signals.play_sfx.emit(Sfx.SFX.FLASH)
 				Signals.palette_changed.emit(fake_p, false)
 				await Util.wait(Values.FLASH_DURATION)
 				Signals.palette_changed.emit(p, false)
@@ -121,10 +127,17 @@ func damage(value: int) -> void:
 			Engine.time_scale = Values.PLAYER_DEATH_TIME_SCALE
 		
 		emitter.emitting = true
-	
+		if enemy and not self is Boss:
+			Signals.play_sfx.emit(Sfx.SFX.ENEMY_DEATH)
+		elif enemy:
+			Signals.play_sfx.emit(Sfx.SFX.BOSS_DEATH)
+		else:
+			Signals.play_sfx.emit(Sfx.SFX.SHIP_DEATH)
+
 	hp_changed.emit(self)
 	if self is Boss and hp == 0:
 		Util.block_input = true
+		self.blinker.sprite.visible = false
 		await Util.wait(2.0)
 		Engine.time_scale = 1.0
 		Signals.boss_defeated.emit()
