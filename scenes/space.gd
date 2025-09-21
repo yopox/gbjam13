@@ -12,8 +12,8 @@ var escaped: int = 0
 var ended: bool = false
 
 func _ready() -> void:
-	Progress.last_killed = 0
-	Progress.last_total = 0
+	Progress.last_killed.clear()
+	Progress.last_total.clear()
 	Progress.shield_ready = true
 	Progress.missile_ready = true
 	Util.shots_node = shots
@@ -33,7 +33,7 @@ func _ready() -> void:
 
 func stage_text() -> String:
 	if Progress.stage == 7: return "Final Stage!"
-	return "Stage %s" % (Progress.stage + 1)
+	return "Stage %s" % Progress.stage
 
 
 func unlucky_wave() -> void:
@@ -67,12 +67,13 @@ func _process(_delta: float) -> void:
 	footer.update_missile_ratio()
 
 
-func enemy_spawned() -> void:
-	enemies += 1
+func enemy_spawned(enemy: Enemy) -> void:
+	Progress.last_total[enemy.id] = true
 
 
-func enemy_dead() -> void:
-	defeated += 1
+func enemy_dead(enemy: Enemy) -> void:
+	Progress.last_killed[enemy.id] = true
+	Progress.total_killed += 1
 	check_over()
 
 
@@ -86,10 +87,11 @@ func waves_ended() -> void:
 
 
 func check_over() -> void:
-	if not ended: return 
-	if not enemies == defeated + escaped: return
-	Progress.last_total = enemies
+	if not ended: return
+	if Progress.last_total.size() > Progress.last_killed.size() + escaped:
+		return
 	if Progress.stage != 7:
+		Log.info("Killed", Progress.last_killed.size(), "out of", Progress.last_total.size(), "+", escaped, "escaped.")
 		Signals.change_scene.emit(Util.Scenes.CARDS)
 
 

@@ -16,7 +16,7 @@ func gen_wave() -> void:
 
 
 func play() -> void:
-	var stage = Progress.stage - 1
+	var stage: int = Progress.stage - 1
 	for event in current_wave:
 		await Util.wait(event.delay)
 		if event.unlucky:
@@ -24,18 +24,19 @@ func play() -> void:
 		for spawn in event.spawns:
 			await Util.wait(spawn.delay)
 			spawn_enemy(spawn)
-			Signals.enemy_spawned.emit()
 		if event.unlucky:
 			await Util.wait(Values.POST_UNLUCKY_WAVE_DELAY)
 	if stage != 6:
+		await Util.wait(1)
 		Signals.waves_ended.emit()
 		await Util.wait(20)
+		Log.warn("Forcing wave end")
 		Signals.force_cards.emit(stage)
 	else:
+		await Util.wait(Values.PRE_BOSS_DELAY / 2.0)
 		Signals.send_notification.emit("Something comes!")
-		await Util.wait(Values.PRE_BOSS_DELAY)
+		await Util.wait(Values.PRE_BOSS_DELAY / 2.0)
 		spawn_boss()
-		await Signals.boss_defeated
 
 
 func spawn_enemy(spawn: Spawn) -> void:
@@ -43,7 +44,10 @@ func spawn_enemy(spawn: Spawn) -> void:
 	enemy.movement = spawn.movement
 	enemy.global_position = enemy.movement.get_pos(0.0, 0.0)
 	enemy.type = spawn.enemy
+	enemy.id = Util.enemy_id_count
+	Util.enemy_id_count += 1
 	add_child(enemy)
+	Signals.enemy_spawned.emit(enemy)
 
 
 func spawn_boss() -> void:

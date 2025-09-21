@@ -9,6 +9,7 @@ var shots_node: Node2D
 var enemy_node: Node
 
 var block_input: bool = false
+var enemy_id_count: int = 0
 
 var ship_pos: Vector2 = Vector2.ZERO
 

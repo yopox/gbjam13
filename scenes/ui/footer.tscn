@@ -20,6 +20,7 @@ atlas = ExtResource("6_b63eu")
 region = Rect2(40, 8, 8, 8)
 
 [node name="footer" type="Control"]
+z_index = 50
 custom_minimum_size = Vector2(160, 12)
 layout_mode = 3
 anchors_preset = 0
@@ -218,3 +219,4 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "UNLUCKY!"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true

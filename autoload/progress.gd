@@ -16,8 +16,8 @@ var shot_delay_ratio: float = 1
 var shot_speed_boost: float = 0
 var speed_boost: float = 0
 
-var last_total: int = 0
-var last_killed: int = 0
+var last_total: Dictionary = {}
+var last_killed: Dictionary = {}
 var total_killed: int = 0
 
 var unlucky_wave: int = -1
@@ -51,10 +51,15 @@ func reset() -> void:
 	shot_speed_boost = 0
 	speed_boost = 0
 
+	last_total.clear()
+	last_killed.clear()
+	total_killed = 0
+
 	unlucky_wave = -1
 	unlucky = false
 	shield_ready = true
 	missile_ready = true
+	Util.enemy_id_count = 0
 
 
 func add_powerup(power: Power.ID) -> void:

@@ -37,8 +37,8 @@ func draft() -> void:
 		cards[3].power = Power.pick_random_unlucky([cards[0].power, cards[1].power, cards[2].power])
 
 	if Progress.stage > 0 and not Progress.has(Power.ID.CLUBS_9):
-		cards[0].outline = Progress.last_killed * 4 < Progress.last_total
-		cards[3].outline = Progress.last_killed * 1.5 < Progress.last_total
+		cards[0].outline = Progress.last_killed.size() * 4 < Progress.last_total.size()
+		cards[3].outline = Progress.last_killed.size() * 1.5 < Progress.last_total.size()
 	else:
 		cards[0].outline = false
 		cards[3].outline = false
@@ -82,7 +82,7 @@ func update():
 	else:
 		power_name.text = "LOCKED"
 		@warning_ignore("integer_division")
-		var p: int = Progress.last_killed * 100 / max(1, Progress.last_total)
+		var p: int = Progress.last_killed.size() * 100 / max(1, Progress.last_total.size())
 		if selected == 0:
 			description.text = "Defeat 25% of all enemies\nto unlock. (" + str(p) + "%)"
 		else:

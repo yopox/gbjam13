@@ -16,6 +16,7 @@ var type: Types
 var movement: Movement
 var chrono: float = 0.0
 var speed: float = Values.ENEMY_SPEED_1
+var id: int = -1
 
 
 func _ready() -> void:
@@ -27,8 +28,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Util.check_oob(global_position, Values.ENEMY_BUFFER):
-		queue_free()
 		Signals.enemy_escaped.emit()
+		queue_free()
 		return
 	chrono += delta
 	global_position = movement.get_pos(chrono, speed)

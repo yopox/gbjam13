@@ -106,8 +106,7 @@ func blink_over() -> void:
 	hit_invul = false
 	if hp == 0:
 		if enemy:
-			Progress.last_killed += 1
-			Signals.enemy_dead.emit()
+			Signals.enemy_dead.emit(self)
 			if self is Boss:
 				Signals.boss_defeated.emit()
 			queue_free()

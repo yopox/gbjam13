@@ -34,7 +34,7 @@ func shot_fired() -> void:
 		delay *= Values.D5_SHOT_DELAY_DOWN_RATIO
 	if Progress.has(Power.ID.DIAMS_6):
 		@warning_ignore("integer_division")
-		var n = Progress.last_killed / Values.D6_SHOT_DELAY_DOWN_EVERY_X_KILLS
+		var n = Progress.last_killed.size() / Values.D6_SHOT_DELAY_DOWN_EVERY_X_KILLS
 		delay *= Values.D6_SHOT_DELAY_DOWN_RATIO ** n
 	shots_timer.wait_time = delay
 	if Progress.has(Power.ID.CLUBS_1):
@@ -113,7 +113,7 @@ func do_shoot_missile() -> void:
 
 func enemy_dead() -> void:
 	if Progress.has(Power.ID.HEARTS_6):
-		if Progress.last_killed % Values.H6_REGEN_EVERY_X_KILLS == 0:
+		if Progress.last_killed.size() % Values.H6_REGEN_EVERY_X_KILLS == 0:
 			Progress.hull = min(Progress.hull + Values.H6_REGEN, Progress.max_hull)
 			hp = Progress.hull
 			hp_changed.emit(self)
