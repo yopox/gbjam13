@@ -7,6 +7,7 @@ signal transition(appear: bool, step: int)
 
 # —————— UI ——————
 signal palette_changed(c: Array[Color])
+signal send_notification(text: String)
 
 # ———— SPACE —————
 signal unlucky_wave()

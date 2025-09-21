@@ -6,6 +6,7 @@ const SCREEN_H: int = 144
 const UI_Y: int = 130
 const SPLASH_DURATION: float = 2.0
 const TRANSITION_COLOR_DELAY: float = 0.15
+const NOTIFICATION_DURATION: float = 1.75
 
 # ————— SHIP —————
 ## Invisible wall for the ship
@@ -58,7 +59,7 @@ const BOSS_REINFORCEMENT_LINES: int = 8
 const WAVE_DELAY: float = 4.0
 const POST_UNLUCKY_WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DURATION: float = 15.0
-const PRE_BOSS_DELAY: float = 5.0
+const PRE_BOSS_DELAY: float = 8.0
 
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25

@@ -32,6 +32,7 @@ func play() -> void:
 		await Util.wait(20)
 		Signals.force_cards.emit(stage)
 	else:
+		Signals.send_notification.emit("Something comes!")
 		await Util.wait(Values.PRE_BOSS_DELAY)
 		spawn_boss()
 		await Signals.boss_defeated

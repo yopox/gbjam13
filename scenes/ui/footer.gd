@@ -8,12 +8,16 @@ class_name Footer extends Control
 @onready var missile_bar: Bar = $missile/bar
 @onready var ankh: Node2D = $ankh
 @onready var boss_bar: Bar = $boss/bar
+@onready var notification: Control = $notification
+@onready var notification_text: Label = $notification/text
 
 
 func _ready() -> void:
 	ankh.visible = Progress.ankh
+	notification.visible = false
 	Signals.consume_ankh.connect(consume_ankh)
 	Signals.boss_spawned.connect(boss_spawned)
+	Signals.send_notification.connect(show_notification)
 
 
 func _on_ship_hp_changed(spaceship: Spaceship) -> void:
@@ -62,3 +66,19 @@ func update_missile_ratio() -> void:
 		var timer = Progress.missile_reload
 		var r = 1 - timer.time_left / timer.wait_time
 		missile_bar.set_ratio(r)
+
+
+func show_notification(text: String) -> void:
+	notification_text.text = text
+	notification_text.modulate = Palettes.GRAY[1]
+	notification.visible = true
+	await Util.wait(Values.TRANSITION_COLOR_DELAY / 2)
+	notification_text.modulate = Palettes.GRAY[2]
+	await Util.wait(Values.TRANSITION_COLOR_DELAY / 2)
+	notification_text.modulate = Palettes.GRAY[3]
+	await Util.wait(Values.NOTIFICATION_DURATION)
+	notification_text.modulate = Palettes.GRAY[2]
+	await Util.wait(Values.TRANSITION_COLOR_DELAY / 2)
+	notification_text.modulate = Palettes.GRAY[1]
+	await Util.wait(Values.TRANSITION_COLOR_DELAY / 2)
+	notification.visible = false

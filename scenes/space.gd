@@ -28,10 +28,17 @@ func _ready() -> void:
 	wave_manager.gen_wave()
 	wave_manager.play()
 	footer._on_ship_hp_changed(ship)
+	Signals.send_notification.emit(stage_text())
+
+
+func stage_text() -> String:
+	if Progress.stage == 7: return "Final Stage!"
+	return "Stage %s" % (Progress.stage + 1)
 
 
 func unlucky_wave() -> void:
 	Progress.unlucky = true
+	Signals.send_notification.emit("Unlucky!")
 	
 	if Progress.has(Power.ID.HEARTS_3):
 		for e in Util.enemy_node.get_children():
