@@ -27,8 +27,7 @@ func _ready() -> void:
 
 
 func shoot() -> void:
-	if Util.hit_stop or Util.block_input or Progress.boss_defeated: return
-	if hp == 0: return
+	if hp == 0 or Util.hit_stop or Util.block_input or Progress.boss_defeated: return
 	if Util.check_oob(global_position, 0): return
 	if not enemy and Progress.has(Power.ID.SPADES_2):
 		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < Values.S2_CANT_SHOOT_MS:
@@ -55,7 +54,7 @@ func shoot_bullet(angle: float) -> void:
 
 func do_hit(area: Area2D) -> void:
 	if Util.check_oob(area.global_position, 0): return
-	if hit_invul: return
+	if hp == 0 or hit_invul: return
 
 	# Damage
 	var parent = area.get_parent()
@@ -69,7 +68,8 @@ func do_hit(area: Area2D) -> void:
 				a *= Values.S4_MISSILE_RADIUS_RATIO
 			var hit_e = e.filter(func(n: Node): return n is Spaceship and n != self and global_position.distance_to(n.global_position) <= a)
 			for hit_enemy: Spaceship in hit_e:
-				hit_enemy.do_hit(area)
+				if hit_enemy.hp > 0:
+					hit_enemy.do_hit(area)
 			
 		parent.queue_free()
 	elif parent is Spaceship:
@@ -83,7 +83,7 @@ func evade() -> bool:
 
 
 func damage(value: int) -> void:
-	if hit_invul: return
+	if hit_invul or hp == 0: return
 	if not enemy:
 		if evade():
 			Signals.evade_damage.emit()
@@ -129,7 +129,7 @@ func damage(value: int) -> void:
 		Engine.time_scale = 1.0
 		Signals.boss_defeated.emit()
 		queue_free()
-	else:
+	elif not blinker.is_blinking:
 		blinker.hit()
 
 

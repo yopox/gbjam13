@@ -44,7 +44,7 @@ func unlucky_wave() -> void:
 	
 	if Progress.has(Power.ID.HEARTS_3):
 		for e in Util.enemy_node.get_children():
-			if e is Enemy:
+			if e is Enemy and e.hp > 0:
 				e.heal(Values.H3_ENEMY_HEAL)
 	
 	if Progress.has(Power.ID.HEARTS_7):
@@ -92,7 +92,8 @@ func waves_ended() -> void:
 
 
 func check_over() -> void:
-	if Util.block_input or not ended: return
+	if not ended: return
+	if Util.block_input: return
 	if Progress.last_total.size() > Progress.last_killed.size() + escaped:
 		return
 	if Progress.stage != 7:

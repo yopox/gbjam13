@@ -29,7 +29,6 @@ func play() -> void:
 	if stage != 6:
 		Signals.waves_ended.emit()
 		await Util.wait(20)
-		Log.warn("Forcing wave end")
 		Signals.force_cards.emit(stage)
 	else:
 		await Util.wait(Values.PRE_BOSS_DELAY / 2.0)
