@@ -10,6 +10,7 @@ signal palette_changed(c: Array[Color])
 signal send_notification(text: String)
 
 # ———— SPACE —————
+signal starfield_speed(ratio: float)
 signal unlucky_wave()
 signal unlucky_over()
 signal waves_ended(stage: int)

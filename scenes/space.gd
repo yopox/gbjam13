@@ -12,6 +12,7 @@ var escaped: int = 0
 var ended: bool = false
 
 func _ready() -> void:
+	Signals.starfield_speed.emit(Values.STARFIELD_STAGE_RATIO ** Progress.stage)
 	Progress.last_killed.clear()
 	Progress.last_total.clear()
 	Progress.shield_ready = true
@@ -38,6 +39,7 @@ func stage_text() -> String:
 
 func unlucky_wave() -> void:
 	Progress.unlucky = true
+	Signals.starfield_speed.emit((Values.STARFIELD_STAGE_RATIO ** Progress.stage) * Values.STARFIELD_UNLUCKY_RATIO)
 	Signals.send_notification.emit("Unlucky!")
 	
 	if Progress.has(Power.ID.HEARTS_3):
@@ -54,6 +56,7 @@ func unlucky_wave() -> void:
 	unlucky_timer.wait_time = unlucky_duration
 	unlucky_timer.start()
 	await unlucky_timer.timeout
+	Signals.starfield_speed.emit(Values.STARFIELD_STAGE_RATIO ** Progress.stage)
 	footer.set_unlucky_ratio(0)
 	Progress.unlucky = false
 	Signals.unlucky_over.emit()

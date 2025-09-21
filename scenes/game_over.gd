@@ -11,6 +11,8 @@ var cards_drawn: bool = false
 
 
 func _ready() -> void:
+	Signals.starfield_speed.emit(Values.STARFIELD_GAMEOVER_RATIO)
+	
 	# Progress
 	for i in range(progress.get_children().size()):
 		if i <= 2 * Progress.stage:

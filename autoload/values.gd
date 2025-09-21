@@ -57,6 +57,11 @@ const BOSS_IDLE_SPAWN_WAIT: float = 3.25
 const BOSS_REINFORCEMENT_LINES: int = 8
 
 # ———— SPACE —————
+const STAR_COUNT: int = 75
+const STARFIELD_SPEED: float = 8.0
+const STARFIELD_STAGE_RATIO: float = 1.2
+const STARFIELD_UNLUCKY_RATIO: float = 2.0
+const STARFIELD_GAMEOVER_RATIO: float = 0.5
 const WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DURATION: float = 15.0
