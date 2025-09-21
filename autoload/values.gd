@@ -39,7 +39,7 @@ const ENEMY_SHOT_DELAY_3: float = SHIP_SHOT_DELAY * 2.0
 const ENEMY_BUFFER: float = 64
 
 const BOSS_DAMAGE: int = ENEMY_DAMAGE_1
-const BOSS_HP: int = 500
+const BOSS_HP: int = 600
 const BOSS_SHOT_DELAY: float = SHIP_SHOT_DELAY * 0.75
 const BOSS_IDLE_WAIT: float = 5.0
 const BOSS_SPEED: float = SHIP_SPEED * 2.0
@@ -88,6 +88,7 @@ const H5_HULL_UP: int = 6
 const H6_REGEN_EVERY_X_KILLS: int = 10
 const H6_REGEN: int = 1
 const H8_REVIVE_REPAIR_RATIO: float = 0.5
+const H9_DEFLECTED_SHOT_DAMAGE_RATIO: int = 3
 
 const D1_RELOAD_FASTER_PER_UNLUCK_RATIO: float = 0.95
 const D2_SHOT_SPREAD_ABS: float = PI / 3

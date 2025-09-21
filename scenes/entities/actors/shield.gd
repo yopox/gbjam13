@@ -44,6 +44,7 @@ func _on_area_area_entered(a: Area2D) -> void:
 		if not enemy and Progress.has(Power.ID.HEARTS_9):
 			(parent as Bullet).enemy = !parent.enemy
 			(parent as Bullet).dir = Vector2.from_angle(PI - (parent as Bullet).dir.angle())
+			(parent as Bullet).damage *= Values.H9_DEFLECTED_SHOT_DAMAGE_RATIO
 			(parent as Bullet).area.collision_layer = 2
 			(parent as Bullet).area.collision_mask = 4
 		else:
