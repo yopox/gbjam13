@@ -7,12 +7,20 @@ signal blink_over()
 @export var sprite: Sprite2D
 @export var intervals: int = 2
 @export var blink_step: float = 0.35
+@export var flip_frame: bool = false
 
 
 func hit() -> void:
-	sprite.visible = true
+	set_state(true)
 	for i in range(2 * intervals - 1):
-		sprite.visible = !sprite.visible
+		set_state(i % 2 != 0)
 		await Util.wait(blink_step)
-	sprite.visible = true
+	set_state(true)
 	blink_over.emit()
+
+
+func set_state(normal: bool) -> void:
+	if flip_frame:
+		sprite.frame = 0 if normal else 1
+	else:
+		sprite.visible = normal

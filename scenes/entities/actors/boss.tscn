@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://6pytmswlhbgr"]
+[gd_scene load_steps=6 format=3 uid="uid://6pytmswlhbgr"]
 
 [ext_resource type="Script" uid="uid://b7wiiw1y5x37r" path="res://scenes/entities/actors/boss.gd" id="1_8mgbe"]
 [ext_resource type="Texture2D" uid="uid://bmidpir181lmi" path="res://assets/entities/boss.png" id="2_tdq4h"]
 [ext_resource type="PackedScene" uid="uid://csaw7ajh5l3oc" path="res://scenes/entities/space/blinker.tscn" id="3_4th1u"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4th1u"]
+atlas = ExtResource("2_tdq4h")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdq4h"]
-size = Vector2(32, 24)
+size = Vector2(32, 28)
 
 [node name="boss" type="Node2D" node_paths=PackedStringArray("hitbox", "blinker", "shots_anchor")]
 script = ExtResource("1_8mgbe")
@@ -14,27 +17,30 @@ blinker = NodePath("blinker")
 shots_anchor = NodePath("shots1")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_tdq4h")
+texture = SubResource("AtlasTexture_4th1u")
+hframes = 2
 
 [node name="area" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 
 [node name="hitbox" type="CollisionShape2D" parent="area"]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_tdq4h")
 
 [node name="blinker" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_4th1u")]
 sprite = NodePath("../sprite")
 intervals = 1
+flip_frame = true
 
 [node name="shots1" type="Node2D" parent="."]
-position = Vector2(-16, -6)
+position = Vector2(-16, -7)
 
 [node name="shots2" type="Node2D" parent="."]
-position = Vector2(-16, 8)
+position = Vector2(-16, 7)
 
 [node name="shots3" type="Node2D" parent="."]
-position = Vector2(-16, -12)
+position = Vector2(-16, -13)
 
 [node name="shots4" type="Node2D" parent="."]
-position = Vector2(-16, 14)
+position = Vector2(-16, 13)
