@@ -76,6 +76,7 @@ func _physics_process(delta: float) -> void:
 	if Progress.has(Power.ID.CLUBS_2) and Progress.unlucky:
 		speed *= Values.C2_SPEED_DOWN_RATIO
 	position += delta * speed * mvmt
+	Util.ship_pos = global_position
 
 
 func do_evade() -> void:

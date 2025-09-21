@@ -36,14 +36,29 @@ const ENEMY_SHOT_DELAY_1: float = SHIP_SHOT_DELAY * 3.0
 const ENEMY_SHOT_DELAY_2: float = SHIP_SHOT_DELAY * 2.5
 const ENEMY_SHOT_DELAY_3: float = SHIP_SHOT_DELAY * 2.0
 const ENEMY_BUFFER: float = 64
-const BOSS_DAMAGE: int = ENEMY_DAMAGE_2
-const BOSS_HP: int = 800
+
+const BOSS_DAMAGE: int = ENEMY_DAMAGE_1
+const BOSS_HP: int = 500
+const BOSS_SHOT_DELAY: float = SHIP_SHOT_DELAY * 0.75
+const BOSS_IDLE_WAIT: float = 5.0
+const BOSS_SPEED: float = SHIP_SPEED * 2.0
+const BOSS_DX: float = -42
+const BOSS_TARGET_SHIP_MOVE_INTERVAL: float = 0.5
+const BOSS_TARGET_SHIP_MOVES: int = 8
+const BOSS_MOVING_MOVE_INTERVAL: float = 0.5
+const BOSS_MOVING_MOVES: int = 8
+const BOSS_MOVING_SHOT_DELAY: float = BOSS_SHOT_DELAY / 2.0
+const BOSS_UNLUCKY_SHOT_DELAY: float = BOSS_SHOT_DELAY * 1.15
+const BOSS_SIN_AMP: float = UI_Y / 3.0
+const BOSS_SIN_FREQ: float = 2.0
+const BOSS_IDLE_SPAWN_WAIT: float = 3.25
+const BOSS_REINFORCEMENT_LINES: int = 8
 
 # ———— SPACE —————
 const WAVE_DELAY: float = 4.0
 const POST_UNLUCKY_WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DURATION: float = 15.0
-const PRE_BOSS_DELAY: float = 15.0
+const PRE_BOSS_DELAY: float = 5.0
 
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25

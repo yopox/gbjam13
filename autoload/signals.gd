@@ -9,6 +9,7 @@ signal palette_changed(c: Array[Color])
 
 # ———— SPACE —————
 signal unlucky_wave()
+signal unlucky_over()
 signal waves_ended(stage: int)
 signal force_cards()
 signal enemy_spawned()
@@ -17,6 +18,7 @@ signal enemy_escaped()
 signal evade_damage()
 signal consume_ankh()
 signal boss_spawned(boss: Boss)
+signal boss_reinforcement(boss_pos: Vector2)
 signal boss_defeated()
 
 # ———— CARDS —————

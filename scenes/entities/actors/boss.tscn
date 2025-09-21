@@ -32,3 +32,9 @@ position = Vector2(-16, -6)
 
 [node name="shots2" type="Node2D" parent="."]
 position = Vector2(-16, 8)
+
+[node name="shots3" type="Node2D" parent="."]
+position = Vector2(-16, -12)
+
+[node name="shots4" type="Node2D" parent="."]
+position = Vector2(-16, 14)

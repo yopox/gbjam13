@@ -49,6 +49,7 @@ func unlucky_wave() -> void:
 	await unlucky_timer.timeout
 	footer.set_unlucky_ratio(0)
 	Progress.unlucky = false
+	Signals.unlucky_over.emit()
 
 
 func _process(_delta: float) -> void:

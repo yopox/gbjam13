@@ -10,6 +10,8 @@ var enemy_node: Node
 
 var block_input: bool = false
 
+var ship_pos: Vector2 = Vector2.ZERO
+
 
 func wait(amount: float):
 	await get_tree().create_timer(amount).timeout
