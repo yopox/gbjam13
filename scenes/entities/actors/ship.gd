@@ -111,7 +111,7 @@ func do_shoot_missile() -> void:
 	Util.shots_node.add_child(m)
 
 
-func enemy_dead() -> void:
+func enemy_dead(_enemy: Enemy) -> void:
 	if Progress.has(Power.ID.HEARTS_6):
 		if Progress.last_killed.size() % Values.H6_REGEN_EVERY_X_KILLS == 0:
 			Progress.hull = min(Progress.hull + Values.H6_REGEN, Progress.max_hull)
