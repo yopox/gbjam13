@@ -89,14 +89,21 @@ func damage(value: int) -> void:
 			Signals.evade_damage.emit()
 			return
 		hit_invul = true
+	
 	hp = max(0, hp - value)
-	if not enemy: Progress.hull = hp
+	if not enemy:
+		Progress.hull = hp
+		if hp > 0:
+			Util.hit_stop = true
+			await Util.wait(Values.HIT_STOP)
+			Util.hit_stop = false
 	
 	if hp == 0 and (enemy or not Progress.ankh):
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitorable", false)
 		blinker.intervals = 1
 		blinker.blink_step *= 6
+		blinker.disappear = true
 		
 		if self is Boss or not enemy:
 			Util.hit_stop = true
@@ -118,7 +125,6 @@ func damage(value: int) -> void:
 	hp_changed.emit(self)
 	if self is Boss and hp == 0:
 		Util.block_input = true
-		blinker.sprite.visible = false
 		await Util.wait(2.0)
 		Engine.time_scale = 1.0
 		Signals.boss_defeated.emit()

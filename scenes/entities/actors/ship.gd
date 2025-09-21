@@ -59,6 +59,8 @@ func get_damage() -> int:
 
 
 func _physics_process(delta: float) -> void:
+	if Util.hit_stop: return
+	
 	var mvmt = Vector2.ZERO
 	if Input.is_action_pressed("left"): mvmt.x = -1
 	elif Input.is_action_pressed("right"): mvmt.x = 1
