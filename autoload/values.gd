@@ -57,7 +57,7 @@ const BOSS_REINFORCEMENT_LINES: int = 8
 
 # ———— SPACE —————
 const WAVE_DELAY: float = 4.0
-const POST_UNLUCKY_WAVE_DELAY: float = 4.0
+const UNLUCKY_WAVE_DELAY: float = 4.0
 const UNLUCKY_WAVE_DURATION: float = 15.0
 const PRE_BOSS_DELAY: float = 8.0
 

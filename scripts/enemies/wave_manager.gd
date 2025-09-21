@@ -25,7 +25,7 @@ func play() -> void:
 			await Util.wait(spawn.delay)
 			spawn_enemy(spawn)
 		if event.unlucky:
-			await Util.wait(Values.POST_UNLUCKY_WAVE_DELAY)
+			await Util.wait(Values.UNLUCKY_WAVE_DELAY)
 	if stage != 6:
 		await Util.wait(1)
 		Signals.waves_ended.emit()
@@ -70,7 +70,7 @@ func gen_waves() -> Array[WaveEvent]:
 	for i in range(Waves.WAVES_PER_DIFF[d] - 1):
 		w.append(WaveEvent.new(0.0 if i == 0 else Values.WAVE_DELAY, Waves.gen_wave_for_diff(d)))
 	if w.size() > 0:
-		var unlucky_i = randi_range(1, w.size() - 1)
+		var unlucky_i = randi_range(1, w.size())
 		var unlucky_wave = WaveEvent.new(Values.WAVE_DELAY, Waves.gen_unlucky_wave(d))
 		unlucky_wave.unlucky = true
 		w.insert(unlucky_i, unlucky_wave)
