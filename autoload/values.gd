@@ -5,7 +5,7 @@ const SCREEN_W: int = 160
 const SCREEN_H: int = 144
 const UI_Y: int = 130
 const SPLASH_DURATION: float = 2.0
-const TRANSITION_COLOR_DELAY: float = 0.08
+const TRANSITION_COLOR_DELAY: float = 0.15
 
 # ————— SHIP —————
 ## Invisible wall for the ship

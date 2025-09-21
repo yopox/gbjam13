@@ -40,17 +40,17 @@ func reset() -> void:
 	powerups = []
 	powerups_h = {}
 	stage = 0
-	
+
 	bad_luck = 0
 	max_hull = Values.SHIP_HULL
 	hull = max_hull
 	ankh = false
-	
+
 	damage_boost = 0
 	shot_delay_ratio = 1
 	shot_speed_boost = 0
 	speed_boost = 0
-	
+
 	unlucky_wave = -1
 	unlucky = false
 	shield_ready = true

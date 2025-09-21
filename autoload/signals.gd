@@ -3,6 +3,7 @@ extends Node
 
 # ———— STATES ————
 signal change_scene(new_scene: Util.Scenes)
+signal transition(appear: bool, step: int)
 
 # —————— UI ——————
 signal palette_changed(c: Array[Color])

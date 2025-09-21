@@ -41,18 +41,24 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		Util.block_input = true
 		var p = palette
 		palette_changed([p[0], p[1], p[2], p[2]], false)
+		Signals.transition.emit(false, 0)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
 		palette_changed([p[0], p[1], p[1], p[1]], false)
+		Signals.transition.emit(false, 1)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY)
 		palette_changed([p[0], p[0], p[0], p[0]], false)
+		Signals.transition.emit(false, 2)
 		for node in scene_node.get_children():
 			node.queue_free()
 		scene_node.add_child(s_node)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
+		Signals.transition.emit(true, 0)
 		palette_changed([p[0], p[1], p[1], p[1]], false)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.25)
+		Signals.transition.emit(true, 1)
 		palette_changed([p[0], p[1], p[2], p[2]], false)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY)
+		Signals.transition.emit(true, 2)
 		palette_changed([p[0], p[1], p[2], p[3]], false)
 		Util.block_input = false
 
