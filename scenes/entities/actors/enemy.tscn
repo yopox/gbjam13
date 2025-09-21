@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc6wmh3trl2n4"]
+[gd_scene load_steps=7 format=3 uid="uid://dc6wmh3trl2n4"]
 
 [ext_resource type="Script" uid="uid://4bq47u0xyyi0" path="res://scenes/entities/actors/enemy.gd" id="1_n0alq"]
 [ext_resource type="Texture2D" uid="uid://bbi8owvr3t7xd" path="res://assets/entities/enemies.png" id="2_n0alq"]
@@ -11,6 +11,9 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0alq"]
 size = Vector2(14, 14)
+
+[sub_resource type="Gradient" id="Gradient_couwp"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [node name="enemy" type="Node2D" node_paths=PackedStringArray("hitbox", "blinker", "shots_anchor")]
 script = ExtResource("1_n0alq")
@@ -36,3 +39,17 @@ position = Vector2(-5, 0)
 sprite = NodePath("../sprite")
 intervals = 1
 blink_step = 0.25
+
+[node name="particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.8
+randomness = 0.3
+direction = Vector2(-1, 0)
+spread = 180.0
+gravity = Vector2(-50, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 48.0
+color_ramp = SubResource("Gradient_couwp")

@@ -11,6 +11,7 @@ static var T3: Array[Types] = [Types.E5, Types.E6]
 
 @onready var sprite: Sprite2D = $sprite
 @onready var area: Area2D = $area
+@onready var particles: CPUParticles2D = $particles
 
 var type: Types
 var movement: Movement

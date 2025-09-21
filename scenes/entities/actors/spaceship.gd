@@ -92,13 +92,14 @@ func damage(value: int) -> void:
 	if not enemy: Progress.hull = hp
 	
 	if enemy and hp == 0:
+		(self as Enemy).particles.emitting = true
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitorable", false)
 	
-	#Log.info("Spaceship hit, damage:", value, "HP:", hp)
-	# animations
-	if enemy and hp == 0 and blinker.intervals < 2:
-		blinker.intervals = 2
+	if enemy and hp == 0:
+		# HACK: particles have time to die before queue_free
+		blinker.blink_step *= 4
+		
 	blinker.hit()
 	hp_changed.emit(self)
 
