@@ -15,11 +15,14 @@ run/main_scene="uid://o0a7r202isek"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 Signals="*res://autoload/signals.gd"
 Util="*res://autoload/util.gd"
-DiscordRPCLoader="res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Palettes="*res://autoload/palettes.gd"
 Values="*res://autoload/values.gd"
 Waves="*res://data/waves.gd"
@@ -37,7 +40,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/log/plugin.cfg")
+enabled=PackedStringArray("res://addons/log/plugin.cfg")
 
 [input]
 

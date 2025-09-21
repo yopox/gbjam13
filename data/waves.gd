@@ -18,7 +18,7 @@ const WEIGHTS = [
 ]
 
 const WAVES_PER_DIFF = [
-	2, 3, 3, 4, 4, 5, 5
+	2, 2, 3, 4, 5, 6, 8
 ]
 
 #region Enemy Generation

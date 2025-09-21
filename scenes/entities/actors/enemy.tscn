@@ -10,7 +10,7 @@ atlas = ExtResource("2_n0alq")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0alq"]
-size = Vector2(8, 6)
+size = Vector2(14, 14)
 
 [node name="enemy" type="Node2D" node_paths=PackedStringArray("hitbox", "blinker", "shots_anchor")]
 script = ExtResource("1_n0alq")
