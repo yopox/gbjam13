@@ -5,3 +5,4 @@ assets/fonts/*.ttf
 /.idea/
 /addons/
 /export/
+*.DS_Store
