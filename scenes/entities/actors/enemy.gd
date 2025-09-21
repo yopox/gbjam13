@@ -5,9 +5,9 @@ enum Types {
 	E1, E2, E3, E4, E5, E6, E7, E8, E9
 }
 
-static var T1: Array[Types] = [Types.E1, Types.E2, Types.E3]
-static var T2: Array[Types] = [Types.E4, Types.E5, Types.E6]
-static var T3: Array[Types] = [Types.E7, Types.E8, Types.E9]
+static var T1: Array[Types] = [Types.E1, Types.E2]
+static var T2: Array[Types] = [Types.E3, Types.E4]
+static var T3: Array[Types] = [Types.E5, Types.E6]
 
 @onready var sprite: Sprite2D = $sprite
 @onready var area: Area2D = $area
