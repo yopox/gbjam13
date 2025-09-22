@@ -24,6 +24,7 @@ var id: int = -1
 
 
 func _ready() -> void:
+	max_hp = get_max_hp()
 	super()
 	(sprite.texture as AtlasTexture).region.position.x = 32 * type
 	speed = get_speed()
@@ -44,6 +45,12 @@ func _physics_process(delta: float) -> void:
 func heal(amount: int) -> void:
 	if hp == 0: return
 	hp = min(max_hp, hp + amount)
+
+
+func get_max_hp() -> int:
+	if type in T2: return Values.ENEMY_HP_2
+	if type in T3: return Values.ENEMY_HP_3
+	return Values.ENEMY_HP_1
 
 
 func get_speed() -> float:

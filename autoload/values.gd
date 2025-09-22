@@ -32,6 +32,9 @@ const PLAYER_DEATH_TIME_SCALE: float = 0.4
 ## Margin around the screen before the bullet is freed
 const BULLET_BUFFER: int = 12
 const SPAWN_Y_MID: float = UI_Y / 2.0
+const ENEMY_HP_1: int = 8
+const ENEMY_HP_2: int = 18
+const ENEMY_HP_3: int = 30
 const ENEMY_DAMAGE_1: int = 2
 const ENEMY_DAMAGE_2: int = 3
 const ENEMY_DAMAGE_3: int = 4
