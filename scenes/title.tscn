@@ -24,6 +24,17 @@ theme_override_font_sizes/font_size = 34
 text = "s777ars"
 horizontal_alignment = 1
 
+[node name="version" type="Label" parent="name"]
+modulate = Color(0.32941177, 0.32941177, 0.32941177, 1)
+layout_mode = 0
+offset_left = 127.0
+offset_top = 23.0
+offset_right = 145.0
+offset_bottom = 36.0
+theme = ExtResource("2_wosw1")
+text = "X.Y"
+horizontal_alignment = 2
+
 [node name="mode" type="Label" parent="."]
 custom_minimum_size = Vector2(160, 0)
 offset_top = 70.0

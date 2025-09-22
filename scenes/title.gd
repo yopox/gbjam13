@@ -3,11 +3,13 @@ extends Node2D
 @onready var logo: Label = $name
 @onready var mode: Label = $mode
 @onready var start: Label = $start
+@onready var version: Label = $name/version
 
 var timer: float = 0
 
 func _ready() -> void:
 	Signals.starfield_speed.emit(1.0)
+	version.text = ProjectSettings.get_setting("application/config/version")
 	
 	match Util.current_mode:
 		Util.GameMode.REGULAR: mode.text = "[REGULAR]"
