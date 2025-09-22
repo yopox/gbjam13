@@ -26,7 +26,7 @@ func _ready() -> void:
 		Util.GameMode.REGULAR, _:
 			status.text = "BOSS DEFEATED!" if Progress.boss_defeated else "YOU DIED :("
 	
-	stats.text = "Enemies killed: %s\nShield usages: %s\nMissile usages: %s" % [Progress.total_killed, Progress.shield_usages, Progress.missile_usages]
+	stats.text = "Enemies killed: %s\nShields used: %s\nMissiles used: %s" % [Progress.total_killed, Progress.shield_usages, Progress.missile_usages]
 	
 	# Cards
 	await Util.wait(Values.TRANSITION_COLOR_DELAY * 3)
