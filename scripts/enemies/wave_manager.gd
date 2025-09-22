@@ -86,9 +86,10 @@ func boss_reinforcement(boss_pos: Vector2) -> void:
 
 func gen_waves() -> Array[WaveEvent]:
 	@warning_ignore("integer_division")
-	var d: int = (Progress.stage - 1) / 2
+	var stage = Progress.stage - 1
+	var d: int = stage / 2
 	var w: Array[WaveEvent] = []
-	for i in range(Waves.WAVES_PER_DIFF[d] - 1):
+	for i in range(Waves.WAVES_PER_DIFF[stage] - 1):
 		w.append(WaveEvent.new(0.0 if i == 0 else Values.WAVE_DELAY, Waves.gen_wave_for_diff(d)))
 	if w.size() > 0:
 		var unlucky_i = randi_range(1, w.size())

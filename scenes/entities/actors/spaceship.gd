@@ -33,7 +33,9 @@ func shoot() -> void:
 		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < Values.S2_CANT_SHOOT_MS:
 			return
 	
-	if enemy:
+	if enemy and self is Boss:
+			shoot_bullet(PI)
+	elif enemy:
 		match (self as Enemy).get_shot_type():
 			Enemy.ShotType.REGULAR:
 				shoot_bullet(PI)
