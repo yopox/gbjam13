@@ -6,6 +6,7 @@ class_name Bar extends Control
 
 @export var loading: bool
 @export var label: Label
+@export var icon: Sprite2D = null
 @export var ratio: float = 0.0
 @export var width: int = 16
 
@@ -26,7 +27,10 @@ func set_ratio(r: float) -> void:
 
 
 func update_label() -> void:
+	var color: Color
 	if not loading:
-		label.modulate = Palettes.GRAY[1] if ratio < 0.001 else Palettes.GRAY[3]
+		color = Palettes.GRAY[1] if ratio < 0.001 else Palettes.GRAY[3]
 	else:
-		label.modulate = Palettes.GRAY[3] if ratio > 0.999 else Palettes.GRAY[1]
+		color = Palettes.GRAY[3] if ratio > 0.999 else Palettes.GRAY[1]
+	label.modulate = color
+	if icon != null: icon.modulate = color

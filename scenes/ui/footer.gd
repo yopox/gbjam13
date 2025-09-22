@@ -50,6 +50,8 @@ func update_shield_ratio() -> void:
 			shield_bar.loading = true
 			timer = Progress.shield_reload
 			var r = 1 - timer.time_left / timer.wait_time
+			if timer.is_stopped():
+				r = 0
 			shield_bar.set_ratio(r)
 		else:
 			shield_bar.loading = false

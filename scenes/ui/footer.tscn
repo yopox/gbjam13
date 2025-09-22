@@ -4,16 +4,18 @@
 [ext_resource type="Script" uid="uid://e6blguuygoyp" path="res://scenes/ui/footer.gd" id="1_msmip"]
 [ext_resource type="Theme" uid="uid://n7574lwa87ta" path="res://assets/themes/m3x6.tres" id="2_msmip"]
 [ext_resource type="PackedScene" uid="uid://br1dq76tpklqs" path="res://scenes/ui/bar.tscn" id="3_b63eu"]
-[ext_resource type="Texture2D" uid="uid://d5tyqmu424uy" path="res://assets/gui/icons.png" id="4_6big4"]
 [ext_resource type="Texture2D" uid="uid://cvw1npbs4e4gn" path="res://assets/mrmotiles.png" id="6_b63eu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x2olr"]
-atlas = ExtResource("4_6big4")
-region = Rect2(0, 0, 8, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_msmip"]
+atlas = ExtResource("6_b63eu")
+region = Rect2(72, 8, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1gvwg"]
-atlas = ExtResource("4_6big4")
-region = Rect2(8, 0, 8, 8)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b63eu"]
+load_path = "res://.godot/imported/mrmotiles.png-cdaa20ad969e17534334607ab807bfc6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0dx3"]
+atlas = SubResource("CompressedTexture2D_b63eu")
+region = Rect2(64, 8, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6big4"]
 atlas = ExtResource("6_b63eu")
@@ -88,9 +90,9 @@ offset_top = 3.0
 offset_right = 110.0
 offset_bottom = 43.0
 
-[node name="left" type="Sprite2D" parent="shield"]
+[node name="button" type="Sprite2D" parent="shield"]
 position = Vector2(0, -1)
-texture = SubResource("AtlasTexture_x2olr")
+texture = SubResource("AtlasTexture_msmip")
 centered = false
 
 [node name="label" type="Label" parent="shield"]
@@ -103,13 +105,14 @@ offset_bottom = 8.0
 theme = ExtResource("2_msmip")
 text = "SHL"
 
-[node name="bar" parent="shield" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
+[node name="bar" parent="shield" node_paths=PackedStringArray("label", "icon") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_top = 7.0
 offset_right = 40.0
 offset_bottom = 8.0
 loading = true
 label = NodePath("../label")
+icon = NodePath("../button")
 width = 21
 
 [node name="missile" type="Control" parent="."]
@@ -119,9 +122,9 @@ offset_top = 1.0
 offset_right = 134.0
 offset_bottom = 41.0
 
-[node name="right" type="Sprite2D" parent="missile"]
+[node name="button" type="Sprite2D" parent="missile"]
 position = Vector2(4, 5)
-texture = SubResource("AtlasTexture_1gvwg")
+texture = SubResource("AtlasTexture_u0dx3")
 
 [node name="label" type="Label" parent="missile"]
 modulate = Color(0.32941177, 0.32941177, 0.32941177, 1)
@@ -133,13 +136,14 @@ offset_bottom = 10.0
 theme = ExtResource("2_msmip")
 text = "MSL"
 
-[node name="bar" parent="missile" node_paths=PackedStringArray("label") instance=ExtResource("3_b63eu")]
+[node name="bar" parent="missile" node_paths=PackedStringArray("label", "icon") instance=ExtResource("3_b63eu")]
 layout_mode = 0
 offset_top = 9.0
 offset_right = 32.0
 offset_bottom = 10.0
 loading = true
 label = NodePath("../label")
+icon = NodePath("../button")
 width = 23
 
 [node name="boss" type="Control" parent="."]
