@@ -38,8 +38,12 @@ func play() -> void:
 		if event.unlucky:
 			Signals.unlucky_wave.emit()
 		for spawn in event.spawns:
-			await Util.wait(spawn.delay)
-			spawn_enemy(spawn)
+			if spawn is Spawn:
+				await Util.wait(spawn.delay)
+				spawn_enemy(spawn)
+			elif spawn is Wait:
+				Log.info("Wait", spawn.delay)
+				await Util.wait(spawn.delay)
 		if event.unlucky:
 			await Util.wait(Values.UNLUCKY_WAVE_DELAY)
 	if stage != 6:
@@ -79,7 +83,8 @@ func boss_reinforcement(boss_pos: Vector2) -> void:
 
 
 func gen_waves() -> Array[WaveEvent]:
-	var d: int = Progress.stage - 1
+	@warning_ignore("integer_division")
+	var d: int = (Progress.stage - 1) / 2
 	var w: Array[WaveEvent] = []
 	for i in range(Waves.WAVES_PER_DIFF[d] - 1):
 		w.append(WaveEvent.new(0.0 if i == 0 else Values.WAVE_DELAY, Waves.gen_wave_for_diff(d)))

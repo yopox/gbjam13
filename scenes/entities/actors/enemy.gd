@@ -33,7 +33,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Util.hit_stop: return
-	if hp > 0 and Util.check_oob(global_position, Values.ENEMY_BUFFER):
+	if hp > 0 and (global_position.x < -Values.ENEMY_BUFFER\
+		or global_position.y < -2 * Values.ENEMY_BUFFER or global_position.y > Values.UI_Y + 2 * Values.ENEMY_BUFFER):
 		Signals.enemy_escaped.emit()
 		queue_free()
 		return
