@@ -42,6 +42,9 @@ const ENEMY_SHOT_DELAY_1: float = SHIP_SHOT_DELAY * 3.0
 const ENEMY_SHOT_DELAY_2: float = SHIP_SHOT_DELAY * 2.5
 const ENEMY_SHOT_DELAY_3: float = SHIP_SHOT_DELAY * 2.0
 const ENEMY_BUFFER: float = 64
+const ENEMY_DOUBLE_SHOT_ANGLE: float = PI / 6
+const ENEMY_SHOT_TARGET_MIN_DX: float = 16.0
+const ENEMY_SHOT_REPEAT_DELAY: float = 0.2
 
 const BOSS_DAMAGE: int = ENEMY_DAMAGE_1
 const BOSS_HP: int = 600

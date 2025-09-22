@@ -33,8 +33,23 @@ func shoot() -> void:
 		if Progress.unlucky and Time.get_ticks_msec() - Progress.unlucky_timestamp < Values.S2_CANT_SHOOT_MS:
 			return
 	
-	shoot_bullet(0.0 if not enemy else PI)
-	if enemy: return
+	if enemy:
+		match (self as Enemy).get_shot_type():
+			Enemy.ShotType.REGULAR:
+				shoot_bullet(PI)
+			Enemy.ShotType.DOUBLE:
+				shoot_bullet(PI - Values.ENEMY_DOUBLE_SHOT_ANGLE)
+				shoot_bullet(PI + Values.ENEMY_DOUBLE_SHOT_ANGLE)
+			Enemy.ShotType.TARGET_PLAYER:
+				if global_position.x >= Util.ship_pos.x + Values.ENEMY_SHOT_TARGET_MIN_DX:
+					shoot_bullet(global_position.direction_to(Util.ship_pos).angle())
+			Enemy.ShotType.SINGLE_REPEAT:
+				shoot_bullet(PI)
+				await Util.wait(Values.ENEMY_SHOT_REPEAT_DELAY)
+				shoot_bullet(PI)
+		return
+	else:
+		shoot_bullet(0.0)
 	
 	Signals.play_sfx.emit(Sfx.SFX.SHOOT) 
 	

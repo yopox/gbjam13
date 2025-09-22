@@ -2,7 +2,11 @@ class_name Enemy extends Spaceship
 
 
 enum Types {
-	E1, E2, E3, E4, E5, E6, E7, E8, E9
+	E1, E2, E3, E4, E5, E6
+}
+
+enum ShotType {
+	REGULAR, DOUBLE, SINGLE_REPEAT, TARGET_PLAYER
 }
 
 static var T1: Array[Types] = [Types.E1, Types.E2]
@@ -61,3 +65,11 @@ func get_shot_delay() -> float:
 	if type in T2: return Values.ENEMY_SHOT_DELAY_2
 	if type in T3: return Values.ENEMY_SHOT_DELAY_3
 	return Values.ENEMY_SHOT_DELAY_1
+
+
+func get_shot_type() -> ShotType:
+	match type:
+		Types.E1, Types.E5: return ShotType.DOUBLE
+		Types.E3: return ShotType.SINGLE_REPEAT
+		Types.E4, Types.E6: return ShotType.TARGET_PLAYER
+		_: return ShotType.REGULAR
