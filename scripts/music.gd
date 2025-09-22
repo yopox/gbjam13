@@ -18,7 +18,7 @@ const FADE_OUT_IN: Array[float] = [0.65, 0.35, 0, 1, 1, 1]
 
 @onready var player_1: AudioStreamPlayer = $bgm
 @onready var player_2: AudioStreamPlayer = $bgm2
-var current_bgm: BGM
+var current_bgm: BGM = BGM.BOSS
 var next_bgm: BGM
 
 
@@ -46,6 +46,7 @@ func prepare_next_bgm(scene: Util.Scenes) -> void:
 
 
 func transition(appear: bool, step: int) -> void:
+	if current_bgm == next_bgm: return
 	var i: int = index(appear, step)
 	var p1_vol: Array[float]
 	var p2_vol: Array[float]

@@ -75,6 +75,9 @@ const PRE_BOSS_DELAY: float = 8.0
 const END_OF_STAGE_TWEEN_DURATION: float = 1.0
 const END_OF_STAGE_TWEEN_DX: float = SCREEN_W * 1.5
 
+const INFINITE_TIME_SCALE_PER_WAVE: float = 1.02
+const INFINITE_UNLUCKY_WAVE_CHANCE: float = 0.2
+
 # ———— POWERS ————
 const S1_DAMAGE_PER_UNLUCK: float = 0.25
 const S2_CANT_SHOOT_MS: float = 5000

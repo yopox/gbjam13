@@ -54,15 +54,19 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		Engine.time_scale = 1
 		if new_scene == Util.Scenes.TITLE:
 			p = Palettes.WASHED
+		elif new_scene == Util.Scenes.CARDS:
+			if Util.current_mode == Util.GameMode.DRAFT_7:
+				p = Palettes.NEXUS
 		elif new_scene == Util.Scenes.SPACE:
-			if Progress.stage <= 2:
-				p = Palettes.WASHED
-			elif Progress.stage <= 4:
-				p = Palettes.LOVED
-			elif Progress.stage <= 6:
-				p = Palettes.FLINTS
-			else:
-				p = Palettes.GRASA
+			if Util.current_mode == Util.GameMode.REGULAR:
+				if Progress.stage <= 2:
+					p = Palettes.WASHED
+				elif Progress.stage <= 4:
+					p = Palettes.LOVED
+				elif Progress.stage <= 6:
+					p = Palettes.FLINTS
+				else:
+					p = Palettes.GRASA
 		scene_node.add_child(s_node)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
 		Signals.transition.emit(true, 0)

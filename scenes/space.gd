@@ -26,15 +26,21 @@ func _ready() -> void:
 	Signals.waves_ended.connect(waves_ended)
 	Signals.force_cards.connect(force_cards)
 	Signals.boss_defeated.connect(boss_defeated)
-	wave_manager.gen_wave()
-	wave_manager.play()
+	if Util.current_mode == Util.GameMode.REGULAR:
+		wave_manager.gen_wave()
+		wave_manager.play()
+	else:
+		wave_manager.play_infinite()
 	footer._on_ship_hp_changed(ship)
 	Signals.send_notification.emit(stage_text())
 
 
 func stage_text() -> String:
-	if Progress.stage == 7: return "Final Stage!"
-	return "Stage %s" % Progress.stage
+	if Util.current_mode == Util.GameMode.REGULAR:
+		if Progress.stage == 7: return "Final Stage!"
+		return "Stage %s" % Progress.stage
+	else:
+		return "Infinite Wave!"
 
 
 func unlucky_wave() -> void:

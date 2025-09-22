@@ -5,7 +5,12 @@ enum Scenes {
 	SPLASH, TITLE, HANGAR, SPACE, CARDS, GAME_OVER
 }
 
+enum GameMode {
+	REGULAR, DRAFT_7
+}
+
 var current_palette: Array[Color]
+var current_mode: GameMode = GameMode.REGULAR
 
 var shots_node: Node2D
 var enemy_node: Node

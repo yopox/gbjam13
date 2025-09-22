@@ -15,6 +15,22 @@ func gen_wave() -> void:
 	current_wave = gen_waves()
 
 
+func play_infinite() -> void:
+	while true:
+		Progress.infinite_count += 1
+		Engine.set_time_scale(Values.INFINITE_TIME_SCALE_PER_WAVE ** Progress.infinite_count)
+		await Util.wait(Values.WAVE_DELAY * randf_range(1, 2))
+		var spawns: Array[Spawn]
+		if not Progress.unlucky and randf() < Values.INFINITE_UNLUCKY_WAVE_CHANCE:
+			spawns = Waves.gen_unlucky_wave(3)
+			Signals.unlucky_wave.emit()
+		else:
+			spawns = Waves.gen_wave_for_diff(3)
+		for spawn in spawns:
+			await Util.wait(spawn.delay)
+			spawn_enemy(spawn)
+
+
 func play() -> void:
 	var stage: int = Progress.stage - 1
 	for event in current_wave:

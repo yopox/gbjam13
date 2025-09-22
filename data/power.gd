@@ -21,6 +21,10 @@ var UNLUCKY_ONLY: Array[ID] = [
 	ID.DIAMS_2, ID.DIAMS_3, ID.CLUBS_2, ID.CLUBS_3,
 ]
 
+var INFINITE_BAN: Array[ID] = [
+	ID.CLUBS_9, ID.DIAMS_6
+]
+
 
 func pick_random(exclude: Array[ID]) -> ID:
 	var power = ID.values().pick_random()

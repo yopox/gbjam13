@@ -20,7 +20,12 @@ func _ready() -> void:
 		else:
 			progress.get_child(i).modulate = Palettes.GRAY[1]
 	
-	status.text = "BOSS DEFEATED!" if Progress.boss_defeated else "YOU DIED :("
+	match Util.current_mode:
+		Util.GameMode.DRAFT_7:
+			status.text = "[DRAFT 7] Wave %s" % Progress.infinite_count
+		Util.GameMode.REGULAR, _:
+			status.text = "BOSS DEFEATED!" if Progress.boss_defeated else "YOU DIED :("
+	
 	stats.text = "Enemies killed: %s\nShield usages: %s\nMissile usages: %s" % [Progress.total_killed, Progress.shield_usages, Progress.missile_usages]
 	
 	# Cards

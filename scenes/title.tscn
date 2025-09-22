@@ -24,6 +24,17 @@ theme_override_font_sizes/font_size = 34
 text = "s777ars"
 horizontal_alignment = 1
 
+[node name="mode" type="Label" parent="."]
+custom_minimum_size = Vector2(160, 0)
+offset_top = 70.0
+offset_right = 160.0
+offset_bottom = 93.0
+theme = ExtResource("2_wosw1")
+theme_override_colors/font_color = Color(0.32941177, 0.32941177, 0.32941177, 1)
+text = "[REGULAR]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="start" type="Label" parent="."]
 custom_minimum_size = Vector2(160, 0)
 offset_top = 80.0

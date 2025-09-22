@@ -25,18 +25,12 @@ func _ready() -> void:
 func draft() -> void:
 	var cards = [card_1, card_2, card_3, card_4]
 
-	if Progress.stage == 0:
-		cards[0].power = Power.pick_random_unlucky_only([])
-		cards[1].power = Power.pick_random_unlucky_only([cards[0].power])
-		cards[2].power = Power.pick_random_unlucky_only([cards[0].power, cards[1].power])
-		cards[3].power = Power.pick_random_unlucky_only([cards[0].power, cards[1].power, cards[2].power])
+	if Util.current_mode == Util.GameMode.REGULAR:
+		regular_draft()
 	else:
-		cards[0].power = Power.pick_random_stat([])
-		cards[1].power = Power.pick_random([cards[0].power])
-		cards[2].power = Power.pick_random([cards[0].power, cards[1].power])
-		cards[3].power = Power.pick_random_unlucky([cards[0].power, cards[1].power, cards[2].power])
+		infinite_draft()
 
-	if Progress.stage > 0 and not Progress.has(Power.ID.CLUBS_9):
+	if Util.current_mode == Util.GameMode.REGULAR and Progress.stage > 0 and not Progress.has(Power.ID.CLUBS_9):
 		cards[0].outline = Progress.last_killed.size() * 4 < Progress.last_total.size()
 		cards[3].outline = Progress.last_killed.size() * 1.5 < Progress.last_total.size()
 	else:
@@ -45,6 +39,40 @@ func draft() -> void:
 
 	for i in range(4):
 		cards[i].update()
+
+
+func regular_draft() -> void:
+	if Progress.stage == 0:
+		card_1.power = Power.pick_random_unlucky_only([])
+		card_2.power = Power.pick_random_unlucky_only([card_1.power])
+		card_3.power = Power.pick_random_unlucky_only([card_1.power, card_2.power])
+		card_4.power = Power.pick_random_unlucky_only([card_1.power, card_2.power, card_3.power])
+	else:
+		card_1.power = Power.pick_random_stat([])
+		card_2.power = Power.pick_random([card_1.power])
+		card_3.power = Power.pick_random([card_1.power, card_2.power])
+		card_4.power = Power.pick_random_unlucky([card_1.power, card_2.power, card_3.power])
+
+
+func infinite_draft() -> void:
+	if Progress.stage == 0:
+		var ban: Array[Power.ID] = Power.INFINITE_BAN.duplicate()
+		card_1.power = Power.pick_random_unlucky_only(ban)
+		ban.append(card_1.power)
+		card_2.power = Power.pick_random_unlucky_only(ban)
+		ban.append(card_2.power)
+		card_3.power = Power.pick_random_unlucky_only(ban)
+		ban.append(card_3.power)
+		card_4.power = Power.pick_random_unlucky_only(ban)
+	else:
+		var ban: Array[Power.ID] = Power.INFINITE_BAN.duplicate()
+		card_1.power = Power.pick_random_stat(ban)
+		ban.append(card_1.power)
+		card_2.power = Power.pick_random(ban)
+		ban.append(card_2.power)
+		card_3.power = Power.pick_random(ban)
+		ban.append(card_3.power)
+		card_4.power = Power.pick_random_unlucky(ban)
 
 
 func _process(_delta: float) -> void:
@@ -70,7 +98,12 @@ func _process(_delta: float) -> void:
 		# Heal player
 		Progress.hull = min(Progress.hull + Progress.max_hull * Values.HEAL_AFTER_STAGE_RATIO, Progress.max_hull)
 
-		Signals.change_scene.emit(Util.Scenes.SPACE)
+		if Util.current_mode == Util.GameMode.DRAFT_7 and Progress.powerups.size() < 7:
+			Signals.change_scene.emit(Util.Scenes.CARDS)
+		else:
+			Signals.change_scene.emit(Util.Scenes.SPACE)
+	elif Input.is_action_just_pressed("b"):
+		Signals.change_scene.emit(Util.Scenes.TITLE)
 
 
 func update():

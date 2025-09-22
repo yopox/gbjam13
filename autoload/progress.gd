@@ -22,6 +22,7 @@ var speed_boost: float = 0
 var last_total: Dictionary = {}
 var last_killed: Dictionary = {}
 var total_killed: int = 0
+var infinite_count: int = 0
 
 var unlucky_wave: int = -1
 var unlucky: bool = false
@@ -60,6 +61,7 @@ func reset() -> void:
 	last_total.clear()
 	last_killed.clear()
 	total_killed = 0
+	infinite_count = 0
 
 	unlucky_wave = -1
 	unlucky = false
