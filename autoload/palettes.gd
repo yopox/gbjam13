@@ -8,23 +8,37 @@ const GRAY: Array[Color] = [
 	Color("#fff"),
 ]
 
-const DMG: Array[Color] = [
-	Color("071821"),
-	Color("306850"),
-	Color("86c06c"),
-	Color("e0f8cf"),
+const NEXUS: Array[Color] = [
+	Color("2a110c"),
+	Color("f1461b"),
+	Color("faad1f"),
+	Color("fdfdfd"),
 ]
 
-const PASTEL: Array[Color] = [
-	Color("#040204"),
-	Color("#9c92f4"),
-	Color("#ec8a8c"),
-	Color("#fcfaac"),
+const WASHED: Array[Color] = [
+	Color("1c1b3a"),
+	Color("30497e"),
+	Color("e0849e"),
+	Color("eeeeee"),
 ]
 
-const PURPLE: Array[Color] = [
-	Color("#0F1425"),
-	Color("6a5ba8ff"),
-	Color("bf4c69ff"),
-	Color("dab1f0ff"),
+const LOVED: Array[Color] = [
+	Color("07090e"),
+	Color("506040"),
+	Color("b74c3c"),
+	Color("fcf6cf"),
+]
+
+const FLINTS: Array[Color] = [
+	Color("1b1d22"),
+	Color("3f4b83"),
+	Color("f4b965"),
+	Color("95a2d0"),
+]
+
+const GRASA: Array[Color] = [
+	Color("11110f"),
+	Color("202c45"),
+	Color("d23920"),
+	Color("e3dcd2"),
 ]

@@ -18,7 +18,7 @@ func _ready() -> void:
 	shader = color_rect.material as ShaderMaterial
 	Signals.palette_changed.connect(palette_changed)
 	Signals.change_scene.connect(change_scene)
-	palette_changed(Palettes.DMG, true)
+	palette_changed(Palettes.WASHED, true)
 	change_scene(scene)
 
 
@@ -52,6 +52,17 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		for node in scene_node.get_children():
 			node.queue_free()
 		Engine.time_scale = 1
+		if new_scene == Util.Scenes.TITLE:
+			p = Palettes.WASHED
+		elif new_scene == Util.Scenes.SPACE:
+			if Progress.stage <= 2:
+				p = Palettes.WASHED
+			elif Progress.stage <= 4:
+				p = Palettes.LOVED
+			elif Progress.stage <= 6:
+				p = Palettes.FLINTS
+			else:
+				p = Palettes.GRASA
 		scene_node.add_child(s_node)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY * 1.5)
 		Signals.transition.emit(true, 0)
@@ -61,7 +72,7 @@ func change_scene(new_scene: Util.Scenes) -> void:
 		palette_changed([p[0], p[1], p[2], p[2]], false)
 		await Util.wait(Values.TRANSITION_COLOR_DELAY)
 		Signals.transition.emit(true, 2)
-		palette_changed([p[0], p[1], p[2], p[3]], false)
+		palette_changed([p[0], p[1], p[2], p[3]], true)
 		Util.block_input = false
 
 
